@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: mp3agic
+Implementation-Version: 0.8.1
+Implementation-Vendor-Id: com.mpatric
+Built-By: henner
+Build-Jdk: 1.7.0_21
+Specification-Title: mp3agic
+Created-By: Apache Maven 3.0.4
+Specification-Version: 0.8.1
+Archiver-Version: Plexus Archiver
+
