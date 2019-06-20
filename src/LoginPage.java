@@ -205,15 +205,17 @@ public class LoginPage extends javax.swing.JFrame {
              name = brs.readLine();
              pass = brs.readLine();
              if(name.equals(username) && pass.equals(password)){
-                 HomePage homepage1 = new HomePage(); 
+                 HomePage homepage1 = new HomePage(username); 
                  homepage1.setVisible(true);
+                 System.out.println(username);
+                 homepage1.username = username;
              }
              while(name!=null){
                  name = brs.readLine();
                  pass = brs.readLine();
                 
                 if(name.equals(username) && pass.equals(password)){
-                    HomePage homepage2 = new HomePage(); 
+                    HomePage homepage2 = new HomePage(username); 
                     homepage2.setVisible(true);
                     name = null;
                 }
