@@ -34,6 +34,7 @@ public class homePage extends javax.swing.JDialog {
         playButton = new javax.swing.JButton();
         pauseButton = new javax.swing.JButton();
         forwardButton = new javax.swing.JButton();
+        backwardButton = new javax.swing.JButton();
         friendActivityScroll = new javax.swing.JScrollPane();
         panel1 = new java.awt.Panel();
         addToLibraryButton = new java.awt.Button();
@@ -69,6 +70,8 @@ public class homePage extends javax.swing.JDialog {
 
         forwardButton.setText("jButton1");
 
+        backwardButton.setText("jButton1");
+
         javax.swing.GroupLayout SoundBarLayout = new javax.swing.GroupLayout(SoundBar);
         SoundBar.setLayout(SoundBarLayout);
         SoundBarLayout.setHorizontalGroup(
@@ -79,6 +82,8 @@ public class homePage extends javax.swing.JDialog {
                 .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SoundBarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -93,7 +98,8 @@ public class homePage extends javax.swing.JDialog {
                 .addGroup(SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playButton)
                     .addComponent(pauseButton)
-                    .addComponent(forwardButton))
+                    .addComponent(forwardButton)
+                    .addComponent(backwardButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -312,6 +318,7 @@ public class homePage extends javax.swing.JDialog {
     private java.awt.Button addToLibraryButton;
     private javax.swing.JButton albumsButton;
     private javax.swing.JButton artistButton;
+    private javax.swing.JButton backwardButton;
     private java.awt.Panel displayPanel;
     private javax.swing.JPanel favoriteSongsPanel;
     private javax.swing.JButton forwardButton;
