@@ -48,7 +48,7 @@ public class Music {
      * @param music file which has been made and pass to make song
      * @throws IOException if it can't make an stream
      * @throws InvalidDataException if file format doesn't be .mp3
-     * @throws UnsupportedTagException if music doesnt support ID3V2
+     * @throws UnsupportedTagException if music doesn't support ID3V2
      */
 
     public Music(File music) throws IOException, InvalidDataException, UnsupportedTagException {

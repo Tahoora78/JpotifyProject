@@ -56,4 +56,16 @@ public class Album {
         counter=songs.size();
 
     }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public ArrayList<Music> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(ArrayList<Music> songs) {
+        this.songs = songs;
+    }
 }

@@ -68,4 +68,6 @@ public class PlayList {
         this.title = s;
     }
 
+    public ArrayList<Music> getSongs() { return this.songs;
+    }
 }
