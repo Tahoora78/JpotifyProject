@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="1" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="homeLabel" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="searchText" min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchButton" min="-2" pref="54" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="libraryScroll" min="-2" pref="220" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="userNameLabel" min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="displayPanel" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="298" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="soundBar" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="newUserButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="userNameLabel" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="homeLabel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="libraryScroll" min="-2" pref="362" max="-2" attributes="0"/>
+                  <Component id="displayPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="soundBar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="displayPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="362" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="libraryScroll">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="libraryPanel">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="songsPanel" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="songsButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addToLibrary" alignment="1" max="32767" attributes="0"/>
+                          <Component id="albumButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="artistButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="favoriteButoon" alignment="0" pref="227" max="32767" attributes="0"/>
+                          <Component id="playListButton" alignment="1" max="32767" attributes="0"/>
+                          <Component id="libraryButton" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="libraryLabel" min="-2" pref="183" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="libraryLabel" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="addToLibrary" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="libraryButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="albumButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="artistButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="favoriteButoon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="playListButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="songsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="songsPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="addToLibrary">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="add to library"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="albumButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="album"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="artistButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="artist"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="favoriteButoon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="favorite button"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="playListButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="playList"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="libraryButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="library"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="songsButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Songs"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="songsPanel">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="87" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Component class="java.awt.Label" name="libraryLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="library"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="soundBar">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                  <Component id="musicSlider" min="-2" pref="579" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="musicLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="volumeSlider" min="-2" pref="79" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="shuffleButton" min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="backwardButton" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="pauseButton" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="playButton" min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="forwardButton" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="favoriteButton" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="454" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="playButton" alignment="3" max="32767" attributes="0"/>
+                      <Component id="forwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pauseButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="backwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="shuffleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="musicLabel" max="32767" attributes="0"/>
+                          <Component id="musicSlider" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="volumeSlider" min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JSlider" name="musicSlider">
+        </Component>
+        <Component class="javax.swing.JButton" name="playButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="pauseButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="forwardButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="backwardButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="favoriteButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="musicLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSlider" name="volumeSlider">
+        </Component>
+        <Component class="javax.swing.JButton" name="shuffleButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="friendActivityLabel" pref="272" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="friendActivityLabel" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace pref="328" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="friendActivityLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="newUserButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="new user"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="userNameLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="user"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="homeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="home"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="searchButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="search"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="text"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
