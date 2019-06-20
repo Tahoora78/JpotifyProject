@@ -69,9 +69,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="addToLibrary" pref="178" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="songsButton" alignment="1" max="32767" attributes="0"/>
+                          <Component id="addToLibrary" alignment="1" pref="178" max="32767" attributes="0"/>
+                          <Component id="albumButton" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -81,7 +85,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="addToLibrary" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="songsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="albumButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="188" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -90,6 +98,16 @@
             <Component class="javax.swing.JButton" name="addToLibrary">
               <Properties>
                 <Property name="text" type="java.lang.String" value="add to library"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="songsButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Songs"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="albumButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="album"/>
               </Properties>
             </Component>
           </SubComponents>
