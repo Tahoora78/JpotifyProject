@@ -90,8 +90,8 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="usernameField" max="32767" attributes="0"/>
-                                  <Component id="passwordField" pref="87" max="32767" attributes="0"/>
+                                  <Component id="passwordText" max="32767" attributes="0"/>
+                                  <Component id="usernameText" pref="87" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -110,7 +110,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="passwordField" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="usernameText" min="-2" pref="47" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="newUserButton" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="passwordLabel" min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="usernameField" min="-2" pref="56" max="-2" attributes="0"/>
+                          <Component id="passwordText" min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -166,7 +166,7 @@
                 <Property name="text" type="java.lang.String" value="newUser"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="usernameField">
+            <Component class="javax.swing.JTextField" name="passwordText">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -175,7 +175,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="passwordField">
+            <Component class="javax.swing.JTextField" name="usernameText">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -193,11 +193,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="exit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="resetButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="reset"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
