@@ -41,7 +41,9 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="homeLabel" min="-2" pref="202" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="userNameLabel" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
@@ -52,19 +54,21 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="userNameLabel" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                          <Component id="userNameLabel" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
+                  <Component id="homeLabel" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="libraryScroll" min="-2" pref="362" max="-2" attributes="0"/>
                   <Component id="displayPanel" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" pref="363" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="soundBar" min="-2" max="-2" attributes="0"/>
@@ -349,6 +353,11 @@
     <Component class="javax.swing.JLabel" name="userNameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="user"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="homeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="home"/>
       </Properties>
     </Component>
   </SubComponents>
