@@ -21,40 +21,10 @@ public class newUser extends javax.swing.JFrame {
 
     String username;
     String password;
-    
+    String favoriteName;
     public newUser() {
         String favoriteName;
         initComponents();
-        password = passwordText.getText();
-        username = usernameText.getText();
-        System.out.println(password+username);
-        File f1 = new File("UsersFolder");
-        File f2 = new File("UsersFolder/".concat(username).concat(".txt"));
-        File f3 = new File("UsersFolder/user.txt");
-        favoriteName = "UsersFolder/".concat("favorite").concat(username).concat(".txt");
-        File f4 = new File(favoriteName);
-        f1.mkdir();
-        
-        try {
-                    f2.createNewFile();
-                    f3.createNewFile();
-                    f4.createNewFile();
-                } catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-        try {
-               Files.write(Paths.get("UsersFolder/user.txt"), username.getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e2) {
-                }
-                try {
-                    Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e2) {
-                }
-    
-                try {
-                    Files.write(Paths.get("UsersFolder/user.txt"), password.getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e3) {
-                }
         
     }
 
@@ -162,8 +132,49 @@ public class newUser extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
 
-        HomePage homepage = new HomePage();
-        homepage.setVisible(true);
+        password = passwordText.getText();
+        username = usernameText.getText();
+        HomePage homepage4 = new HomePage(username);
+        System.out.println(username);
+        homepage4.setVisible(true);
+        
+        System.out.println(password+username);
+        File f1 = new File("UsersFolder");
+        File f2 = new File("UsersFolder/".concat(username).concat(".txt"));
+        File f3 = new File("UsersFolder/user.txt");
+        favoriteName = "UsersFolder/".concat("favorite").concat(username).concat(".txt");
+        File f4 = new File(favoriteName);
+        f1.mkdir();
+        
+        try {
+                    f2.createNewFile();
+                    f3.createNewFile();
+                    f4.createNewFile();
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+        try {
+               Files.write(Paths.get("UsersFolder/user.txt"), username.getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e2) {
+                }
+                try {
+                    Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e2) {
+                }
+    
+                try {
+                    Files.write(Paths.get("UsersFolder/user.txt"), password.getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e3) {
+                }
+                try {
+                    Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e2) {
+                }
+        
+        
+        
+        
+        
         System.out.println(password+username);
     }//GEN-LAST:event_okButtonActionPerformed
 

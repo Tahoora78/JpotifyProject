@@ -57,8 +57,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="searchButton" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="userNameLabel" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="userNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   </Group>
@@ -75,15 +75,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="newUserButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="userNameLabel" alignment="3" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addToLibrary" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="userNameLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -218,26 +216,26 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
                   <Component id="musicSlider" min="-2" pref="579" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="musicLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="volumeSlider" min="-2" pref="79" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="shuffleButton" min="-2" pref="23" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="backwardButton" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="pauseButton" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="playButton" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="forwardButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="favoriteButton" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="454" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="498" max="-2" attributes="0"/>
+                  <Component id="musicLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="volumeSlider" min="-2" pref="79" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -245,22 +243,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="playButton" alignment="3" max="32767" attributes="0"/>
-                      <Component id="forwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="pauseButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="backwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="shuffleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="playButton" alignment="3" max="32767" attributes="0"/>
+                          <Component id="forwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pauseButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="backwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="shuffleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="musicLabel" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="volumeSlider" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="musicLabel" max="32767" attributes="0"/>
-                          <Component id="musicSlider" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="volumeSlider" min="-2" pref="14" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="musicSlider" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -295,6 +294,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="jButton1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favoriteButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="musicLabel">
           <Properties>
@@ -350,11 +352,6 @@
         <Property name="text" type="java.lang.String" value="new user"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="userNameLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="user"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="searchButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="search"/>
@@ -369,11 +366,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="add to library"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addToLibraryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="newPlayList">
       <Properties>
         <Property name="text" type="java.lang.String" value="new playlist"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="userNameLabel">
     </Component>
   </SubComponents>
 </Form>

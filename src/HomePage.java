@@ -16,10 +16,12 @@ import javax.swing.JComponent;
  * @author Home pc
  */
 public final class HomePage extends javax.swing.JFrame {
-
-    /**
-     * Creates new form HomePage
-     */
+    String username = "user";
+    boolean liked=false;
+    private ArrayList<Music> songs=new
+    public void setUserName(String name){
+        username = name;
+    }
     
      public void setImage(JButton button,String path){
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
@@ -29,14 +31,16 @@ public final class HomePage extends javax.swing.JFrame {
         button.setIcon(i);
         }
     
-    
-    public HomePage() {
+        
+    public HomePage(String name) {
         initComponents();
+        userNameLabel.setText(name);
         setImage(pauseButton,"pause.png");
         setImage(playButton,"play.png");
         setImage(forwardButton,"forward.png");
         setImage(backwardButton,"backward.png");
         setImage(shuffleButton,"shuffle.png");
+        setImage(favoriteButton,"love.jpg");
         
     }
 
@@ -71,11 +75,11 @@ public final class HomePage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         friendActivityLabel = new javax.swing.JLabel();
         newUserButton = new javax.swing.JButton();
-        userNameLabel = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         searchText = new javax.swing.JTextField();
         addToLibrary = new javax.swing.JButton();
         newPlayList = new javax.swing.JButton();
+        userNameLabel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,6 +166,11 @@ public final class HomePage extends javax.swing.JFrame {
         });
 
         favoriteButton.setText("jButton1");
+        favoriteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favoriteButtonActionPerformed(evt);
+            }
+        });
 
         musicLabel.setText("jLabel1");
 
@@ -174,43 +183,44 @@ public final class HomePage extends javax.swing.JFrame {
             .addGroup(soundBarLayout.createSequentialGroup()
                 .addGap(229, 229, 229)
                 .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(musicLabel)
-                .addGap(18, 18, 18)
-                .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, soundBarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(shuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(backwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(forwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(favoriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(454, 454, 454))
+                .addGap(498, 498, 498)
+                .addComponent(musicLabel)
+                .addGap(18, 18, 18)
+                .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
         soundBarLayout.setVerticalGroup(
             soundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, soundBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(soundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(forwardButton)
-                    .addComponent(favoriteButton)
-                    .addComponent(pauseButton)
-                    .addComponent(backwardButton)
-                    .addComponent(shuffleButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(soundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(soundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(musicLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(musicSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(soundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(forwardButton)
+                        .addComponent(favoriteButton)
+                        .addComponent(pauseButton)
+                        .addComponent(backwardButton)
+                        .addComponent(shuffleButton)
+                        .addComponent(musicLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(soundBarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(volumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         friendActivityLabel.setText("jLabel1");
@@ -235,13 +245,16 @@ public final class HomePage extends javax.swing.JFrame {
 
         newUserButton.setText("new user");
 
-        userNameLabel.setText("user");
-
         searchButton.setText("search");
 
         searchText.setText("text");
 
         addToLibrary.setText("add to library");
+        addToLibrary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToLibraryActionPerformed(evt);
+            }
+        });
 
         newPlayList.setText("new playlist");
 
@@ -276,8 +289,8 @@ public final class HomePage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newUserButton)
                         .addGap(83, 83, 83))))
             .addGroup(layout.createSequentialGroup()
@@ -289,13 +302,12 @@ public final class HomePage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(newUserButton)
-                        .addComponent(userNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(newUserButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchButton)
                         .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addToLibrary)))
+                        .addComponent(addToLibrary))
+                    .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -318,10 +330,25 @@ public final class HomePage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backwardButtonActionPerformed
 
+    private void addToLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryActionPerformed
+        
+    }//GEN-LAST:event_addToLibraryActionPerformed
+
+    private void favoriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favoriteButtonActionPerformed
+        if(liked==false){
+            setImage(favoriteButton,"fulLove.jpg");
+        liked = true;
+        }
+       else if(liked == true){
+        setImage(favoriteButton,"love.jpg");
+        liked = false;
+        }
+    }//GEN-LAST:event_favoriteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public  void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -348,11 +375,12 @@ public final class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                new HomePage(username).setVisible(true);
             }
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToLibrary;
     private javax.swing.JButton albumButton;
@@ -379,7 +407,7 @@ public final class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton songsButton;
     private javax.swing.JPanel songsPanel;
     private javax.swing.JPanel soundBar;
-    private javax.swing.JLabel userNameLabel;
+    private javax.swing.JTextField userNameLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
 }
