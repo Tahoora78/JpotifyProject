@@ -127,7 +127,9 @@
                   <Component id="pauseButton" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="forwardButton" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="favoriteButton" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -140,6 +142,7 @@
                       <Component id="pauseButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="forwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="backwardButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="musicSlider" min="-2" max="-2" attributes="0"/>
@@ -167,6 +170,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="backwardButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="favoriteButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="jButton1"/>
           </Properties>

@@ -35,6 +35,7 @@ public class homePage extends javax.swing.JDialog {
         pauseButton = new javax.swing.JButton();
         forwardButton = new javax.swing.JButton();
         backwardButton = new javax.swing.JButton();
+        favoriteButton = new javax.swing.JButton();
         friendActivityScroll = new javax.swing.JScrollPane();
         panel1 = new java.awt.Panel();
         addToLibraryButton = new java.awt.Button();
@@ -72,6 +73,8 @@ public class homePage extends javax.swing.JDialog {
 
         backwardButton.setText("jButton1");
 
+        favoriteButton.setText("jButton1");
+
         javax.swing.GroupLayout SoundBarLayout = new javax.swing.GroupLayout(SoundBar);
         SoundBar.setLayout(SoundBarLayout);
         SoundBarLayout.setHorizontalGroup(
@@ -89,7 +92,9 @@ public class homePage extends javax.swing.JDialog {
                 .addComponent(pauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(forwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(339, 339, 339))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(favoriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(303, 303, 303))
         );
         SoundBarLayout.setVerticalGroup(
             SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +104,8 @@ public class homePage extends javax.swing.JDialog {
                     .addComponent(playButton)
                     .addComponent(pauseButton)
                     .addComponent(forwardButton)
-                    .addComponent(backwardButton))
+                    .addComponent(backwardButton)
+                    .addComponent(favoriteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -320,6 +326,7 @@ public class homePage extends javax.swing.JDialog {
     private javax.swing.JButton artistButton;
     private javax.swing.JButton backwardButton;
     private java.awt.Panel displayPanel;
+    private javax.swing.JButton favoriteButton;
     private javax.swing.JPanel favoriteSongsPanel;
     private javax.swing.JButton forwardButton;
     private javax.swing.JButton fovoriteSongButton;
