@@ -30,6 +30,7 @@ public class homePage extends javax.swing.JDialog {
 
         displayPanel = new java.awt.Panel();
         SoundBar = new java.awt.Panel();
+        musicSlider = new javax.swing.JSlider();
         friendActivityScroll = new javax.swing.JScrollPane();
         panel1 = new java.awt.Panel();
         addToLibraryButton = new java.awt.Button();
@@ -63,11 +64,17 @@ public class homePage extends javax.swing.JDialog {
         SoundBar.setLayout(SoundBarLayout);
         SoundBarLayout.setHorizontalGroup(
             SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(SoundBarLayout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         SoundBarLayout.setVerticalGroup(
             SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SoundBarLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         addToLibraryButton.setLabel("add to library");
@@ -291,6 +298,7 @@ public class homePage extends javax.swing.JDialog {
     private javax.swing.JLabel friendAxtivityLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel libraryIconLabel;
+    private javax.swing.JSlider musicSlider;
     private javax.swing.JButton newUserButton;
     private java.awt.Panel panel1;
     private javax.swing.JButton playListButton;
