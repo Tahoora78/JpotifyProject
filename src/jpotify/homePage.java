@@ -31,6 +31,9 @@ public class homePage extends javax.swing.JDialog {
         displayPanel = new java.awt.Panel();
         SoundBar = new java.awt.Panel();
         musicSlider = new javax.swing.JSlider();
+        playButton = new javax.swing.JButton();
+        pauseButton = new javax.swing.JButton();
+        forwardButton = new javax.swing.JButton();
         friendActivityScroll = new javax.swing.JScrollPane();
         panel1 = new java.awt.Panel();
         addToLibraryButton = new java.awt.Button();
@@ -60,6 +63,12 @@ public class homePage extends javax.swing.JDialog {
             .addGap(0, 467, Short.MAX_VALUE)
         );
 
+        playButton.setText("jButton1");
+
+        pauseButton.setText("jButton1");
+
+        forwardButton.setText("jButton1");
+
         javax.swing.GroupLayout SoundBarLayout = new javax.swing.GroupLayout(SoundBar);
         SoundBar.setLayout(SoundBarLayout);
         SoundBarLayout.setHorizontalGroup(
@@ -68,11 +77,24 @@ public class homePage extends javax.swing.JDialog {
                 .addGap(145, 145, 145)
                 .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SoundBarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(339, 339, 339))
         );
         SoundBarLayout.setVerticalGroup(
             SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SoundBarLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(SoundBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playButton)
+                    .addComponent(pauseButton)
+                    .addComponent(forwardButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(musicSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -292,6 +314,7 @@ public class homePage extends javax.swing.JDialog {
     private javax.swing.JButton artistButton;
     private java.awt.Panel displayPanel;
     private javax.swing.JPanel favoriteSongsPanel;
+    private javax.swing.JButton forwardButton;
     private javax.swing.JButton fovoriteSongButton;
     private javax.swing.JPanel friendActivityPanel;
     private javax.swing.JScrollPane friendActivityScroll;
@@ -301,6 +324,8 @@ public class homePage extends javax.swing.JDialog {
     private javax.swing.JSlider musicSlider;
     private javax.swing.JButton newUserButton;
     private java.awt.Panel panel1;
+    private javax.swing.JButton pauseButton;
+    private javax.swing.JButton playButton;
     private javax.swing.JButton playListButton;
     private javax.swing.JButton songsButton;
     private javax.swing.JLabel userNameLabel;
