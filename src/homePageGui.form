@@ -73,8 +73,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="songsButton" alignment="1" max="32767" attributes="0"/>
-                          <Component id="addToLibrary" alignment="1" pref="178" max="32767" attributes="0"/>
+                          <Component id="addToLibrary" alignment="1" max="32767" attributes="0"/>
                           <Component id="albumButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="artistButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="favoriteButoon" alignment="0" pref="178" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -89,7 +91,11 @@
                       <Component id="songsButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="albumButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="188" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="artistButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="favoriteButoon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -108,6 +114,16 @@
             <Component class="javax.swing.JButton" name="albumButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="album"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="artistButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="artist"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="favoriteButoon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="favorite button"/>
               </Properties>
             </Component>
           </SubComponents>
