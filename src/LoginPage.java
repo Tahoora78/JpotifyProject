@@ -18,9 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginPage
-     */
+    
    
     public LoginPage() {
         initComponents();
@@ -80,6 +78,11 @@ public class LoginPage extends javax.swing.JFrame {
         usernameText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
         loginButton.setText("login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -184,9 +187,14 @@ public class LoginPage extends javax.swing.JFrame {
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
        newUser user = new newUser();
        user.setVisible(true);
-        
-       
+     
     }//GEN-LAST:event_newUserButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
