@@ -1,3 +1,16 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,10 +22,10 @@
  * @author Home pc
  */
 public class LoginPage extends javax.swing.JFrame {
-
-    /**
-     * Creates new form LoginPage
-     */
+        String username;
+        String password;
+    
+   
     public LoginPage() {
         initComponents();
         
@@ -60,12 +73,22 @@ public class LoginPage extends javax.swing.JFrame {
         passwordLabel.setText("password");
 
         newUserButton.setText("newUser");
+        newUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserButtonActionPerformed(evt);
+            }
+        });
 
         passwordText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
         usernameText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
         loginButton.setText("login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +189,46 @@ public class LoginPage extends javax.swing.JFrame {
         passwordText.setText(null);
         usernameText.setText(null);
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
+       newUser user = new newUser();
+       user.setVisible(true);
+     
+    }//GEN-LAST:event_newUserButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        username = usernameText.getText();
+        password = passwordText.getText();
+        String name;
+        String pass;
+         try (BufferedReader brs = new BufferedReader(new FileReader("usersFolder/".concat("user").concat(".txt")))){
+             name = brs.readLine();
+             pass = brs.readLine();
+             if(name.equals(username) && pass.equals(password)){
+                 HomePage homepage1 = new HomePage(username); 
+                 homepage1.setVisible(true);
+                 System.out.println(username);
+                 homepage1.username = username;
+             }
+             while(name!=null){
+                 name = brs.readLine();
+                 pass = brs.readLine();
+                
+                if(name.equals(username) && pass.equals(password)){
+                    HomePage homepage2 = new HomePage(username); 
+                    homepage2.setVisible(true);
+                    name = null;
+                }
+           }
+         }catch(FileNotFoundException e){} catch (IOException ex) {
+                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments

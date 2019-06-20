@@ -165,6 +165,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="newUser"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newUserButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="passwordText">
               <Properties>
@@ -188,6 +191,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="login"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="exitButton">
               <Properties>
