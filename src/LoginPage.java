@@ -21,8 +21,7 @@ public class LoginPage extends javax.swing.JFrame {
     /**
      * Creates new form LoginPage
      */
-    String name;
-    String favoriteName;
+   
     public LoginPage() {
         initComponents();
         
@@ -183,29 +182,10 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
-        name = JOptionPane.showInputDialog("please write your name");
-        File f1 = new File("UsersFolder");
-        File f2 = new File("UsersFolder/".concat(name).concat(".txt"));
-        File f3 = new File("UsersFolder/user.txt");
-        favoriteName = "UsersFolder/".concat("favorite").concat(name).concat(".txt");
-        File f4 = new File(favoriteName);
-        f1.mkdir();
-        try {
-                    f2.createNewFile();
-                    f3.createNewFile();
-                    f4.createNewFile();
-                } catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-        try {
-               Files.write(Paths.get("UsersFolder/user.txt"), name.getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e2) {
-                }
-                try {
-                    Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e2) {
-                }
-    
+       newUser user = new newUser();
+       user.setVisible(true);
+        
+       
     }//GEN-LAST:event_newUserButtonActionPerformed
 
     /**
