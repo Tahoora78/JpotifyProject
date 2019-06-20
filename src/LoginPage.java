@@ -1,9 +1,14 @@
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -17,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author Home pc
  */
 public class LoginPage extends javax.swing.JFrame {
-
+        String username;
+        String password;
     
    
     public LoginPage() {
@@ -191,6 +197,32 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_newUserButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        username = usernameText.getText();
+        password = passwordText.getText();
+        String name;
+        String pass;
+         try (BufferedReader brs = new BufferedReader(new FileReader("usersFolder/".concat("user").concat(".txt")))){
+             name = brs.readLine();
+             pass = brs.readLine();
+             if(name.equals(username) && pass.equals(password)){
+                 HomePage homepage1 = new HomePage(); 
+                 homepage1.setVisible(true);
+             }
+             while(name!=null){
+                 name = brs.readLine();
+                 pass = brs.readLine();
+                
+                if(name.equals(username) && pass.equals(password)){
+                    HomePage homepage2 = new HomePage(); 
+                    homepage2.setVisible(true);
+                    name = null;
+                }
+           }
+         }catch(FileNotFoundException e){} catch (IOException ex) {
+                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        
         
         
         
