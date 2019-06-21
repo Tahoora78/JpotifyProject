@@ -14,6 +14,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -59,6 +62,7 @@ public class HomePage extends javax.swing.JDialog {
       
     public HomePage(String name) {
         initComponents();
+        username = name;
          userNameLabel.setText(name);
         setImage(pauseButton,"pause.png");
         setImage(playButton,"play.png");
@@ -446,6 +450,21 @@ public class HomePage extends javax.swing.JDialog {
        chooser.showOpenDialog(this);
        File f = chooser.getSelectedFile();
        String filename = f.getAbsolutePath();
+       String path = "UsersFolder/".concat(username).concat(".txt");
+       System.out.println(path);
+       try {
+            Files.write(Paths.get(path), filename.getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e2) {
+        }
+       
+        try {
+            Files.write(Paths.get("UsersFolder/filename.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e2) {
+        }
+       
+       
+       
+       
        System.out.println(filename);
     }//GEN-LAST:event_addToLibraryActionPerformed
 
