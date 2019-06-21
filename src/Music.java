@@ -33,13 +33,23 @@ public class Music {
     private String album;
     private String Artist;
     private File music;
+    private int streamLength;
+    private long time;
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     private FileInputStream input=null;
     private Player player=null;
     private Thread t;
     private int count;
     private int passedTime;
     private int remainTime;
-    private int time;
+//    private int time;
     private AdvancedPlayer advancedPlayer=null;
     private final String songLyricsURL = "http://www.songlyrics.com";
 
@@ -55,9 +65,11 @@ public class Music {
         this.music = music;
         this.metaData();
         this.input=new FileInputStream(music);
+        streamLength=input.available();
         this.mp3File=new Mp3File(music.getAbsolutePath());
         this.count=mp3File.getFrameCount();
         metaData();
+        System.out.println(input.available());
 
     }
 
@@ -139,20 +151,19 @@ public class Music {
      * @throws JavaLayerException if it face any problem while playing a file by advanceplayer or creating a mp3 file
      */
 
-    public void play(int a) throws JavaLayerException {
-        advancedPlayer=new AdvancedPlayer(input);
+    public void play(int a) throws JavaLayerException, IOException {
+
+//        player=new Player((input.skip((int)a*streamLength)/getTime()));
+
+        System.out.println(input.skip(145698));
         t = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (a>getTime()){
-                        System.out.println("PAUSE");
-                        return;}
-                    advancedPlayer.play((a*count/getTime())%getTime(),count);
-                    System.out.println(mp3File.getFrameCount());
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                if (a>getTime()){
+                    System.out.println("PAUSE");
+                    return;}
+//                    player
+                System.out.println(mp3File.getFrameCount());
             }
         });
         t.start();
@@ -160,7 +171,9 @@ public class Music {
     }
 
 
-
+    public void setTime(long time) {
+        this.time = time;
+    }
 
     /**
      * it play a song by starting a thread
@@ -168,6 +181,7 @@ public class Music {
      */
     public void play() throws JavaLayerException {
         player=new Player(input);
+        this.time=System.currentTimeMillis();
         t = new Thread(new Runnable() {
             @Override
             public void run() {
