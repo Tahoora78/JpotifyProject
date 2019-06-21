@@ -307,4 +307,9 @@ public class Music {
         return  mp3File.getFrameCount()/getTime();
 
     }
+    
+    
+    public String getPath(){
+        return this.music.getAbsolutePath();
+    }
 }
