@@ -10,13 +10,24 @@ import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import static java.nio.file.Files.list;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
@@ -29,12 +40,15 @@ public class HomePage extends javax.swing.JDialog {
     private PlayList playlist=new PlayList("AAA");
     private Album album=new Album();
     private int mode;
-    private PlayList FSongs=new PlayList("Favorit Songs");
+    private PlayList FSongs=new PlayList("Favorite Songs");
     private PlayList Shared=new PlayList("Shared PlayList");
     private ArrayList<Album> albums=new ArrayList<>();
     private ArrayList<PlayList> playlists=new ArrayList<>();
     private HashMap<Integer,Music> songs=new HashMap();
     private int songNum=0;
+    private JList<Music> musicsss;
+    private DefaultListModel<String> musicName;
+    
     String username;
     /**
      * Creates new form homePage
@@ -50,7 +64,7 @@ public class HomePage extends javax.swing.JDialog {
       
     public HomePage(String name) {
         initComponents();
-        
+        username = name;
          userNameLabel.setText(name);
         setImage(pauseButton,"pause.png");
         setImage(playButton,"play.png");
@@ -108,7 +122,7 @@ public class HomePage extends javax.swing.JDialog {
         searchText = new javax.swing.JTextField();
         newPlayList = new javax.swing.JButton();
         userNameLabel = new javax.swing.JTextField();
-        addToLibraryButton = new javax.swing.JButton();
+        addToLibrary = new java.awt.Button();
 
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
@@ -118,7 +132,7 @@ public class HomePage extends javax.swing.JDialog {
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 455, Short.MAX_VALUE)
+            .addGap(0, 443, Short.MAX_VALUE)
         );
 
         albumButton.setText("album");
@@ -172,7 +186,7 @@ public class HomePage extends javax.swing.JDialog {
                 .addComponent(songsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playListButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                 .addComponent(songsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -273,7 +287,13 @@ public class HomePage extends javax.swing.JDialog {
 
         newPlayList.setText("new playlist");
 
-        addToLibraryButton.setText("add to library");
+        addToLibrary.setLabel("add to library");
+        addToLibrary.setName(""); // NOI18N
+        addToLibrary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToLibraryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,14 +304,15 @@ public class HomePage extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(newPlayList, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .addComponent(libraryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(addToLibraryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(addToLibrary, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(libraryScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                            .addComponent(newPlayList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 743, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,7 +320,6 @@ public class HomePage extends javax.swing.JDialog {
                                 .addComponent(newUserButton)
                                 .addGap(83, 83, 83))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,25 +331,31 @@ public class HomePage extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(newUserButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(searchButton)
-                        .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addToLibraryButton))
-                    .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(newUserButton)
+                        .addComponent(searchButton)
+                        .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addToLibrary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(libraryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(newPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(displayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(newPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(displayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(soundBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -338,7 +364,7 @@ public class HomePage extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryButtonActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_addToLibraryButtonActionPerformed
 
     private void artistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistButtonActionPerformed
@@ -407,6 +433,43 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_favoriteButtonActionPerformed
 
+    private void addToLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryActionPerformed
+        System.out.println("88888888888888888888888888");
+       JList<Music> list = new JList<Music>();
+       DefaultListModel<Music> musicName = new DefaultListModel<Music>();
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(this);
+        File f  = chooser.getSelectedFile();
+        String fileName = f.getAbsolutePath();
+        System.out.println(fileName);
+        System.out.println("username"+username);
+        String nameFile = "UsersFolder/".concat(username).concat(".txt");
+        System.out.println(nameFile);
+        try {
+                Files.write(Paths.get(nameFile),fileName.getBytes(), StandardOpenOption.APPEND);
+            }catch (IOException e2) {
+                System.out.println("88888888888888888888888888888888888888888888888");
+            }
+        
+        try {
+                Files.write(Paths.get(nameFile),"\r\n".getBytes(), StandardOpenOption.APPEND);
+            }catch (IOException e2) {
+                System.out.println("88888888888888888888888888888888888888888888888");
+            }
+        
+        System.out.println(")))))))))))))))))))))))))))))))))))))))");
+        JLabel label = new JLabel();
+        list.setModel(musicName);
+        displayPanel.add(label);
+        musicName.addElement(new Music(fileName,f));
+        list.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            Music m = list.getSelectedValue();
+           
+        });
+        
+       
+    }//GEN-LAST:event_addToLibraryActionPerformed
+
 
 
     /**
@@ -445,7 +508,7 @@ public class HomePage extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addToLibraryButton;
+    private java.awt.Button addToLibrary;
     private javax.swing.JButton albumButton;
     private javax.swing.JButton backwardButton;
     private javax.swing.JPanel displayPanel;
