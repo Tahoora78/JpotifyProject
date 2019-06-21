@@ -29,24 +29,23 @@
                           <Component id="libraryScroll" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Component id="addToLibraryButton" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="52" pref="743" max="32767" attributes="0"/>
-                              <Component id="searchText" min="-2" pref="44" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="searchButton" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="displayPanel" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="298" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="searchText" min="-2" pref="115" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="userNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="displayPanel" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="298" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -64,13 +63,13 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addToLibraryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="userNameLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
@@ -257,6 +256,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JSlider" name="musicSlider">
+          <Properties>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="playButton">
           <Properties>
@@ -279,6 +281,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSlider" name="volumeSlider">
+          <Properties>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="volumeSliderStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="shuffleButton">
           <Properties>
@@ -347,7 +355,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="searchText">
       <Properties>
-        <Property name="text" type="java.lang.String" value="text"/>
+        <Property name="text" type="java.lang.String" value="search for..."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="newPlayList">
