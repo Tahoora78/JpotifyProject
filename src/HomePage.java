@@ -56,7 +56,7 @@ public class HomePage extends javax.swing.JDialog {
         
         }
       
-    public HomePage(String name) throws IOException, InvalidDataException, UnsupportedTagException, JavaLayerException {
+    public HomePage(String name) {
         initComponents();
          userNameLabel.setText(name);
         setImage(pauseButton,"pause.png");
@@ -460,18 +460,12 @@ public class HomePage extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                 try {
-                     new HomePage(username).setVisible(true);
-                 } catch (IOException ex) {
-                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-                 } catch (InvalidDataException ex) {
-                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-                 } catch (UnsupportedTagException ex) {
-                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-            }
-        });
+                 
+                 HomePage homepage = new HomePage(username);
+                      homepage.setVisible(true);
+                 
     }
+        });}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToLibraryButton;
@@ -502,4 +496,4 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JTextField userNameLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
-}
+        }
