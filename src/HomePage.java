@@ -6,15 +6,20 @@
 //package jpotify;
 
 
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -29,6 +34,7 @@ public class HomePage extends javax.swing.JDialog {
     private PlayList playlist=new PlayList("AAA");
     private Album album=new Album();
     private int mode;
+    private Soundcontroller soundcontroller=new Soundcontroller();
     private PlayList FSongs=new PlayList("Favorit Songs");
     private PlayList Shared=new PlayList("Shared PlayList");
     private ArrayList<Album> albums=new ArrayList<>();
@@ -46,11 +52,12 @@ public class HomePage extends javax.swing.JDialog {
         Image img2 = img1.getScaledInstance(pauseButton.getWidth(),pauseButton.getHeight(),Image.SCALE_REPLICATE);
         ImageIcon i = new ImageIcon(img2);
         button.setIcon(i);
+        
+        
         }
       
-    public HomePage(String name) {
+    public HomePage(String name) throws IOException, InvalidDataException, UnsupportedTagException, JavaLayerException {
         initComponents();
-        
          userNameLabel.setText(name);
         setImage(pauseButton,"pause.png");
         setImage(playButton,"play.png");
@@ -58,7 +65,7 @@ public class HomePage extends javax.swing.JDialog {
         setImage(backwardButton,"backward.png");
         setImage(shuffleButton,"shuffle.png");
         setImage(favoriteButton,"love.jpg");
-        
+       
         this.playlists.add(FSongs);
         this.playlists.add(Shared);
         int count=0;
@@ -179,6 +186,8 @@ public class HomePage extends javax.swing.JDialog {
 
         libraryScroll.setViewportView(libraryPanel);
 
+        musicSlider.setValue(0);
+
         playButton.setText("jButton1");
 
         pauseButton.setText("jButton1");
@@ -186,6 +195,13 @@ public class HomePage extends javax.swing.JDialog {
         forwardButton.setText("jButton1");
 
         musicLabel.setText("jLabel1");
+
+        volumeSlider.setValue(0);
+        volumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                volumeSliderStateChanged(evt);
+            }
+        });
 
         shuffleButton.setText("jButton1");
 
@@ -269,7 +285,7 @@ public class HomePage extends javax.swing.JDialog {
 
         searchButton.setText("search");
 
-        searchText.setText("text");
+        searchText.setText("search for...");
 
         newPlayList.setText("new playlist");
 
@@ -287,23 +303,22 @@ public class HomePage extends javax.swing.JDialog {
                             .addComponent(newPlayList, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                             .addComponent(libraryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(addToLibraryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 743, Short.MAX_VALUE)
-                                .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(searchButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(newUserButton)
-                                .addGap(83, 83, 83))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))))
+                                .addGap(83, 83, 83))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(soundBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -314,11 +329,11 @@ public class HomePage extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(newUserButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(searchButton)
+                        .addComponent(addToLibraryButton)
                         .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addToLibraryButton))
+                        .addComponent(searchButton))
                     .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -407,6 +422,12 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_favoriteButtonActionPerformed
 
+    
+    private void volumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_volumeSliderStateChanged
+//         volumeSlider.setValue(soundcontroller.getValue());
+         soundcontroller.setValue(volumeSlider.getValue());
+    }//GEN-LAST:event_volumeSliderStateChanged
+
 
 
     /**
@@ -439,7 +460,15 @@ public class HomePage extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                new HomePage(username).setVisible(true);
+                 try {
+                     new HomePage(username).setVisible(true);
+                 } catch (IOException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (InvalidDataException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (UnsupportedTagException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 }
             }
         });
     }
