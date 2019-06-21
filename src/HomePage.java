@@ -100,7 +100,6 @@ public class HomePage extends javax.swing.JDialog {
     private void initComponents() {
 
         displayPanel = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         libraryScroll = new javax.swing.JScrollPane();
         libraryPanel = new javax.swing.JPanel();
         albumButton = new javax.swing.JButton();
@@ -128,23 +127,15 @@ public class HomePage extends javax.swing.JDialog {
         userNameLabel = new javax.swing.JTextField();
         addToLibrary = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(displayPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(272, 272, 272))
+            .addGap(0, 777, Short.MAX_VALUE)
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+            .addGap(0, 455, Short.MAX_VALUE)
         );
 
         albumButton.setText("album");
@@ -593,7 +584,6 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton favoriteButton;
     private javax.swing.JButton forwardButton;
     private javax.swing.JLabel friendActivityLabel;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label libraryLabel;
