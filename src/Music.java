@@ -42,16 +42,18 @@ public class Music {
     private int time;
     private AdvancedPlayer advancedPlayer=null;
     private final String songLyricsURL = "http://www.songlyrics.com";
-
+    private String path;
+    
     /**
-     * costruct a single music by getting a file
+     * construct a single music by getting a file
      * @param music file which has been made and pass to make song
      * @throws IOException if it can't make an stream
      * @throws InvalidDataException if file format doesn't be .mp3
      * @throws UnsupportedTagException if music doesn't support ID3V2
      */
 
-    public Music(File music) throws IOException, InvalidDataException, UnsupportedTagException {
+    public Music(File music,String path) throws IOException, InvalidDataException, UnsupportedTagException {
+        this.path = path;
         this.music = music;
         this.metaData();
         this.input=new FileInputStream(music);
@@ -59,6 +61,10 @@ public class Music {
         this.count=mp3File.getFrameCount();
         metaData();
 
+    }
+
+    Music(String fileName, File f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
