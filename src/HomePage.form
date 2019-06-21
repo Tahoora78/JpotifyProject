@@ -269,6 +269,10 @@
           <Properties>
             <Property name="value" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="ancestorMoved" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="musicSliderAncestorMoved"/>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="musicSliderStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="playButton">
           <Properties>

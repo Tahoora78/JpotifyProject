@@ -46,6 +46,7 @@ public class HomePage extends javax.swing.JDialog {
     private HashMap<Integer,Music> songs=new HashMap();
     private int songNum=0;
     String username;
+    private int nextSong;
     /**
      * Creates new form homePage
      */
@@ -192,6 +193,20 @@ public class HomePage extends javax.swing.JDialog {
         libraryScroll.setViewportView(libraryPanel);
 
         musicSlider.setValue(0);
+        musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        musicSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                musicSliderStateChanged(evt);
+            }
+        });
 
         playButton.setText("jButton1");
 
@@ -297,7 +312,15 @@ public class HomePage extends javax.swing.JDialog {
         addToLibrary.setText("add to library");
         addToLibrary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryActionPerformed(evt);
+                try {
+                    addToLibraryActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -445,7 +468,7 @@ public class HomePage extends javax.swing.JDialog {
          soundcontroller.setValue(volumeSlider.getValue());
     }//GEN-LAST:event_volumeSliderStateChanged
 
-    private void addToLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryActionPerformed
+    private void addToLibraryActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_addToLibraryActionPerformed
         JFileChooser chooser = new JFileChooser();
        chooser.showOpenDialog(this);
        File f = chooser.getSelectedFile();
@@ -466,7 +489,46 @@ public class HomePage extends javax.swing.JDialog {
        
        
        System.out.println(filename);
+       this.songs.put(songNum, new Music(f));
+       this.songNum++;
+       boolean flag =false;
+
+       for(Album album:albums) {
+           if (new Music(f).getAlbum().equals(album.getTitle())) {
+               album.addSong(new Music(f));
+               flag = true;
+           }
+       }
+       if (!flag){
+           Album a=new Album();
+           a.addSong(new Music(f));
+           albums.add(a);
+       }
     }//GEN-LAST:event_addToLibraryActionPerformed
+
+    private void musicSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_musicSliderStateChanged
+
+//        musicSlider.setValue(musicSlider.getValue()+1);
+        
+
+
+
+
+
+    }//GEN-LAST:event_musicSliderStateChanged
+
+    private void musicSliderAncestorMoved(javax.swing.event.AncestorEvent evt) throws InterruptedException {//GEN-FIRST:event_musicSliderAncestorMoved
+
+        
+        
+        Thread.sleep(100);
+        musicSlider.setValue(musicSlider.getValue()+1);
+
+
+
+
+
+    }//GEN-LAST:event_musicSliderAncestorMoved
 
 
 
