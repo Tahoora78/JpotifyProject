@@ -44,7 +44,7 @@ public class HomePage extends javax.swing.JDialog {
     private PlayList Shared=new PlayList("Shared PlayList");
     private ArrayList<Album> albums=new ArrayList<>();
     private ArrayList<PlayList> playlists=new ArrayList<>();
-    private HashMap<Integer,Music> songs=new HashMap();
+    private ArrayList<Music> songs=new ArrayList<>();
     private int songNum=0;
     String username;
     private int nextSong;
@@ -84,13 +84,14 @@ public class HomePage extends javax.swing.JDialog {
         int count=0;
         for(int i=0;i<albums.size();i++){
             Album a=albums.get(i);
-            ArrayList<Music> songs=a.getSongs();
-            for(int j=0;j<songs.size();j++){
-                songs.add(count,songs.get(j));
-                songNum++;
-                count++;
+            ArrayList<Music> songss=a.getSongs();
+            for(int j=0;j<songss.size();j++){
+                this.songs.add(songss.get(j));
             }
+
         }
+
+        this.songNum=songs.size();
         playList = new DefaultListModel();
         playList.addElement("favorite list");
         playList.addElement("shared playlist");
@@ -265,7 +266,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -392,7 +397,15 @@ public class HomePage extends javax.swing.JDialog {
         addToLibrary.setText("add to library");
         addToLibrary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryActionPerformed(evt);
+                try {
+                    addToLibraryActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -713,7 +726,7 @@ public class HomePage extends javax.swing.JDialog {
         this.music.pause();
     }//GEN-LAST:event_pauseButtonActionPerformed
 
-    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_forwardButtonActionPerformed
+    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode==0)
             return;
         else if(mode==1){
@@ -721,14 +734,14 @@ public class HomePage extends javax.swing.JDialog {
             int a=songs.indexOf(music);
             music.pause();
             this.music=songs.get(a+1);
-            music.play();
+            music.play(0);
         }
         else{
             ArrayList<Music> songs=this.album.getSongs();
             int a=songs.indexOf(music);
             music.pause();
             this.music=songs.get(a+1);
-            music.play();
+            music.play(0);
         }
 
     }//GEN-LAST:event_forwardButtonActionPerformed
@@ -777,7 +790,7 @@ public class HomePage extends javax.swing.JDialog {
        
        
        System.out.println(filename);
-       this.songs.put(songNum, new Music(f));
+       this.songs.add( new Music(f));
        this.songNum++;
        boolean flag =false;
 
@@ -863,6 +876,24 @@ public class HomePage extends javax.swing.JDialog {
                  
     }
         });}
+
+
+
+        public void sortSongs(){
+
+
+        long[] times=new long[songNum];
+        int i=0;
+        for (Music music:songs){
+
+            times[i]=music.getStime();
+        }
+
+//        for (int j=0;j<)
+
+
+
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToLibrary;
