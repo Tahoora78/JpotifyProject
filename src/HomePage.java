@@ -368,6 +368,16 @@ public class HomePage extends javax.swing.JDialog {
         chooser.showOpenDialog(this);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
+        String name = "UsersFolder/".concat(username).concat(".txt");
+        try {
+                    Files.write(Paths.get(name), filename.getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e2) {
+                }
+        
+        try {
+                    Files.write(Paths.get(name), "\r\n".getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e2) {
+                }
         
         
         
