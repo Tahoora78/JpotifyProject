@@ -13,9 +13,7 @@ import org.jsoup.nodes.TextNode;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +32,9 @@ public class Music {
     private String Artist;
     private File music;
     private int streamLength;
-    private long time;
+    private long stime;
+    private int bytepersec;
+    private int framepersec;
     public Player getPlayer() {
         return player;
     }
@@ -53,6 +53,14 @@ public class Music {
     private AdvancedPlayer advancedPlayer=null;
     private final String songLyricsURL = "http://www.songlyrics.com";
 
+    public long getStime() {
+        return stime;
+    }
+
+    public void setStime(long stime) {
+        this.stime = stime;
+    }
+
     /**
      * costruct a single music by getting a file
      * @param music file which has been made and pass to make song
@@ -61,15 +69,20 @@ public class Music {
      * @throws UnsupportedTagException if music doesn't support ID3V2
      */
 
+
+
+
     public Music(File music) throws IOException, InvalidDataException, UnsupportedTagException {
         this.music = music;
         this.metaData();
+        byte[] b=new byte[123];
         this.input=new FileInputStream(music);
         streamLength=input.available();
         this.mp3File=new Mp3File(music.getAbsolutePath());
         this.count=mp3File.getFrameCount();
         metaData();
-        System.out.println(input.available());
+        bytepersec=input.available()/getTime();
+        framepersec=mp3File.getFrameCount()/getTime();
 
     }
 
@@ -152,28 +165,33 @@ public class Music {
      */
 
     public void play(int a) throws JavaLayerException, IOException {
+        byte[] bytes=new byte[streamLength];
 
-//        player=new Player((input.skip((int)a*streamLength)/getTime()));
-
-        System.out.println(input.skip(145698));
-        t = new Thread(new Runnable() {
+        t.stop();
+        Thread ter = new Thread(new Runnable() {
             @Override
             public void run() {
                 if (a>getTime()){
                     System.out.println("PAUSE");
-                    return;}
-//                    player
-                System.out.println(mp3File.getFrameCount());
+                    input.mark(a*bytepersec);
+                    try {
+                        player=new Player(input);
+                        System.out.println(input.available());
+                        player.play();
+                    } catch (JavaLayerException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    }
+//                System.out.println(mp3File.getFrameCount());
             }
         });
-        t.start();
+        t=ter;
+        ter.start();
 
     }
 
-
-    public void setTime(long time) {
-        this.time = time;
-    }
 
     /**
      * it play a song by starting a thread
@@ -181,7 +199,7 @@ public class Music {
      */
     public void play() throws JavaLayerException {
         player=new Player(input);
-        this.time=System.currentTimeMillis();
+        this.stime=System.currentTimeMillis();
         t = new Thread(new Runnable() {
             @Override
             public void run() {

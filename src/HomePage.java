@@ -11,18 +11,15 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -395,19 +392,8 @@ public class HomePage extends javax.swing.JDialog {
         newPlayList.setText("new playlist");
 
         addToLibrary.setText("add to library");
-        addToLibrary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addToLibraryActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
+
 
         jLabel1.setText("jLabel1");
 
@@ -879,21 +865,78 @@ public class HomePage extends javax.swing.JDialog {
 
 
 
-        public void sortSongs(){
+        public void sortSongs() {
 
 
-        long[] times=new long[songNum];
-        int i=0;
-        for (Music music:songs){
+            ArrayList<Long> times = new ArrayList<>();
+            int i = 0;
+            for (Music music : songs) {
 
-            times[i]=music.getStime();
+                times.add(music.getStime());
+            }
+
+            Collections.sort(times);
+            Collections.reverse(times);
+            ArrayList<Music> sortedSongs = new ArrayList<>();
+
+            for (int j = 0; j < times.size(); j++) {
+                for (Music m : songs) {
+                    if (m.getStime() == times.get(j)) {
+
+                        sortedSongs.add(m);
+
+                    }
+                }
+
+            }
+
+            this.songs = sortedSongs;
+
+
+
         }
 
-//        for (int j=0;j<)
+
+    public void sortAlbums() {
 
 
+        ArrayList<Long> times = new ArrayList<>();
+        int i = 0;
+        for (Album album:albums) {
+
+            times.add(album.getLtime());
+        }
+
+        Collections.sort(times);
+        Collections.reverse(times);
+        ArrayList<Album> sortedAlbums = new ArrayList<>();
+
+        for (int j = 0; j < times.size(); j++) {
+            for (Album album:albums) {
+                if (album.getLtime()==times.get(j)) {
+
+                    sortedAlbums.add(album);
+
+                }
+            }
 
         }
+
+        this.albums=sortedAlbums;
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToLibrary;

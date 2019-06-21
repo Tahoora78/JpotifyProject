@@ -14,6 +14,23 @@ public class Album {
     private int counter;
     private Image image;
     private String artist;
+    private long ltime;
+
+    public long getLtime() {
+
+        long max=0;
+        for (Music song:songs){
+
+            if (song.getStime()>max){
+                max=song.getStime();
+            }
+        }
+
+        this.ltime=max;
+        return max;
+    }
+
+
     private ArrayList<Music> songs=new ArrayList<>();
 
     public Album() {
