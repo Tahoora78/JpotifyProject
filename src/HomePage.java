@@ -364,7 +364,13 @@ public class HomePage extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryButtonActionPerformed
-       
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(this);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        
+        
+        
     }//GEN-LAST:event_addToLibraryButtonActionPerformed
 
     private void artistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistButtonActionPerformed
