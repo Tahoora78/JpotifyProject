@@ -408,6 +408,11 @@ public class HomePage extends javax.swing.JDialog {
         buttonsPanel.setBackground(new java.awt.Color(0, 0, 153));
 
         playButton.setText("jButton1");
+        playButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playButtonActionPerformed(evt);
+            }
+        });
 
         forwardButton.setText("jButton1");
 
@@ -419,6 +424,11 @@ public class HomePage extends javax.swing.JDialog {
         });
 
         pauseButton.setText("jButton1");
+        pauseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseButtonActionPerformed(evt);
+            }
+        });
 
         backwardButton.setText("jButton1");
 
@@ -892,28 +902,6 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_albumsButtonActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {                                           
-        if (!music.isIsplaying())//GEN-FIRST:event_playButtonActionPerformed
-            try {
-                music.play(musicSlider.getValue());
-        } catch (IOException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_playButtonActionPerformed
-
-    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_pauseButtonActionPerformed
-       
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
-        
-        
-        if(music.isIsplaying())
-           
-           music.pause();
-       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
-    }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode==0)
@@ -1183,6 +1171,47 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_i1ActionPerformed
 
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+       
+        
+        if (!music.isIsplaying())//GEN-FIRST:event_playButtonActionPerformed
+
+                try {
+                    music.play(musicSlider.getValue()*music.getTime()/100);
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+    }//GEN-LAST:event_playButtonActionPerformed
+
+    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
+
+System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
+        
+        
+        if(music.isIsplaying())
+           
+           try {
+               music.pause();
+} catch (JavaLayerException ex) {
+    Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+}
+       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
+
+
+
+
+
+
+
+    }//GEN-LAST:event_pauseButtonActionPerformed
+
 //????????????????????????????????????????????????????????????
     /**
      * @param args the command line arguments
@@ -1375,7 +1404,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JPanel libraryPanel;
     private javax.swing.JScrollPane libraryScroll;
     private javax.swing.JLabel musicLabel;
-    public static javax.swing.JSlider musicSlider;
+    private javax.swing.JSlider musicSlider;
     private javax.swing.JButton newPlayList;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
