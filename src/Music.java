@@ -28,7 +28,7 @@ import java.util.List;
  */
 
 
-public class Music implements Serializable{
+public class Music {
     private Mp3File mp3File;
     private String Title;
     private String album;
@@ -38,6 +38,7 @@ public class Music implements Serializable{
     private long stime;
     private int bytepersec;
     private int framepersec;
+    private boolean isplaying=false;
     public Player getPlayer() {
         return player;
     }
@@ -52,7 +53,7 @@ public class Music implements Serializable{
     private int count;
     private int passedTime;
     private int remainTime;
-//    private int time;
+    //    private int time;
     private AdvancedPlayer advancedPlayer=null;
     private final String songLyricsURL = "http://www.songlyrics.com";
 
@@ -224,7 +225,7 @@ public class Music implements Serializable{
 //        t=tt;
 
 
-        input=new FileInputStream(music);
+        input=new FileInputStream(music.getAbsolutePath());
         input.skip(a*streamLength/getTime());
         player=new Player(input);
         t=new Thread(new Runnable() {
@@ -232,6 +233,7 @@ public class Music implements Serializable{
             public void run() {
                 try {
                     player.play();
+                    isplaying=true;
                 } catch (JavaLayerException e) {
                     e.printStackTrace();
                 }
@@ -239,6 +241,7 @@ public class Music implements Serializable{
         });
 
         t.start();
+//        isplaying=true;
 
     }
 
@@ -258,6 +261,7 @@ public class Music implements Serializable{
             public void run() {
                 try {
                     player.play();
+                    isplaying=true;
                     System.out.println(mp3File.getFrameCount());
 
                 } catch (JavaLayerException e) {
@@ -266,6 +270,7 @@ public class Music implements Serializable{
             }
         });
         t.start();
+        isplaying=true;
 
     }
 
@@ -277,7 +282,16 @@ public class Music implements Serializable{
     public void pause() throws JavaLayerException {
 
         t.stop();
+        isplaying=false;
 
+    }
+
+    public boolean isIsplaying() {
+        return isplaying;
+    }
+
+    public void setIsplaying(boolean isplaying) {
+        this.isplaying = isplaying;
     }
 
     /**
@@ -370,18 +384,18 @@ public class Music implements Serializable{
      * @throws IOException
      */
     public List<String> getSongLyrics(String band, String songTitle) throws IOException {
-            List<String> lyrics= new ArrayList<String>();
+        List<String> lyrics= new ArrayList<String>();
 
-            Document doc = Jsoup.connect(this.songLyricsURL+ "/"+band.replace(" ", "-").toLowerCase()+"/"+songTitle.replace(" ", "-").toLowerCase()+"-lyrics/").get();
-            String title = doc.title();
-            System.out.println(title);
-            Element p = doc.select("p.songLyricsV14").get(0);
-            for (Node e: p.childNodes()) {
-                if (e instanceof TextNode) {
-                    lyrics.add(((TextNode)e).getWholeText());
-                }
+        Document doc = Jsoup.connect(this.songLyricsURL+ "/"+band.replace(" ", "-").toLowerCase()+"/"+songTitle.replace(" ", "-").toLowerCase()+"-lyrics/").get();
+        String title = doc.title();
+        System.out.println(title);
+        Element p = doc.select("p.songLyricsV14").get(0);
+        for (Node e: p.childNodes()) {
+            if (e instanceof TextNode) {
+                lyrics.add(((TextNode)e).getWholeText());
             }
-            return lyrics;
+        }
+        return lyrics;
     }
 
     /**
@@ -392,8 +406,8 @@ public class Music implements Serializable{
         return  mp3File.getFrameCount()/getTime();
 
     }
-    
-    
+
+
     public String getPath(){
         return this.music.getAbsolutePath();
     }

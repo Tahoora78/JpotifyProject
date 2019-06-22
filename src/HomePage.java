@@ -25,11 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 /**
  *
@@ -125,8 +121,10 @@ public class HomePage extends javax.swing.JDialog {
     public HomePage(String name,User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
         System.out.println("myuser name in home"+MyUser.getName());
         user = MyUser;
+
         user.setMusic( new Music(new File("k.mp3"))) ;
-        user.getMusic().play();
+        music=new Music(new File("m.mp3"));
+        music.play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
@@ -889,13 +887,27 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_albumsButtonActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_playButtonActionPerformed
-        user.getMusic().play();
-        
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {                                           
+        if (!music.isIsplaying())//GEN-FIRST:event_playButtonActionPerformed
+            try {
+                music.play(musicSlider.getValue());
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_pauseButtonActionPerformed
-        user.getMusic().pause();
+       
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
+        
+        
+        if(music.isIsplaying())
+           
+           music.pause();
+       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
@@ -958,7 +970,7 @@ public class HomePage extends javax.swing.JDialog {
 
         if(musicSlider.getValueIsAdjusting())
             try {
-            user.getMusic().play(musicSlider.getValue());
+            music.play(musicSlider.getValue());
         } catch (JavaLayerException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -1047,7 +1059,7 @@ public class HomePage extends javax.swing.JDialog {
        buttonAndLabel();
        System.out.println("size"+user.getSongs().size());
         for(int i=0;i<user.getSongs().size();i++){
-            buttons.get(i).setText(user.getSongs().get(i).getTitle());
+            buttons.get(i).setIcon((Icon) user.getSongs().get(i).getArtWork());
             labels.get(i).setText(user.getSongs().get(i).getTitle());
          //   updateUser(user);
         }
