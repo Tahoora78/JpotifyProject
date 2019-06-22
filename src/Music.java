@@ -369,7 +369,7 @@ public class Music {
         }
         catch (NullPointerException e){
             ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
-            return getScaledImage(imageIcon.getImage(),100,100);
+            return getScaledImage(imageIcon.getImage(),500,500);
         }
 
     }
