@@ -271,6 +271,7 @@ public class Music {
     public void play() throws JavaLayerException {
 
 
+        this.stime=System.currentTimeMillis();
         player=new Player(input);
         this.stime=System.currentTimeMillis();
         t = new Thread(new Runnable() {
