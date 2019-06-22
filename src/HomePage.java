@@ -52,6 +52,9 @@ public class HomePage extends javax.swing.JDialog {
     JButton jb = new JButton("LOLOOLOLOO");
     DefaultListModel playList;
     ArrayList<JButton> buttons = new ArrayList<>();
+    ArrayList<JButton> Abuttons = new ArrayList<>();
+    ArrayList<JButton> Asbuttons = new ArrayList<>();
+
     ArrayList<JLabel> labels = new ArrayList<>();
     String fileNameSerialize;
     private User user;
@@ -60,6 +63,38 @@ public class HomePage extends javax.swing.JDialog {
      * Creates new form homePage
      */
 
+    private boolean itsSong=false;
+    private boolean itsSongInAlbum=false;
+    public void actButton(JButton jb,Album album,Music music1,Music music2){
+
+        if (itsSong)
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    setMusic(music2);
+                }
+            });
+        if (itsSongInAlbum){
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    setMusic(music1);
+                }
+            });
+        }
+        if (itsAlbum){jb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setMusic(music1);
+            }
+        });
+
+
+        }
+
+
+
+    }
     public void setImage(JButton button, String path) {
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
         Image img1 = image.getImage();
@@ -1110,6 +1145,7 @@ public class HomePage extends javax.swing.JDialog {
     private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
         buttonAndLabel();
         sortSongs();
+        itsAlbum=false;
         System.out.println("size" + user.getSongs().size());
 
         for (int i = 0; i < buttons.size(); i++) {
@@ -1134,7 +1170,7 @@ public class HomePage extends javax.swing.JDialog {
                 System.out.println(s.getTitle() + "+++++++++++++++++++++++++++++++++++++++++++++++++");
             buttons.get(i).addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) {if (!itsAlbum){
                     try {
                         if (music.isIsplaying())
                             music.pause();
@@ -1148,7 +1184,7 @@ public class HomePage extends javax.swing.JDialog {
                     } catch (JavaLayerException e1) {
                         e1.printStackTrace();
                     }
-                }
+                }}
             });
             //   updateUser(user);
         }
@@ -1363,8 +1399,10 @@ public class HomePage extends javax.swing.JDialog {
 
     }//GEN-LAST:event_pauseButtonActionPerformed
 
+    private boolean itsAlbum=false;
     private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumButtonActionPerformed
 
+        itsAlbum=true;
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setVisible(false);
             labels.get(i).setVisible(false);
@@ -1373,8 +1411,37 @@ public class HomePage extends javax.swing.JDialog {
         for (int i = 0; i < user.getAlbums().size(); i++) {
             labels.get(i).setText(user.getAlbums().get(i).getTitle());
             labels.get(i).setVisible(true);
-            buttons.get(i).setIcon(new ImageIcon(user.getAlbums().get(i).getImage()));
+            setImage2(buttons.get(i),user.getAlbums().get(i).getImage());
             buttons.get(i).setVisible(true);
+            Album al=user.getAlbums().get(i);
+            buttons.get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for (int i = 0; i < buttons.size(); i++) {
+                        buttons.get(i).setVisible(false);
+                        labels.get(i).setVisible(false);
+                    }
+                    for (int i=0;i<al.getSongs().size();i++){
+                        labels.get(i).setText(al.getSongs().get(i).getTitle());
+                        labels.get(i).setVisible(true);
+                        buttons.get(i).setIcon(new ImageIcon(al.getSongs().get(i).getArtWork()));
+                        buttons.get(i).setVisible(true);
+                        Music s=al.getSongs().get(i);
+                        buttons.get(i).addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (itsAlbum)
+                                setMusic(s);
+
+                            }
+                        });
+
+
+
+                    }
+
+                }
+            });
 //        buttons.get(i).addActionListener(new ActionListener() {
 //
 ////                    @Override
