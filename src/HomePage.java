@@ -67,7 +67,17 @@ public class HomePage extends javax.swing.JDialog {
         
         
         }
-      
+
+
+
+
+
+    public void setImage2(JButton button,Image Image) {
+          Image img=Image;
+        Image newimg = img.getScaledInstance( 100, 100,  java.awt.Image.SCALE_SMOOTH ) ;
+        ImageIcon image = new ImageIcon(newimg);
+        button.setIcon(image);
+    }
          
       public void setImageLabel(JLabel label,String path){
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
@@ -155,6 +165,11 @@ public class HomePage extends javax.swing.JDialog {
             }
 
         }
+        JLabel j1=new JLabel();
+        j1.setVisible(true);
+       j1.setIcon(new ImageIcon(music.getArtWork()));
+        setImage2(i1,(music.getArtWork()));
+        
         user.setSongNum(user.getSongs().size());
 
 //        ????????????????????????????????????????????????????????????????????
@@ -994,6 +1009,10 @@ public class HomePage extends javax.swing.JDialog {
 
     private void editPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPlayListActionPerformed
         
+       
+        
+        
+        
     }//GEN-LAST:event_editPlayListActionPerformed
 
     public void buttonAndLabel(){
@@ -1051,9 +1070,15 @@ public class HomePage extends javax.swing.JDialog {
     private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
        buttonAndLabel();
        System.out.println("size"+user.getSongs().size());
+
+       for (int i=0;i<buttons.size();i++)
+           buttons.get(i).setVisible(false);
+
+
         for(int i=0;i<user.getSongs().size();i++){
-            buttons.get(i).setIcon((Icon) user.getSongs().get(i).getArtWork());
+            setImage2(buttons.get(i),user.getSongs().get(i).getArtWork());
             labels.get(i).setText(user.getSongs().get(i).getTitle());
+            buttons.get(i).setVisible(true);
          //   updateUser(user);
         }
     }//GEN-LAST:event_songsButtonActionPerformed
@@ -1171,7 +1196,7 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_i1ActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
        
         
         if (!music.isIsplaying())//GEN-FIRST:event_playButtonActionPerformed
