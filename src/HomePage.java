@@ -11,6 +11,8 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -134,7 +136,7 @@ public class HomePage extends javax.swing.JDialog {
 
         user.setMusic( new Music(new File("k.mp3"))) ;
         music=new Music(new File("m.mp3"));
-        music.play();
+//        music.play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
@@ -1079,6 +1081,24 @@ public class HomePage extends javax.swing.JDialog {
             setImage2(buttons.get(i),user.getSongs().get(i).getArtWork());
             labels.get(i).setText(user.getSongs().get(i).getTitle());
             buttons.get(i).setVisible(true);
+            Music s=user.getSongs().get(i);
+            buttons.get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        if (music.isIsplaying())
+                        music.pause();
+                    } catch (JavaLayerException e1) {
+                        e1.printStackTrace();
+                    }
+                    music=s;
+                    try {
+                        music.play();
+                    } catch (JavaLayerException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
          //   updateUser(user);
         }
     }//GEN-LAST:event_songsButtonActionPerformed
