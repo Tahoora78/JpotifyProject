@@ -18,7 +18,8 @@ public class PlayList implements Serializable {
     
     //number of favorite playlist = 1000
     //number of favorite playlist = 1001
-    
+
+
     public void setNumber(int num){
         number = num;
     }
@@ -26,7 +27,10 @@ public class PlayList implements Serializable {
     public int getNumber(){
         return number;
     }
-    
+
+    public void setSongs(ArrayList<Music> songs) {
+        this.songs = songs;
+    }
 
     public PlayList(String title) {
         this.title = title;

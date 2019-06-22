@@ -10,13 +10,56 @@ public class User implements Serializable{
     private PlayList sharedPlayList=new PlayList("Shared PlayList");
     private Long time;
     private Music music;
+    private PlayList currenPlayList;
+    private Album currentAlbum;
     boolean playing=false;
     private PlayList favoritePlayList = new PlayList("favorite PLayList");
     private ArrayList<PlayList> playLists ;
     private ArrayList<Music> songs = new ArrayList<>();
-    
+    private ArrayList<Album> albums =new ArrayList<>();
+
+
+    private int songNum;
+
+
+    public PlayList getCurrenPlayList() {
+        return currenPlayList;
+    }
+
+    public void setCurrenPlayList(PlayList currenPlayList) {
+        this.currenPlayList = currenPlayList;
+    }
+
+    public Album getCurrentAlbum() {
+        return currentAlbum;
+    }
+
+    public void setCurrentAlbum(Album currentAlbum) {
+        this.currentAlbum = currentAlbum;
+    }
+
+    public ArrayList<Music> getSongs() {
+        return songs;
+    }
+
+    public int getSongNum() {
+        return songNum;
+    }
+
+    public void setSongNum(int songNum) {
+        this.songNum = songNum;
+    }
+
     public PlayList getFavoritePlayList() {
         return favoritePlayList;
+    }
+
+    public ArrayList<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(ArrayList<Album> albums) {
+        this.albums = albums;
     }
 
     public PlayList getSharedPlayList() {
@@ -83,11 +126,17 @@ public class User implements Serializable{
         this.music = music;
     }
 
+    public void setSongs(ArrayList<Music> songs) {
+        this.songs = songs;
+    }
+
     public void setTime(Long time) {
         this.time = time;
     }
 
     public User(String name) {
+        this.playLists.add(favoritePlayList);
+        this.playLists.add(sharedPlayList);
         this.name = name;
     }
 
@@ -142,8 +191,13 @@ public class User implements Serializable{
         this.sharedPlayList.addSong(music);
     }
     
-    public void addMusicToPlaylists(Music music,int i){
-        this.playLists.get(i).addSong(music);
+    public void addMusicToPlaylists(Music music,String name){
+
+
+        for (PlayList pl:playLists){
+            if (pl.getTitle().equals(name))
+                pl.addSong(music);
+        }
     }
     
     

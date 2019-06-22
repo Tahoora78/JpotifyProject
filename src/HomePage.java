@@ -56,7 +56,7 @@ public class HomePage extends javax.swing.JDialog {
     ArrayList<JButton>  buttons  = new ArrayList<>();
     ArrayList<JLabel> labels = new ArrayList<>();
     String fileNameSerialize;
-    User user;
+    private User user;
     
     /**
      * Creates new form homePage
@@ -119,8 +119,9 @@ public class HomePage extends javax.swing.JDialog {
       }
       
     public HomePage(String name,User user) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
-        this.music = new Music(new File("k.mp3"));
-        music.play();
+        user.setMusic( new Music(new File("k.mp3"))) ;
+
+    user.getMusic().play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
@@ -136,28 +137,33 @@ public class HomePage extends javax.swing.JDialog {
         setImage(backwardButton,"backward.png");
         setImage(shuffleButton,"shuffle.png");
         setImage(favoriteButton,"love.jpg");
-        setImageLabel(musicLabel,"sound.jfif");
-        this.playlists.add(FSongs);
-        this.playlists.add(Shared);
+//        setImageLabel(musicLabel,"sound.jfif");
+//        user.getPlayLists().add(FSongs);
+//        user.getPlayLists().add(Shared);
         int count=0;
-        for(int i=0;i<albums.size();i++){
-            Album a=albums.get(i);
+        for(int i=0;i<user.getAlbums().size();i++){
+            Album a=user.getAlbums().get(i);
             ArrayList<Music> songss=a.getSongs();
             for(int j=0;j<songss.size();j++){
-                this.songs.add(songss.get(j));
+                ArrayList<Music> abc=user.getSongs();
+                abc.add(songss.get(j));
+                user.setSongs(abc);
             }
 
         }
-        this.songNum=songs.size();
+        user.setSongNum(user.getSongs().size());
+
+//        ????????????????????????????????????????????????????????????????????
+
         playList = new DefaultListModel();
         playList.addElement("favorite list");
         playList.addElement("shared playlist");
-        for(int i=0;i<playlists.size();i++ ){
-            playList.addElement(playlists.get(i).getTitle());
+        for(int i=0;i<user.getPlayLists().size();i++ ){
+            playList.addElement(user.getPlayLists().get(i).getTitle());
         }
         playListList.setModel(playList);
     }
-
+//?????????????????????????????????????????????????????????????????
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -368,7 +374,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -861,8 +871,8 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_artistButtonActionPerformed
 
     private void albumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumsButtonActionPerformed
-        for(int i=0;i<albums.size();i++){
-            Album a=albums.get(i);
+        for(int i=0;i<user.getAlbums().size();i++){
+            Album a=user.getAlbums().get(i);
             Image image=a.getImage();
 //            tahoora
 //            set image to a button
@@ -873,29 +883,29 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_albumsButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_playButtonActionPerformed
-        this.music.play();
+        user.getMusic().play();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_pauseButtonActionPerformed
-        this.music.pause();
+        user.getMusic().pause();
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode==0)
             return;
         else if(mode==1){
-            ArrayList<Music> songs=this.playlist.getSongs();
-            int a=songs.indexOf(music);
-            music.pause();
-            this.music=songs.get(a+1);
-            music.play(0);
+            ArrayList<Music> songs=user.getCurrenPlayList().getSongs();
+            int a=songs.indexOf(user.getMusic());
+            user.getMusic().pause();
+            user.setMusic(songs.get(a+1));
+            user.getMusic().play();
         }
         else{
-            ArrayList<Music> songs=this.album.getSongs();
-            int a=songs.indexOf(music);
-            music.pause();
-            this.music=songs.get(a+1);
-            music.play(0);
+            ArrayList<Music> songs=user.getCurrentAlbum().getSongs();
+            int a=songs.indexOf(user.getMusic());
+            user.getMusic().pause();
+            user.setMusic(songs.get(a+1));
+            user.getMusic().play();
         }
 
     }//GEN-LAST:event_forwardButtonActionPerformed
@@ -904,16 +914,19 @@ public class HomePage extends javax.swing.JDialog {
         if(liked==false){
         setImage(favoriteButton,"fulLove.jpg");
         liked = true;
-        this.FSongs.addSong(this.music);
+        ArrayList<Music> abc=user.getFavoritePlayList().getSongs();
+        abc.add(user.getMusic());
+        user.getFavoritePlayList().setSongs(abc);
+//        this.FSongs.addSong(this.music);
         }
         else if(liked == true){
         setImage(favoriteButton,"love.jpg");
         liked = false;
-            try {
-                this.FSongs.removeSong(this.music);
-            } catch (IOException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+                ArrayList<Music> abc=user.getFavoritePlayList().getSongs();
+                abc.remove(user.getMusic());
+                user.getFavoritePlayList().setSongs(abc);
+
         }
         
         //try {
@@ -937,7 +950,7 @@ public class HomePage extends javax.swing.JDialog {
 
         if(musicSlider.getValueIsAdjusting())
             try {
-            music.play(musicSlider.getValue());
+            user.getMusic().play(musicSlider.getValue());
         } catch (JavaLayerException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -1024,9 +1037,9 @@ public class HomePage extends javax.swing.JDialog {
     
     private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
        buttonAndLabel();
-        for(int i=0;i<songs.size();i++){
-            buttons.get(i).setText(songs.get(i).getTitle());
-            labels.get(i).setText(songs.get(i).getTitle());
+        for(int i=0;i<user.getSongs().size();i++){
+            buttons.get(i).setText(user.getSongs().get(i).getTitle());
+            labels.get(i).setText(user.getSongs().get(i).getTitle());
         }
     }//GEN-LAST:event_songsButtonActionPerformed
 
@@ -1052,7 +1065,13 @@ public class HomePage extends javax.swing.JDialog {
        
        System.out.println(filename);
         try {
-            this.songs.add( new Music(f));
+
+
+            ArrayList<Music> abc=user.getSongs();
+            abc.add(new Music(f));
+            user.setSongs(abc);
+            user.setSongNum(user.getSongs().size());
+//            this.songs.add( new Music(f));
         } catch (IOException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidDataException ex) {
@@ -1060,10 +1079,10 @@ public class HomePage extends javax.swing.JDialog {
         } catch (UnsupportedTagException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         }
-       this.songNum++;
+//       this.songNum++;
        boolean flag =false;
 
-       for(Album album:albums) {
+       for(Album album:user.getAlbums()) {
              try {
                  if (new Music(f).getAlbum().equals(album.getTitle())) {
                      try {
@@ -1095,7 +1114,11 @@ public class HomePage extends javax.swing.JDialog {
              } catch (UnsupportedTagException ex) {
                  Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
              }
-           albums.add(a);
+             ArrayList<Album> cde=user.getAlbums();
+             cde.add(a);
+             user.setAlbums(cde);
+
+//           albums.add(a);
        }
     }//GEN-LAST:event_addToLibraryButtonActionPerformed
 
@@ -1112,6 +1135,9 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_friendButton2ActionPerformed
 
     private void editsPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editsPlayListActionPerformed
+
+
+//?????????????????????????????????????????????????????????????????????????
         int value = playListList.getSelectedIndex();
         if(playList.getSize()!=0 && value!=0 && value!=1){
             playList.remove(value);
@@ -1119,7 +1145,7 @@ public class HomePage extends javax.swing.JDialog {
         playListList.setModel(playList);
     }//GEN-LAST:event_editsPlayListActionPerformed
 
-
+//????????????????????????????????????????????????????????????
     /**
      * @param args the command line arguments
      */
@@ -1188,7 +1214,7 @@ public class HomePage extends javax.swing.JDialog {
 
             ArrayList<Long> times = new ArrayList<>();
             int i = 0;
-            for (Music music : songs) {
+            for (Music music : user.getSongs()) {
 
                 times.add(music.getStime());
             }
@@ -1198,7 +1224,7 @@ public class HomePage extends javax.swing.JDialog {
             ArrayList<Music> sortedSongs = new ArrayList<>();
 
             for (int j = 0; j < times.size(); j++) {
-                for (Music m : songs) {
+                for (Music m : user.getSongs()) {
                     if (m.getStime() == times.get(j)) {
 
                         sortedSongs.add(m);
@@ -1207,8 +1233,9 @@ public class HomePage extends javax.swing.JDialog {
                 }
 
             }
+            user.setSongs(sortedSongs);
 
-            this.songs = sortedSongs;
+//            this.songs = sortedSongs;
 
 
 
@@ -1220,7 +1247,7 @@ public class HomePage extends javax.swing.JDialog {
 
         ArrayList<Long> times = new ArrayList<>();
         int i = 0;
-        for (Album album:albums) {
+        for (Album album:user.getAlbums()) {
 
             times.add(album.getLtime());
         }
@@ -1240,7 +1267,9 @@ public class HomePage extends javax.swing.JDialog {
 
         }
 
-        this.albums=sortedAlbums;
+        user.setAlbums(sortedAlbums);
+
+//        this.albums=sortedAlbums;
 
 
 
