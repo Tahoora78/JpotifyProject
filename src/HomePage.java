@@ -283,7 +283,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
