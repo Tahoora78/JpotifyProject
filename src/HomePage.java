@@ -88,7 +88,17 @@ public class HomePage extends javax.swing.JDialog {
           return users;
       }
       
-      
+      public void updateUser(User user){
+          try {
+              ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getName().concat(".bin")));
+              os.writeObject(user);
+              os.close();
+          }catch(FileNotFoundException e){
+              e.printStackTrace();
+          }catch(IOException e){
+              e.printStackTrace();
+          }
+      }
       
     public HomePage(String name,User user) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
         this.music = new Music(new File("k.mp3"));
@@ -220,7 +230,7 @@ public class HomePage extends javax.swing.JDialog {
         t14 = new javax.swing.JLabel();
         t19 = new javax.swing.JLabel();
         t21 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addToLibraryButton = new javax.swing.JButton();
 
         albumButton.setText("album");
 
@@ -305,11 +315,7 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                try {
-                    musicSliderAncestorMoved(evt);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                musicSliderAncestorMoved(evt);
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -639,10 +645,10 @@ public class HomePage extends javax.swing.JDialog {
 
         jScrollPane3.setViewportView(displayPanel);
 
-        jButton1.setText("add to library");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addToLibraryButton.setText("add to library");
+        addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addToLibraryButtonActionPerformed(evt);
             }
         });
 
@@ -656,7 +662,7 @@ public class HomePage extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addToLibraryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -697,7 +703,7 @@ public class HomePage extends javax.swing.JDialog {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(newUserButton))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(addToLibraryButton, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -730,14 +736,6 @@ public class HomePage extends javax.swing.JDialog {
 
     }//GEN-LAST:event_artistButtonActionPerformed
 
-    public void setFirst(){}
-    
-    public void update(){
-    
-    
-    
-    }
-    
     private void albumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumsButtonActionPerformed
         for(int i=0;i<albums.size();i++){
             Album a=albums.get(i);
@@ -912,7 +910,7 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_songsButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryButtonActionPerformed
           JFileChooser chooser = new JFileChooser();
        chooser.showOpenDialog(this);
        File f = chooser.getSelectedFile();
@@ -979,7 +977,7 @@ public class HomePage extends javax.swing.JDialog {
              }
            albums.add(a);
        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addToLibraryButtonActionPerformed
 
 
     /**
@@ -1119,6 +1117,7 @@ public class HomePage extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToLibraryButton;
     private javax.swing.JButton albumButton;
     private javax.swing.JButton backwardButton;
     private javax.swing.JPanel displayPanel;
@@ -1150,7 +1149,6 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton i7;
     private javax.swing.JButton i8;
     private javax.swing.JButton i9;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

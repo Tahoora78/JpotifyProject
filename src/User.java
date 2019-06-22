@@ -1,24 +1,45 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable{
     private String name;
     private int ID;
     private int IP;
     private int Password;
     private ArrayList<User> friends;
-    private PlayList playList=new PlayList("Shared PlayList");
+    private PlayList sharedPlayList=new PlayList("Shared PlayList");
     private Long time;
     private Music music;
     boolean playing=false;
-
-    public PlayList getPlayList() {
-        return playList;
+    private PlayList favoritePlayList = new PlayList("favorite PLayList");
+    private ArrayList<PlayList> playLists ;
+    private ArrayList<Music> songs = new ArrayList<>();
+    
+    public PlayList getFavoritePlayList() {
+        return favoritePlayList;
     }
 
-    public void setPlayList(PlayList playList) {
-        this.playList = playList;
+    public PlayList getSharedPlayList() {
+        return sharedPlayList;
+    }
+    
+    public ArrayList<PlayList> getPlayLists() {
+        return playLists;
+    }
+    
+    public void setFavoritePlaylist(PlayList favoritePlayList){
+        this.favoritePlayList = favoritePlayList;
     }
 
+    public void setSharedPlaylist(PlayList sharedPlayList){
+        this.sharedPlayList = sharedPlayList;
+    }
+    
+    public void setPlaylists(ArrayList playLists){
+        this.playLists = playLists;
+    }
+    
+    
     public Long getTime() {
         return System.currentTimeMillis();
     }
@@ -113,11 +134,20 @@ public class User {
     public void addFriend(User user){
         friends.add(user);
     }
-    public void addMusic(Music music){
-        this.playList.addSong(music);
+    public void addMusicToFavoritePlaylist(Music music){
+        this.favoritePlayList.addSong(music);
     }
 
-    public String giveActivity(User user){
+    public void addMusicToSharedPlayList(Music music){
+        this.sharedPlayList.addSong(music);
+    }
+    
+    public void addMusicToPlaylists(Music music,int i){
+        this.playLists.get(i).addSong(music);
+    }
+    
+    
+ /*   public String giveActivity(User user){
         if (this.friends.contains(user)){
             if (user.getPlayList().getSongs().contains(user.getMusic())){
                 if (user.isPlaying())
@@ -130,7 +160,7 @@ public class User {
 
         return null;
     }
-
+*/
     public boolean isPlaying() {
         return playing;
     }

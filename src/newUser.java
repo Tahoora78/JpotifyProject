@@ -5,10 +5,15 @@ import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.WindowConstants;
 
 /*
@@ -26,6 +31,7 @@ public class newUser extends javax.swing.JFrame {
     String username;
     String password;
     String favoriteName;
+    String  fileNameSerialize;
     public newUser() {
         String favoriteName;
         initComponents();
@@ -144,11 +150,28 @@ public class newUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTextActionPerformed
 
+   public void serializeUser(User user){
+       System.out.println("name"+user.getName());
+       try{
+           ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getName().concat(".bin")));
+           os.writeObject(user);
+           os.close();
+       }catch(FileNotFoundException e){
+           System.out.println("nnnnnnnnnnnnnnnnnn");
+           e.printStackTrace();
+       }
+       catch(IOException e){
+           e.printStackTrace();
+       }
+   }
+    
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_okButtonActionPerformed
 
         password = passwordText.getText();
         username = usernameText.getText();
-        HomePage homepage4 = new HomePage(username);
+        User user = new User(username);
+        serializeUser(user);
+        HomePage homepage4 = new HomePage(username,user);
         System.out.println(username);
         homepage4.setVisible(true);
         
@@ -156,14 +179,14 @@ public class newUser extends javax.swing.JFrame {
         File f1 = new File("UsersFolder");
         File f2 = new File("UsersFolder/".concat(username).concat(".txt"));
         File f3 = new File("UsersFolder/user.txt");
-        favoriteName = "UsersFolder/".concat("favorite").concat(username).concat(".txt");
-        File f4 = new File(favoriteName);
+       // favoriteName = "UsersFolder/".concat("favorite").concat(username).concat(".txt");
+       // File f4 = new File(favoriteName);
         f1.mkdir();
         
         try {
                     f2.createNewFile();
                     f3.createNewFile();
-                    f4.createNewFile();
+         //           f4.createNewFile();
                 } catch (IOException e2) {
                     e2.printStackTrace();
                 }
@@ -184,12 +207,6 @@ public class newUser extends javax.swing.JFrame {
                     Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e2) {
                 }
-        
-        
-        
-        
-        
-        System.out.println(password+username);
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**

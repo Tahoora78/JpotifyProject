@@ -28,7 +28,7 @@ import java.util.List;
  */
 
 
-public class Music {
+public class Music implements Serializable{
     private Mp3File mp3File;
     private String Title;
     private String album;

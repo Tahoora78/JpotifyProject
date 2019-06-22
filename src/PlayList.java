@@ -1,18 +1,32 @@
 import java.awt.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * it's a class which model a playlist in program
- * each playlist has a list of songs and a title
+ * it's a class which model a playList in program
+ * each playList has a list of songs and a title
  *
  * @author kowsar shams
  */
 
-public class PlayList {
+public class PlayList implements Serializable {
     private ArrayList<Music> songs = new ArrayList<>();
     private String title;
+    private int number;
+    
+    //number of favorite playlist = 1000
+    //number of favorite playlist = 1001
+    
+    public void setNumber(int num){
+        number = num;
+    }
+    
+    public int getNumber(){
+        return number;
+    }
+    
 
     public PlayList(String title) {
         this.title = title;
@@ -33,8 +47,8 @@ public class PlayList {
 
 
     /**
-     * it removes a song from Playlist
-      * @param s it's name of the music in arraylist and if it has 2 music with same name it just remove last added one
+     * it removes a song from PlayList
+      * @param s it's name of the music in arrayList and if it has 2 music with same name it just remove last added one
      */
     public void removeSong(String s) {
         Iterator<Music> iterator = songs.iterator();
@@ -48,7 +62,7 @@ public class PlayList {
     }
 
     /**
-     * it removes a song from Playlist
+     * it removes a song from PlayList
      * @param m it is the music file which we want to be deleted
      * @throws IOException if it face any problem while working with Music m
      */
