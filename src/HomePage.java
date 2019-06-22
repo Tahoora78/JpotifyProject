@@ -88,10 +88,11 @@ public class HomePage extends javax.swing.JDialog {
       //@param : User user
       //this method deserialize the user 
       //**
-      public User deserialiseUser(User user){
+      public User deserialiseUser(User Myuser){
           User users = null;
+          System.out.println(user.getName());
           try{
-              ObjectInputStream is = new ObjectInputStream(new FileInputStream(user.getName().concat(".bin")));
+              ObjectInputStream is = new ObjectInputStream(new FileInputStream(Myuser.getName().concat(".bin")));
               users = (User)is.readObject();
           }catch(FileNotFoundException e){
               e.printStackTrace();
@@ -101,12 +102,14 @@ public class HomePage extends javax.swing.JDialog {
               e.printStackTrace();
           }
           System.out.println("finish deserializing");
+          System.out.println("name"+users.getName());
           return users;
       }
       //**
       //this method serialize the user and save it
       //**
-      public void updateUser(User user){
+     /* public void updateUser(User user){
+          System.out.println("update start");
           try {
               ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getName().concat(".bin")));
               os.writeObject(user);
@@ -116,17 +119,20 @@ public class HomePage extends javax.swing.JDialog {
           }catch(IOException e){
               e.printStackTrace();
           }
+          System.out.println("update finished");
       }
-      
-    public HomePage(String name,User user) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
+      */
+    public HomePage(String name,User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
+        System.out.println("myuser name in home"+MyUser.getName());
+        user = MyUser;
         user.setMusic( new Music(new File("k.mp3"))) ;
-
-    user.getMusic().play();
+        user.getMusic().play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
        // User user = new User(username);
-        user = deserialiseUser(user);
+        
+        System.out.println("username"+user.getName());
         jb.setVisible(true);
         songsPanel.setVisible(true);
         songsPanel.add(jb);
@@ -162,6 +168,7 @@ public class HomePage extends javax.swing.JDialog {
             playList.addElement(user.getPlayLists().get(i).getTitle());
         }
         playListList.setModel(playList);
+        //updateUser(user);
     }
 //?????????????????????????????????????????????????????????????????
     /**
@@ -935,7 +942,7 @@ public class HomePage extends javax.swing.JDialog {
                 //exception handling left as an exercise for the reader
            // }
         
-        
+       // updateUser(user);
     }//GEN-LAST:event_favoriteButtonActionPerformed
 
     
@@ -1037,9 +1044,11 @@ public class HomePage extends javax.swing.JDialog {
     
     private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
        buttonAndLabel();
+       System.out.println("size"+user.getSongs().size());
         for(int i=0;i<user.getSongs().size();i++){
             buttons.get(i).setText(user.getSongs().get(i).getTitle());
             labels.get(i).setText(user.getSongs().get(i).getTitle());
+         //   updateUser(user);
         }
     }//GEN-LAST:event_songsButtonActionPerformed
 
@@ -1050,15 +1059,15 @@ public class HomePage extends javax.swing.JDialog {
        String filename = f.getAbsolutePath();
        String path = "UsersFolder/".concat(username).concat(".txt");
        System.out.println(path);
-       try {
-            Files.write(Paths.get(path), filename.getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e2) {
-        }
+       //try {
+         //   Files.write(Paths.get(path), filename.getBytes(), StandardOpenOption.APPEND);
+        //}catch (IOException e2) {
+        //}
        
-        try {
-            Files.write(Paths.get("UsersFolder/filename.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e2) {
-        }
+       // try {
+         //   Files.write(Paths.get("UsersFolder/filename.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
+       // }catch (IOException e2) {
+       // }
        
        
        
@@ -1120,6 +1129,7 @@ public class HomePage extends javax.swing.JDialog {
 
 //           albums.add(a);
        }
+      // updateUser(user);
     }//GEN-LAST:event_addToLibraryButtonActionPerformed
 
     private void friendButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendButton3ActionPerformed
@@ -1143,6 +1153,7 @@ public class HomePage extends javax.swing.JDialog {
             playList.remove(value);
         }
         playListList.setModel(playList);
+       // updateUser(user);
     }//GEN-LAST:event_editsPlayListActionPerformed
 
 //????????????????????????????????????????????????????????????
@@ -1237,7 +1248,7 @@ public class HomePage extends javax.swing.JDialog {
 
 //            this.songs = sortedSongs;
 
-
+        //updateUser(user);
 
         }
 
@@ -1271,7 +1282,7 @@ public class HomePage extends javax.swing.JDialog {
 
 //        this.albums=sortedAlbums;
 
-
+        //updateUser(user);
 
     }
 

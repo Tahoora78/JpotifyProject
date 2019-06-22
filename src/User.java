@@ -14,7 +14,7 @@ public class User implements Serializable{
     private Album currentAlbum;
     boolean playing=false;
     private PlayList favoritePlayList = new PlayList("favorite PLayList");
-    private ArrayList<PlayList> playLists ;
+    private ArrayList<PlayList> playLists  = new ArrayList<>();
     private ArrayList<Music> songs = new ArrayList<>();
     private ArrayList<Album> albums =new ArrayList<>();
 
