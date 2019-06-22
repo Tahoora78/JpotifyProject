@@ -67,11 +67,13 @@ public class HomePage extends javax.swing.JDialog {
         
         }
       
-    public HomePage(String name) {
+    public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException {
+        this.music = new Music(new File("m.mp3"));
         initComponents();
+        username = name;
         fileNameSerialize = username.concat(".bin");
         User user = new User(username);
-        username = name;
+        
         jb.setVisible(true);
         songsPanel.setVisible(true);
         songsPanel.add(jb);
@@ -280,7 +282,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -405,10 +411,30 @@ public class HomePage extends javax.swing.JDialog {
 
         newPlayList.setText("new playlist");
 
+
+
+
+
+
+
+
+
+
+
+
+        
         addToLibrary.setText("add to library");
         addToLibrary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryActionPerformed(evt);
+                try {
+                    addToLibraryActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -822,7 +848,15 @@ public class HomePage extends javax.swing.JDialog {
 
     private void musicSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_musicSliderStateChanged
 
-//        musicSlider.setValue(musicSlider.getValue()+1);
+        try {
+            music.play(musicSlider.getValue());
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
 
 
@@ -944,7 +978,16 @@ public class HomePage extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
                  
-                 HomePage homepage = new HomePage(username);
+                 HomePage homepage = null;
+                 try {
+                     homepage = new HomePage(username);
+                 } catch (IOException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (InvalidDataException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (UnsupportedTagException ex) {
+                     Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                 }
                       homepage.setVisible(true);
                  
     }
