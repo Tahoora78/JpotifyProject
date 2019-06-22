@@ -422,21 +422,8 @@ public class HomePage extends javax.swing.JDialog {
 
 
 
-        
+
         addToLibrary.setText("add to library");
-        addToLibrary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addToLibraryActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         jLabel1.setText("jLabel1");
 

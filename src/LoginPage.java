@@ -1,4 +1,7 @@
 
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -222,12 +225,13 @@ public class LoginPage extends javax.swing.JFrame {
            }
          }catch(FileNotFoundException e){} catch (IOException ex) {
                 Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (InvalidDataException e) {
+             e.printStackTrace();
+         } catch (UnsupportedTagException e) {
+             e.printStackTrace();
          }
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
