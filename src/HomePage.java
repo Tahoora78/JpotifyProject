@@ -50,6 +50,9 @@ public class HomePage extends javax.swing.JDialog {
     DefaultListModel playList;
      ArrayList<JButton>  buttons  = new ArrayList<>();
     ArrayList<JLabel> labels = new ArrayList<>();
+    String fileNameSerialize;
+    
+    
     /**
      * Creates new form homePage
      */
@@ -66,6 +69,8 @@ public class HomePage extends javax.swing.JDialog {
       
     public HomePage(String name) {
         initComponents();
+        fileNameSerialize = username.concat(".bin");
+        User user = new User(username);
         username = name;
         jb.setVisible(true);
         songsPanel.setVisible(true);
