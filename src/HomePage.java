@@ -12,7 +12,12 @@ import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -48,10 +53,10 @@ public class HomePage extends javax.swing.JDialog {
     private int nextSong;
     JButton jb=new JButton("LOLOOLOLOO");
     DefaultListModel playList;
-     ArrayList<JButton>  buttons  = new ArrayList<>();
+    ArrayList<JButton>  buttons  = new ArrayList<>();
     ArrayList<JLabel> labels = new ArrayList<>();
     String fileNameSerialize;
-    
+    User user;
     
     /**
      * Creates new form homePage
@@ -67,14 +72,32 @@ public class HomePage extends javax.swing.JDialog {
         
         }
       
-    public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
-        this.music = new Music(new File("m.mp3"));
+      public User deserialiseUser(User user){
+          User users = null;
+          try{
+              ObjectInputStream is = new ObjectInputStream(new FileInputStream(user.getName().concat(".bin")));
+              users = (User)is.readObject();
+          }catch(FileNotFoundException e){
+              e.printStackTrace();
+          }catch(IOException e){
+              e.printStackTrace();
+          }catch(ClassNotFoundException e){
+              e.printStackTrace();
+          }
+          System.out.println("finish deserializing");
+          return users;
+      }
+      
+      
+      
+    public HomePage(String name,User user) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
+        this.music = new Music(new File("k.mp3"));
         music.play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
-        User user = new User(username);
-        
+       // User user = new User(username);
+        user = deserialiseUser(user);
         jb.setVisible(true);
         songsPanel.setVisible(true);
         songsPanel.add(jb);
@@ -97,7 +120,6 @@ public class HomePage extends javax.swing.JDialog {
             }
 
         }
-
         this.songNum=songs.size();
         playList = new DefaultListModel();
         playList.addElement("favorite list");
@@ -990,9 +1012,10 @@ public class HomePage extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                 
+                  fileNameSerialize = username.concat(".bin");
                  HomePage homepage = null;
-                 try {
+                 System.out.println("name"+fileNameSerialize);
+              /*   try {
                      homepage = new HomePage(username);
                  } catch (IOException | JavaLayerException ex) {
                      Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
@@ -1002,9 +1025,23 @@ public class HomePage extends javax.swing.JDialog {
                      Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
                  }
                       homepage.setVisible(true);
-                 
+                      System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk");
+                
+                      try{
+                          ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileNameSerialize));
+                          os.writeObject(homepage);
+                          os.close();
+                      }catch(FileNotFoundException e){
+                      e.printStackTrace();
+                      }catch(IOException e ){
+                      e.printStackTrace();
+                      }
+
+                      System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk");
+*/
     }
-        });}
+        });
+    }
 
 
 
