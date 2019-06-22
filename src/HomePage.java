@@ -67,8 +67,9 @@ public class HomePage extends javax.swing.JDialog {
         
         }
       
-    public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException {
+    public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
         this.music = new Music(new File("m.mp3"));
+        music.play();
         initComponents();
         username = name;
         fileNameSerialize = username.concat(".bin");
@@ -144,7 +145,6 @@ public class HomePage extends javax.swing.JDialog {
         searchText = new javax.swing.JTextField();
         newPlayList = new javax.swing.JButton();
         userNameLabel = new javax.swing.JTextField();
-        addToLibrary = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         displayPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -198,6 +198,7 @@ public class HomePage extends javax.swing.JDialog {
         t14 = new javax.swing.JLabel();
         t19 = new javax.swing.JLabel();
         t21 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         albumButton.setText("album");
 
@@ -282,11 +283,7 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                try {
-                    musicSliderAncestorMoved(evt);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                musicSliderAncestorMoved(evt);
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -410,20 +407,6 @@ public class HomePage extends javax.swing.JDialog {
         searchText.setText("search for...");
 
         newPlayList.setText("new playlist");
-
-
-
-
-
-
-
-
-
-
-
-
-
-        addToLibrary.setText("add to library");
 
         jLabel1.setText("jLabel1");
 
@@ -630,6 +613,13 @@ public class HomePage extends javax.swing.JDialog {
 
         jScrollPane3.setViewportView(displayPanel);
 
+        jButton1.setText("add to library");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -639,9 +629,9 @@ public class HomePage extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(addToLibrary, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addContainerGap()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(searchButton)
@@ -676,12 +666,12 @@ public class HomePage extends javax.swing.JDialog {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(addToLibrary)
                                 .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(searchButton))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(newUserButton)))
+                                .addComponent(newUserButton))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -703,9 +693,7 @@ public class HomePage extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToLibraryButtonActionPerformed
-
-    }//GEN-LAST:event_addToLibraryButtonActionPerformed
+   
 
     private void artistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistButtonActionPerformed
 
@@ -795,47 +783,12 @@ public class HomePage extends javax.swing.JDialog {
          soundcontroller.setValue(volumeSlider.getValue());
     }//GEN-LAST:event_volumeSliderStateChanged
 
-    private void addToLibraryActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_addToLibraryActionPerformed
-        JFileChooser chooser = new JFileChooser();
-       chooser.showOpenDialog(this);
-       File f = chooser.getSelectedFile();
-       String filename = f.getAbsolutePath();
-       String path = "UsersFolder/".concat(username).concat(".txt");
-       System.out.println(path);
-       try {
-            Files.write(Paths.get(path), filename.getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e2) {
-        }
-       
-        try {
-            Files.write(Paths.get("UsersFolder/filename.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e2) {
-        }
-       
-       
-       
-       
-       System.out.println(filename);
-       this.songs.add( new Music(f));
-       this.songNum++;
-       boolean flag =false;
+    private void musicSliderStateChanged(javax.swing.event.ChangeEvent evt) {
 
-       for(Album album:albums) {
-           if (new Music(f).getAlbum().equals(album.getTitle())) {
-               album.addSong(new Music(f));
-               flag = true;
-           }
-       }
-       if (!flag){
-           Album a=new Album();
-           a.addSong(new Music(f));
-           albums.add(a);
-       }
-    }//GEN-LAST:event_addToLibraryActionPerformed
+//GEN-FIRST:event_musicSliderStateChanged
 
-    private void musicSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_musicSliderStateChanged
-
-        try {
+        if(musicSlider.getValueIsAdjusting())
+            try {
             music.play(musicSlider.getValue());
         } catch (JavaLayerException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
@@ -933,6 +886,75 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_songsButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          JFileChooser chooser = new JFileChooser();
+       chooser.showOpenDialog(this);
+       File f = chooser.getSelectedFile();
+       String filename = f.getAbsolutePath();
+       String path = "UsersFolder/".concat(username).concat(".txt");
+       System.out.println(path);
+       try {
+            Files.write(Paths.get(path), filename.getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e2) {
+        }
+       
+        try {
+            Files.write(Paths.get("UsersFolder/filename.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e2) {
+        }
+       
+       
+       
+       
+       System.out.println(filename);
+        try {
+            this.songs.add( new Music(f));
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidDataException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedTagException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       this.songNum++;
+       boolean flag =false;
+
+       for(Album album:albums) {
+             try {
+                 if (new Music(f).getAlbum().equals(album.getTitle())) {
+                     try {
+                         album.addSong(new Music(f));
+                     } catch (IOException ex) {
+                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (InvalidDataException ex) {
+                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (UnsupportedTagException ex) {
+                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                     flag = true;
+                 } } catch (IOException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (InvalidDataException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (UnsupportedTagException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       }
+       if (!flag){
+           Album a=new Album();
+             try {
+                 a.addSong(new Music(f));
+             } catch (IOException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (InvalidDataException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (UnsupportedTagException ex) {
+                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+             }
+           albums.add(a);
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -968,7 +990,7 @@ public class HomePage extends javax.swing.JDialog {
                  HomePage homepage = null;
                  try {
                      homepage = new HomePage(username);
-                 } catch (IOException ex) {
+                 } catch (IOException | JavaLayerException ex) {
                      Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
                  } catch (InvalidDataException ex) {
                      Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
@@ -1056,7 +1078,6 @@ public class HomePage extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addToLibrary;
     private javax.swing.JButton albumButton;
     private javax.swing.JButton backwardButton;
     private javax.swing.JPanel displayPanel;
@@ -1088,6 +1109,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton i7;
     private javax.swing.JButton i8;
     private javax.swing.JButton i9;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

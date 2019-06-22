@@ -106,6 +106,8 @@ public class Music {
         byte[] album=new byte[30];
 
         FileInputStream temp=new FileInputStream(music);
+
+
         temp.read(total);
         int counter=0;
         for (int i=total.length-128;i<total.length-125;i++){

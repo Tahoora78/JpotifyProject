@@ -1,6 +1,7 @@
 
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import javazoom.jl.decoder.JavaLayerException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -228,6 +229,8 @@ public class LoginPage extends javax.swing.JFrame {
          } catch (InvalidDataException e) {
              e.printStackTrace();
          } catch (UnsupportedTagException e) {
+             e.printStackTrace();
+         } catch (JavaLayerException e) {
              e.printStackTrace();
          }
 

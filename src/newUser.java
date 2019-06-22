@@ -1,4 +1,8 @@
 
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
+import javazoom.jl.decoder.JavaLayerException;
+
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +68,17 @@ public class newUser extends javax.swing.JFrame {
         okButton.setText("ok");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+                try {
+                    okButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -130,7 +144,7 @@ public class newUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTextActionPerformed
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_okButtonActionPerformed
 
         password = passwordText.getText();
         username = usernameText.getText();
