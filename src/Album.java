@@ -67,7 +67,7 @@ public class Album {
      */
     public void addSong(Music music){
         songs.add(music);
-        this.setTitle(music.getTitle());
+        this.setTitle(music.getAlbum());
         this.setImage(music.getArtWork());
         this.setArtist(music.getArtist());
         counter=songs.size();
