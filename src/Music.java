@@ -2,6 +2,7 @@
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -10,6 +11,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
+import sun.misc.IOUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -164,33 +167,79 @@ public class Music {
      * @throws JavaLayerException if it face any problem while playing a file by advanceplayer or creating a mp3 file
      */
 
-    public void play(int a) throws JavaLayerException, IOException {
-        byte[] bytes=new byte[streamLength];
+    public void play(int a) throws JavaLayerException, IOException, InterruptedException {
+        getPlayer().close();
+//        this.t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                if (a * framepersec > player.getPosition()) {
+//                    try {
+//                        input.skip(a * streamLength / getTime() - player.getPosition() * streamLength / mp3File.getFrameCount());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player = new Player(input);
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player.play();
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    try {
+//                        input = new FileInputStream(getPath());
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        input.skip(a * streamLength / getTime());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player = new Player(input);
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player.play();
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//
+//        });
+//
+//        t.start();
 
-        t.stop();
-        Thread ter = new Thread(new Runnable() {
+//        tt.start();
+//        t=tt;
+
+
+        input=new FileInputStream(music);
+        input.skip(a*streamLength/getTime());
+        player=new Player(input);
+        t=new Thread(new Runnable() {
             @Override
             public void run() {
-                if (a>getTime()){
-                    System.out.println("PAUSE");
-                    input.mark(a*bytepersec);
-                    try {
-                        player=new Player(input);
-                        System.out.println(input.available());
-                        player.play();
-                    } catch (JavaLayerException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    }
-//                System.out.println(mp3File.getFrameCount());
+                try {
+                    player.play();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        t=ter;
-        ter.start();
+
+        t.start();
 
     }
+
 
 
     /**
@@ -198,6 +247,8 @@ public class Music {
      * @throws JavaLayerException if it face any problem while playing a file by player or creating a mp3 file
      */
     public void play() throws JavaLayerException {
+
+
         player=new Player(input);
         this.stime=System.currentTimeMillis();
         t = new Thread(new Runnable() {

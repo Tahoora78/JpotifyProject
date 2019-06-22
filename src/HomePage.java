@@ -731,7 +731,7 @@ public class HomePage extends javax.swing.JDialog {
         this.music.pause();
     }//GEN-LAST:event_pauseButtonActionPerformed
 
-    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException {//GEN-FIRST:event_forwardButtonActionPerformed
+    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode==0)
             return;
         else if(mode==1){
