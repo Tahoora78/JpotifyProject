@@ -76,7 +76,7 @@ public class newUser extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     okButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
+                } catch (InvalidDataException | InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -165,7 +165,7 @@ public class newUser extends javax.swing.JFrame {
        }
    }
     
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException, InterruptedException {//GEN-FIRST:event_okButtonActionPerformed
 
         password = passwordText.getText();
         username = usernameText.getText();

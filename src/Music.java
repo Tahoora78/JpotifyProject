@@ -241,6 +241,23 @@ public class Music {
         });
 
         t.start();
+
+        Thread t2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HomePage.musicSlider.setValue((int) ((float)getPassedTime()/getTime()*100));
+            }
+        });
+//        t2.start();
+//        while (isIsplaying()){
+//
+//            System.out.println("true");
+//            t2.sleep(1000);
+//
+//        }
+
+
+
 //        isplaying=true;
 
     }

@@ -118,7 +118,7 @@ public class HomePage extends javax.swing.JDialog {
           System.out.println("update finished");
       }
       */
-    public HomePage(String name,User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException {
+    public HomePage(String name,User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         System.out.println("myuser name in home"+MyUser.getName());
         user = MyUser;
 
@@ -379,7 +379,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -1371,7 +1375,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JPanel libraryPanel;
     private javax.swing.JScrollPane libraryScroll;
     private javax.swing.JLabel musicLabel;
-    private javax.swing.JSlider musicSlider;
+    public static javax.swing.JSlider musicSlider;
     private javax.swing.JButton newPlayList;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;

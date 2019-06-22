@@ -113,7 +113,11 @@ public class LoginPage extends javax.swing.JFrame {
         loginButton.setText("login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                try {
+                    loginButtonActionPerformed(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -223,7 +227,7 @@ public class LoginPage extends javax.swing.JFrame {
      
     }//GEN-LAST:event_newUserButtonActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_loginButtonActionPerformed
         username = usernameText.getText();
         password = passwordText.getText();
         String name;
