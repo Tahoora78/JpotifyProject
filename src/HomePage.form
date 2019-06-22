@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="cc" red="ff" type="rgb"/>
+    </Property>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -20,49 +25,42 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="1" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="addToLibraryButton" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="addToLibraryButton" min="-2" pref="128" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="searchText" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="newPlayList" min="-2" pref="258" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="libraryScroll" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="userNameLabel" min="-2" pref="144" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="newUserButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="libraryScroll" alignment="0" min="-2" pref="336" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="soundBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="newPlayList" min="-2" pref="258" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="soundBar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane3" pref="1069" max="32767" attributes="0"/>
+                          <Component id="displayMusicPanel" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
+                          <Component id="userNameLabel" min="-2" pref="164" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,41 +68,39 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="userNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="newUserButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="addToLibraryButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="799" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="libraryScroll" pref="0" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="newPlayList" min="-2" pref="47" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane3" min="-2" pref="831" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="userNameLabel" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="searchText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addToLibraryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="libraryScroll" pref="661" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="687" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="newPlayList" pref="101" max="32767" attributes="0"/>
+                          <Component id="displayMusicPanel" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="soundBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,29 +111,47 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="libraryPanel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="playListLabel" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="303" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="songsPanel" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="albumButton" pref="309" max="32767" attributes="0"/>
+                                      <Component id="songsButton" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="playListLabel" min="-2" pref="179" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="editsPlayList" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
+                                      <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="albumButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="songsButton" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="libraryLabel" min="-2" pref="183" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane2" alignment="1" pref="331" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="songsPanel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="libraryLabel" min="-2" pref="299" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -146,26 +160,28 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="libraryLabel" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="albumButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="songsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
+                          <Component id="playListLabel" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="editsPlayList" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="597" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="songsPanel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="songsButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="playListLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="editPlayList" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="493" max="-2" attributes="0"/>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -173,11 +189,17 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="albumButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="33" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="album"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="songsButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="33" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Songs"/>
               </Properties>
               <Events>
@@ -189,7 +211,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -201,6 +223,9 @@
             </Container>
             <Component class="java.awt.Label" name="libraryLabel">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="library"/>
               </Properties>
             </Component>
@@ -223,12 +248,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="playListLabel">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="playlist"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="editPlayList">
               <Properties>
                 <Property name="text" type="java.lang.String" value="edit"/>
@@ -237,75 +256,73 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editPlayListActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="playListLabel">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="playlist"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Button" name="editsPlayList">
+              <Properties>
+                <Property name="label" type="java.lang.String" value="edit"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editsPlayListActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="soundBar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" red="0" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="405" max="32767" attributes="0"/>
+                  <EmptySpace pref="199" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="shuffleButton" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="backwardButton" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pauseButton" min="-2" pref="37" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="playButton" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="forwardButton" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="favoriteButton" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="390" max="-2" attributes="0"/>
+                          <Component id="buttonsPanel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+                          <Component id="musicLabel" min="-2" pref="64" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="volumeSlider" min="-2" pref="79" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="musicSlider" min="-2" pref="1006" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="musicSlider" min="-2" pref="777" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="425" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="musicLabel" min="-2" pref="64" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                  <Component id="volumeSlider" min="-2" pref="79" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="forwardButton" alignment="1" max="32767" attributes="0"/>
-                              <Component id="pauseButton" alignment="1" max="32767" attributes="0"/>
-                              <Component id="shuffleButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="backwardButton" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="playButton" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="volumeSlider" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="volumeSlider" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="musicLabel" min="-2" pref="49" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonsPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="musicSlider" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="musicLabel" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -313,27 +330,15 @@
       <SubComponents>
         <Component class="javax.swing.JSlider" name="musicSlider">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="value" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="ancestorMoved" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="musicSliderAncestorMoved"/>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="musicSliderStateChanged"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="playButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="pauseButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="forwardButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="musicLabel">
           <Properties>
@@ -348,24 +353,86 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="volumeSliderStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="shuffleButton">
+        <Container class="javax.swing.JPanel" name="buttonsPanel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="0" red="0" type="rgb"/>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="backwardButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="favoriteButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favoriteButtonActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="shuffleButton" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <Component id="backwardButton" min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="pauseButton" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="playButton" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="forwardButton" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="favoriteButton" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="playButton" alignment="3" max="32767" attributes="0"/>
+                          <Component id="forwardButton" alignment="3" max="32767" attributes="0"/>
+                          <Component id="favoriteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pauseButton" alignment="3" max="32767" attributes="0"/>
+                          <Component id="backwardButton" alignment="3" max="32767" attributes="0"/>
+                          <Component id="shuffleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="playButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="forwardButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="favoriteButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favoriteButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="pauseButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="backwardButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="shuffleButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -377,9 +444,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="friendActivityLabel" pref="315" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="friendActivityLabel" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="friendActivityPanel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -389,7 +462,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="friendActivityLabel" min="-2" pref="55" max="-2" attributes="0"/>
-                      <EmptySpace pref="820" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="friendActivityPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="150" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -404,15 +479,69 @@
                 <Property name="text" type="java.lang.String" value="friend activity"/>
               </Properties>
             </Component>
+            <Container class="javax.swing.JPanel" name="friendActivityPanel">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="friendButton1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="friendButton3" alignment="1" max="32767" attributes="0"/>
+                      <Component id="friendButton2" alignment="0" pref="325" max="32767" attributes="0"/>
+                      <Component id="friendButton4" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="friendButton1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="friendButton2" min="-2" pref="123" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="friendButton3" min="-2" pref="123" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="friendButton4" min="-2" pref="123" max="-2" attributes="0"/>
+                          <EmptySpace pref="80" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="java.awt.Button" name="friendButton1">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="button1"/>
+                  </Properties>
+                </Component>
+                <Component class="java.awt.Button" name="friendButton3">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="button1"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="friendButton3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="java.awt.Button" name="friendButton4">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="button1"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="friendButton4ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="java.awt.Button" name="friendButton2">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="button1"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="friendButton2ActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="newUserButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="new user"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="searchButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="search"/>
@@ -425,6 +554,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="newPlayList">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="new playlist"/>
       </Properties>
     </Component>
@@ -440,83 +572,74 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" pref="611" max="-2" attributes="0"/>
-                              <EmptySpace pref="154" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="l15" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i13" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t7" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t13" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i19" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t19" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i7" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="i2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="i8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="i14" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="t2" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="t8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="t14" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="l15" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i13" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t7" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t13" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i19" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t19" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i7" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="t20" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="i20" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="i2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="i8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="i14" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="t2" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="t8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="t14" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="t20" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="i20" min="-2" pref="100" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="t15" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t9" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t3" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i15" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i9" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i3" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i21" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t21" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="t22" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i10" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i4" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i16" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i22" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t10" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t16" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="i11" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i5" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i17" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="i23" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t5" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t11" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t17" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="t23" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="t15" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t9" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t3" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i15" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i9" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i3" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i21" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t21" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="t22" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i10" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i4" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i16" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i22" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t10" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t16" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="i11" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i5" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i17" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="i23" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t5" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t11" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t17" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="t23" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="i18" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="i6" min="-2" pref="100" max="-2" attributes="0"/>
@@ -537,6 +660,11 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="611" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -666,7 +794,7 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                               <Component id="t22" min="-2" pref="27" max="-2" attributes="0"/>
-                                              <EmptySpace pref="84" max="32767" attributes="0"/>
+                                              <EmptySpace pref="91" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
@@ -811,5 +939,25 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addToLibraryButtonActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JPanel" name="displayMusicPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>
