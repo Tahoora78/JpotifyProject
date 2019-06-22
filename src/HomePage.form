@@ -907,6 +907,9 @@
             <Component class="javax.swing.JButton" name="i7">
             </Component>
             <Component class="javax.swing.JButton" name="i1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="i1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="t8">
             </Component>
