@@ -1071,6 +1071,7 @@ public class HomePage extends javax.swing.JDialog {
     
     private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
        buttonAndLabel();
+       sortSongs();
        System.out.println("size"+user.getSongs().size());
 
        for (int i=0;i<buttons.size();i++)
@@ -1339,6 +1340,7 @@ System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
                 for (Music m : user.getSongs()) {
                     if (m.getStime() == times.get(j)) {
 
+                        if(!sortedSongs.contains(m))
                         sortedSongs.add(m);
 
                     }
