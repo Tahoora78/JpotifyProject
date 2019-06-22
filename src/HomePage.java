@@ -149,10 +149,13 @@ public class HomePage extends javax.swing.JDialog {
     //**
     //this method serialize the user and save it
     //**
-     /* public void updateUser(User user){
+      public void updateUser(User user){
           System.out.println("update start");
+          new File(user.getName().concat(".bin")).delete();
           try {
-              ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getName().concat(".bin")));
+              String g = user.getName().concat(".bin");
+              System.out.println("g"+g);
+              ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(g));
               os.writeObject(user);
               os.close();
           }catch(FileNotFoundException e){
@@ -162,7 +165,7 @@ public class HomePage extends javax.swing.JDialog {
           }
           System.out.println("update finished");
       }
-      */
+      
     public HomePage(String name, User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         System.out.println("myuser name in home" + MyUser.getName());
         user = MyUser;
@@ -1292,6 +1295,8 @@ public class HomePage extends javax.swing.JDialog {
         } catch (InvalidDataException e) {
             e.printStackTrace();
         }
+    updateUser(user);
+    
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
 

@@ -199,6 +199,10 @@ public class newPlayListList extends javax.swing.JFrame {
                 break;
             }
         }
+        ///lll
+        
+        
+        
         
         listPlayList.addElement(nameSong2);
         newPlayListList.setModel(listPlayList);
