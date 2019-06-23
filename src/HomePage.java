@@ -14,6 +14,8 @@ import javazoom.jl.decoder.JavaLayerException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -205,6 +207,15 @@ public class HomePage extends javax.swing.JDialog {
     public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                System.out.println("Closed");
+                e.getWindow().dispose();
+            }
+        });
         user.setMusic(new Music(new File("k.mp3")));
         System.out.println("*********************&&&*****");
         for(int i=0;i<user.getSongs().size();i++){
@@ -1597,8 +1608,8 @@ public class HomePage extends javax.swing.JDialog {
         }
     }
     private void newPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlayListActionPerformed
-        newPlayListList n = new newPlayListList(user);
-        n.setVisible(true);
+//        newPlayListList n = new newPlayListList(user);
+//        n.setVisible(true);
     }//GEN-LAST:event_newPlayListActionPerformed
         
    
