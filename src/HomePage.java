@@ -142,7 +142,7 @@ public class HomePage extends javax.swing.JDialog {
     //**
     public User deserialiseUser(User Myuser) {
         User users = null;
-        System.out.println(user.getName());
+        System.out.println("%%%%%%%%%%%%%%%%%%%%"+user.getName());
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(Myuser.getName().concat(".bin")));
             users = (User) is.readObject();
@@ -155,6 +155,7 @@ public class HomePage extends javax.swing.JDialog {
         }
         System.out.println("finish deserializing");
         System.out.println("name" + users.getName());
+        System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;"+users.getAlbums().size());
         return users;
     }
 
@@ -194,6 +195,7 @@ public class HomePage extends javax.swing.JDialog {
             e.printStackTrace();
         }
         System.out.println("finish deserializing");
+        System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"+userd.getAlbums().size());
      return userd;   
     }
       
@@ -201,6 +203,11 @@ public class HomePage extends javax.swing.JDialog {
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
         user.setMusic(new Music(new File("k.mp3")));
+        System.out.println("*********************&&&*****");
+        for(int i=0;i<user.getSongs().size();i++){
+            System.out.println(user.getSongs().get(i).getTitle());
+        }
+        System.out.println("**********************************&&&&&****");
         System.out.println("finish deserializing");
         music = new Music(new File("k.mp3"));
 //        music.play();
@@ -1339,8 +1346,19 @@ public class HomePage extends javax.swing.JDialog {
         } catch (InvalidDataException e) {
             e.printStackTrace();
         }
+       
+        System.out.println("********************************");
+        for(int i=0;i<user.getSongs().size();i++){
+            System.out.println("$$"+user.getSongs().get(i).getTitle());
+        }
         //serializeUser(user);
-    updateUser(user);
+    System.out.println("*******************");
+        updateUser(user);
+    user = deserializeUser(user.getName());
+    for(int i=0;i<user.getSongs().size();i++){
+            System.out.println("$$"+user.getSongs().get(i));
+        }
+    System.out.println("*******************************");
     
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
