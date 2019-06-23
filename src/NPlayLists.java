@@ -1,5 +1,13 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,11 +22,14 @@ import javax.swing.DefaultListModel;
 public class NPlayLists extends javax.swing.JFrame {
     DefaultListModel songModel = new DefaultListModel();
     DefaultListModel playListModel = new DefaultListModel();
+     PlayList newPlayList ;
     /**
      * Creates new form NPlayLists
      */
     public NPlayLists(User user) {
         initComponents();
+        newPlayList = new PlayList(namePlayListText.getText());
+        
         for(int i=0;i<user.getSongs().size();i++){
             songModel.addElement(user.getSongs().get(i).getTitle());
         }
@@ -49,6 +60,8 @@ public class NPlayLists extends javax.swing.JFrame {
         namePlayListText = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         deleteButon = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +117,25 @@ public class NPlayLists extends javax.swing.JFrame {
         });
 
         deleteButon.setText("delete");
+        deleteButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButonActionPerformed(evt);
+            }
+        });
+
+        okButton.setText("ok");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,21 +144,28 @@ public class NPlayLists extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(namePlayListText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(namePlayListText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(307, 307, 307)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(deleteButon)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(164, 164, 164)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(307, 307, 307)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(deleteButon)
+                                .addGap(65, 65, 65)
+                                .addComponent(saveButton)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +174,9 @@ public class NPlayLists extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(namePlayListText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namePlayListText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(okButton))
                         .addGap(9, 9, 9)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -144,7 +185,8 @@ public class NPlayLists extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(deleteButon))
+                    .addComponent(deleteButon)
+                    .addComponent(saveButton))
                 .addGap(21, 21, 21))
         );
 
@@ -166,12 +208,68 @@ public class NPlayLists extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        String name = songList.getSelectedValue();
+        String nameMusic = songList.getSelectedValue();
         int value = songList.getSelectedIndex();
-        playListModel.addElement(name);
+        playListModel.addElement(nameMusic);
         playListSongs.setModel(playListModel);
         
+        
+          for(int i=0;i<HomePage.user.getSongs().size();i++){
+            if(HomePage.user.getSongs().get(i).getTitle().equals(nameMusic)){
+                newPlayList.addSong(HomePage.user.getSongs().get(i));
+            }
+          }
     }//GEN-LAST:event_addButtonActionPerformed
+
+    
+       public static void updateUser(User user){
+          System.out.println("update start");
+          new File(user.getName().concat(".bin")).delete();
+          try {
+              String g = user.getName().concat(".bin");
+              System.out.println("g"+g);
+              ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(g));
+              os.writeObject(user);
+              os.close();
+          }catch(FileNotFoundException e){
+              e.printStackTrace();
+          }catch(IOException e){
+              e.printStackTrace();
+          }
+          System.out.println("update finished");
+      }
+    
+    
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        newPlayList.setTitle(namePlayListText.getText());
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+         HomePage.user.getPlayLists().add(newPlayList);
+        updateUser(HomePage.user);
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void deleteButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButonActionPerformed
+         String nameMusic = playListSongs.getSelectedValue();
+        int value = playListSongs.getSelectedIndex();
+        playListModel.remove(value);
+        playListSongs.setModel(playListModel);
+        
+        for(int i=0;i<HomePage.user.getSongs().size();i++){
+            if(HomePage.user.getSongs().get(i).getTitle().equals(nameMusic)){
+              
+                try {
+                    newPlayList.removeSong(HomePage.user.getSongs().get(i));
+                } catch (IOException ex) {
+                    Logger.getLogger(NPlayLists.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        }
+        
+    }//GEN-LAST:event_deleteButonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +320,9 @@ public class NPlayLists extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nameOfNewPlayList;
     private javax.swing.JTextField namePlayListText;
+    private javax.swing.JButton okButton;
     private javax.swing.JList<String> playListSongs;
+    private javax.swing.JButton saveButton;
     private javax.swing.JList<String> songList;
     // End of variables declaration//GEN-END:variables
 }

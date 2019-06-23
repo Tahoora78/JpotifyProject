@@ -213,6 +213,11 @@ public class HomePage extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e)
             {
                 System.out.println("Closed");
+                serializeUser(user);
+                System.out.println("2222size"+user.getPlayLists().size());
+                for(int i=0;i<user.getPlayLists().size();i++){
+                    System.out.println(user.getSongs().get(i).getTitle());
+                }
                 e.getWindow().dispose();
             }
         });
@@ -264,6 +269,10 @@ public class HomePage extends javax.swing.JDialog {
         playList = new DefaultListModel();
         playList.addElement("favorite list");
         playList.addElement("shared playlist");
+        System.out.println("sizePlayList"+user.getPlayLists().size());
+        for(int i=0;i<user.getPlayLists().size();i++){
+            System.out.println(user.getPlayLists().get(i).getTitle());
+        }
         for (int i = 0; i < user.getPlayLists().size(); i++) {
             playList.addElement(user.getPlayLists().get(i).getTitle());
         }
@@ -1367,6 +1376,7 @@ public class HomePage extends javax.swing.JDialog {
            e.printStackTrace();
        }
        System.out.println("finish serializin");
+       System.out.println("88888888888888888888888888888888888888888888888888888888888888888888888888888");
    }
     
     
@@ -1608,8 +1618,8 @@ public class HomePage extends javax.swing.JDialog {
         }
     }
     private void newPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlayListActionPerformed
-//        newPlayListList n = new newPlayListList(user);
-//        n.setVisible(true);
+        NPlayLists n = new NPlayLists(user);
+        n.setVisible(true);
     }//GEN-LAST:event_newPlayListActionPerformed
         
    
