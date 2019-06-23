@@ -641,7 +641,7 @@ public class HomePage extends javax.swing.JDialog {
 
         musicLabel.setText("jLabel1");
 
-        volumeSlider.setValue(0);
+        volumeSlider.setValue(100);
         volumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 volumeSliderStateChanged(evt);
@@ -1216,17 +1216,19 @@ public class HomePage extends javax.swing.JDialog {
         if (liked == false) {
             setImage(favoriteButton, "full.png");
             liked = true;
-            ArrayList<Music> abc = user.getFavoritePlayList().getSongs();
-            abc.add(user.getMusic());
-            user.getFavoritePlayList().setSongs(abc);
+            user.getFavoritePlayList().addSong(music);
+           // ArrayList<Music> abc = user.getFavoritePlayList().getSongs();
+            //abc.add(user.getMusic());
+            //user.getFavoritePlayList().setSongs(abc);
+            
 //        this.FSongs.addSong(this.music);
         } else if (liked == true) {
             setImage(favoriteButton, "empty.png");
             liked = false;
-
-            ArrayList<Music> abc = user.getFavoritePlayList().getSongs();
-            abc.remove(user.getMusic());
-            user.getFavoritePlayList().setSongs(abc);
+                    user.getFavoritePlayList().removeSong(music.getTitle());
+            //ArrayList<Music> abc = user.getFavoritePlayList().getSongs();
+           // abc.remove(user.getMusic());
+           // user.getFavoritePlayList().setSongs(abc);
 
         }
 
