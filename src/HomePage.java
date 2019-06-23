@@ -39,6 +39,7 @@ import javax.swing.*;
  */
 public class HomePage extends javax.swing.JDialog {
 
+    private Thread thread;
     private boolean liked = false;
     private Music music;
     public static PlayList playlist = new PlayList("AAA");
@@ -326,7 +327,6 @@ public class HomePage extends javax.swing.JDialog {
                             e1.printStackTrace();
                         }
                         byte[] bb;
-//            ImageIcon image1=new ImageIcon(bb);
                         try {
 
                             bb = mp3.
@@ -509,7 +509,17 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                albumButtonActionPerformed(evt);
+                try {
+                    albumButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -517,7 +527,17 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                songsButtonActionPerformed(evt);
+                try {
+                    songsButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -628,7 +648,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -655,7 +679,11 @@ public class HomePage extends javax.swing.JDialog {
         playButton.setText("jButton1");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
+                try {
+                    playButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1105,7 +1133,15 @@ public class HomePage extends javax.swing.JDialog {
         addToLibraryButton.setText("add to library");
         addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryButtonActionPerformed(evt);
+                try {
+                    addToLibraryButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1364,7 +1400,7 @@ public class HomePage extends javax.swing.JDialog {
 
     }
 
-    private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_songsButtonActionPerformed
+    private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_songsButtonActionPerformed
         buttonAndLabel();
         sortSongs();
         itsAlbum=false;
@@ -1441,7 +1477,7 @@ public class HomePage extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_songsButtonActionPerformed
 
-    private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_addToLibraryButtonActionPerformed
+    private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_addToLibraryButtonActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(this);
         File f = chooser.getSelectedFile();
@@ -1517,24 +1553,12 @@ public class HomePage extends javax.swing.JDialog {
         return music;
     }
 
-    public void setMusic(Music music) throws JavaLayerException {
+    public void setMusic(Music music) throws JavaLayerException, FileNotFoundException {
 
-        if (this.music.isIsplaying()){
-            System.out.println(this.music.getTitle()+"is previous");
-            this.music.pause();
-        }
-        this.music = music;
-        jLabel3.setText(music.timetoString(music.getTime()));
-        jl1.setText("Name:" + music.getTitle());
-        jl2.setText("Artist: " + music.getArtist());
-        jl3.setText("Album: " + music.getAlbum());
-        jLabel5.setText("");
-        jLabel5.setIcon(new ImageIcon(music.getArtWork()));
-//        this.music.play();
-        System.out.println(this.music.getTitle()+"is now");
-
-        music.play();
-
+       this.thread=new Thread(new PlayingThread(music));
+       this.jl1.setText("Title :"+music.getTitle());
+       this.jl2.setText("Artist :"+music.getArtist());
+       this.jl3.setText("Album :");
     }
 
     public void whichAlbum() {
@@ -1638,7 +1662,7 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private boolean itsAlbum=false;
-    private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_albumButtonActionPerformed
+    private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_albumButtonActionPerformed
 
         System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"+user.getAlbums().size());
         itsAlbum=true;
