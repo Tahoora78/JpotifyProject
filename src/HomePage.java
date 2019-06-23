@@ -278,14 +278,29 @@ public class HomePage extends javax.swing.JDialog {
             playList.addElement(user.getPlayLists().get(i).getTitle());
         }
         playListList.setModel(playList);
+        playListList.getSelectionModel().addListSelectionListener(e -> {
+        //write action listener here;
+        
+        });
+        
+        
+        
         //updateUser(user);
     }
     
     public void updatePlayListList(String namePlayList){
         playList.addElement(namePlayList);
         playListList.setModel(playList);
+         playListList.getSelectionModel().addListSelectionListener(e -> {
+        //write action listener here;
+        
+        });
+        
     }
 
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
