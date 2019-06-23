@@ -1773,6 +1773,7 @@ public class HomePage extends javax.swing.JDialog {
          String playName = JOptionPane.showInputDialog("write the name of playList you want to add this song to");
         for(int i=0;i<user.getPlayLists().size();i++){
             if(user.getPlayLists().get(i).getTitle().equals(playName)){
+                
                 user.getPlayLists().get(i).addSong(music);
                 break;
             }
@@ -1787,8 +1788,11 @@ public class HomePage extends javax.swing.JDialog {
         String sort = (String) sortComboBox.getSelectedItem();
         switch(sort){
             case("alphabet"):
+                
+                //write sort part
                 break;
             case("artist"):
+                //v
                 break;
             case("time"):
                 break;
