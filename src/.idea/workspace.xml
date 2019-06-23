@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2297f61-51a8-4b3b-bfa3-d0a31f07386d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../nbproject/private/private.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Music.java" beforeDir="false" afterPath="$PROJECT_DIR$/Music.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +16,40 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HomePage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="381" column="43" selection-start-line="381" selection-start-column="43" selection-end-line="381" selection-end-column="43" />
+            <state relative-caret-position="909">
+              <caret line="420" column="43" selection-start-line="420" selection-start-column="43" selection-end-line="420" selection-end-column="43" />
               <folding>
-                <element signature="e#0#78131#0" expanded="true" />
+                <element signature="e#15393#15394#0" expanded="true" />
+                <element signature="e#15457#15458#0" expanded="true" />
+                <element signature="e#15787#15788#0" expanded="true" />
+                <element signature="e#15852#15853#0" expanded="true" />
+                <element signature="e#21469#21470#0" expanded="true" />
+                <element signature="e#21529#21530#0" expanded="true" />
+                <element signature="e#21770#21771#0" expanded="true" />
+                <element signature="e#21831#21832#0" expanded="true" />
+                <element signature="e#22551#22552#0" expanded="true" />
+                <element signature="e#22617#22618#0" expanded="true" />
+                <element signature="e#22821#22822#0" expanded="true" />
+                <element signature="e#22884#22885#0" expanded="true" />
+                <element signature="e#31567#31568#0" expanded="true" />
+                <element signature="e#31632#31633#0" expanded="true" />
+                <element signature="e#31840#31841#0" expanded="true" />
+                <element signature="e#31905#31906#0" expanded="true" />
+                <element signature="e#32113#32114#0" expanded="true" />
+                <element signature="e#32178#32179#0" expanded="true" />
+                <element signature="e#36070#36071#0" expanded="true" />
+                <element signature="e#36133#36134#0" expanded="true" />
+                <element signature="e#77391#77392#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Music.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -30,6 +58,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/HomePage.java" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="80" />
@@ -43,6 +78,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -54,9 +91,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="CatdeaLogs" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -89,8 +124,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -120,10 +156,30 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/HomePage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="381" column="43" selection-start-line="381" selection-start-column="43" selection-end-line="381" selection-end-column="43" />
+        <state relative-caret-position="909">
+          <caret line="420" column="43" selection-start-line="420" selection-start-column="43" selection-end-line="420" selection-end-column="43" />
           <folding>
-            <element signature="e#0#78131#0" expanded="true" />
+            <element signature="e#15393#15394#0" expanded="true" />
+            <element signature="e#15457#15458#0" expanded="true" />
+            <element signature="e#15787#15788#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#21469#21470#0" expanded="true" />
+            <element signature="e#21529#21530#0" expanded="true" />
+            <element signature="e#21770#21771#0" expanded="true" />
+            <element signature="e#21831#21832#0" expanded="true" />
+            <element signature="e#22551#22552#0" expanded="true" />
+            <element signature="e#22617#22618#0" expanded="true" />
+            <element signature="e#22821#22822#0" expanded="true" />
+            <element signature="e#22884#22885#0" expanded="true" />
+            <element signature="e#31567#31568#0" expanded="true" />
+            <element signature="e#31632#31633#0" expanded="true" />
+            <element signature="e#31840#31841#0" expanded="true" />
+            <element signature="e#31905#31906#0" expanded="true" />
+            <element signature="e#32113#32114#0" expanded="true" />
+            <element signature="e#32178#32179#0" expanded="true" />
+            <element signature="e#36070#36071#0" expanded="true" />
+            <element signature="e#36133#36134#0" expanded="true" />
+            <element signature="e#77391#77392#0" expanded="true" />
           </folding>
         </state>
       </provider>

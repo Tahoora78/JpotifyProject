@@ -374,6 +374,14 @@ public class Music implements Serializable{
 
     }
 
+    public File getMusic() {
+        return music;
+    }
+
+    public void setMusic(File music) {
+        this.music = music;
+    }
+
     /**
      * it resize an Image
      * @param srcImg source image which we want to resize it
@@ -381,7 +389,7 @@ public class Music implements Serializable{
      * @param h height which we want new image to be
      * @return image which is in needed size
      */
-    private Image getScaledImage(Image srcImg, int w, int h){
+    public static Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
 

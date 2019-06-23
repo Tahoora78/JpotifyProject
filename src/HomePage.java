@@ -7,6 +7,7 @@
 
 
 import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -25,6 +26,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -371,7 +373,15 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                albumButtonActionPerformed(evt);
+                try {
+                    albumButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -379,7 +389,15 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                songsButtonActionPerformed(evt);
+                try {
+                    songsButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1194,7 +1212,7 @@ public class HomePage extends javax.swing.JDialog {
 
     }
 
-    private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songsButtonActionPerformed
+    private void songsButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_songsButtonActionPerformed
         buttonAndLabel();
         sortSongs();
         itsAlbum=false;
@@ -1210,9 +1228,36 @@ public class HomePage extends javax.swing.JDialog {
         }
 
 
+        Image image;
         for (int i = 0; i < user.getSongs().size(); i++) {
             buttons.get(i).addNotify();
-            setImage2(buttons.get(i), user.getSongs().get(i).getArtWork());
+
+            Music mm=new Music(user.getSongs().get(i).getMusic());
+            Mp3File mp3=new Mp3File(mm.getMusic().getAbsoluteFile());
+            byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+            try {
+
+                bb = mp3.
+                        getId3v2Tag().
+                        getAlbumImage();
+                ImageIcon image1=new ImageIcon(bb);
+                image= Music.getScaledImage(image1.getImage(),100,100);
+
+            }
+            catch (NullPointerException e){
+                ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
+                image=Music.getScaledImage(imageIcon.getImage(),100,100);
+            }
+
+
+
+
+
+
+
+
+            setImage2(buttons.get(i), image);
             labels.get(i).setText(user.getSongs().get(i).getTitle());
             System.out.println(labels.get(1).getText());
             System.out.println(labels.get(i).getText());
@@ -1264,35 +1309,36 @@ public class HomePage extends javax.swing.JDialog {
         ArrayList<Music> son=user.getSongs();
         if(!son.contains(new Music(f)))
             son.add(new Music(f));
-        
-        
-        ArrayList<Album> als=new ArrayList<>();
+
+        ArrayList<String> alnames=new ArrayList<>();
         for(int i=0;i<son.size();i++){
-            for(int j=0;j<als.size();j++){
-            if(son.get(i).getAlbum().equals(als.get(j))){
-                als.get(j).addSong(son.get(i));
+            if (!alnames.contains(son.get(i).getAlbum()))
+            alnames.add(son.get(i).getAlbum());
+        }
+
+        System.out.println("8888888888888888888888888888888888888"+alnames.size());
+
+
+        ArrayList<Album> als=user.getAlbums();
+        for(int i=0;i<alnames.size();i++){
+            als.add(new Album());
+        }
+
+        for (int i=0;i<son.size();i++) {
+            for (int j = 0; j < alnames.size(); j++) {
+                if (son.get(i).getAlbum().equals(alnames.get(j))&&(!als.get(j).getSongs().contains(son.get(i)))) {
+                    als.get(j).addSong(son.get(i));
                 break;
-            }
-            else{
-            
-                Album alb=new Album();
-                alb.addSong(son.get(i));
-                if(!als.contains(alb)){
-                    als.add(alb);
                 }
-            
-            
-            }
-            
-            
-            
             }
         }
-        
+//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&"+als.size());
+        user.setAlbums(als);
         updateUser(user);
-        
-        
-        
+//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&"+als.size());
+
+
+
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
 
@@ -1432,8 +1478,9 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private boolean itsAlbum=false;
-    private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumButtonActionPerformed
+    private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException {//GEN-FIRST:event_albumButtonActionPerformed
 
+        System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"+user.getAlbums().size());
         itsAlbum=true;
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setVisible(false);
@@ -1445,7 +1492,27 @@ public class HomePage extends javax.swing.JDialog {
             buttons.get(i).addNotify();
             labels.get(i).setText(user.getAlbums().get(i).getTitle());
             labels.get(i).setVisible(true);
-            setImage2(buttons.get(i),user.getAlbums().get(i).getImage());
+
+            Image image;
+            Music mm=new Music(user.getAlbums().get(i).getSongs().get(0).getMusic());
+            Mp3File mp3=new Mp3File(mm.getMusic().getAbsoluteFile());
+            byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+            try {
+
+                bb = mp3.
+                        getId3v2Tag().
+                        getAlbumImage();
+                ImageIcon image1=new ImageIcon(bb);
+                image= Music.getScaledImage(image1.getImage(),100,100);
+
+            }
+            catch (NullPointerException e){
+                ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
+                image=Music.getScaledImage(imageIcon.getImage(),100,100);
+            }
+
+            setImage2(buttons.get(i),image);
             buttons.get(i).setVisible(true);
             Album al=user.getAlbums().get(i);
             JLabel jl=labels.get(i);
