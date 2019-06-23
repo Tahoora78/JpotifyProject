@@ -41,7 +41,7 @@ public class HomePage extends javax.swing.JDialog {
 
     private boolean liked = false;
     private Music music;
-    private PlayList playlist = new PlayList("AAA");
+    public static PlayList playlist = new PlayList("AAA");
     private Album album = new Album();
     private int mode;
     private Soundcontroller soundcontroller = new Soundcontroller();
@@ -207,6 +207,7 @@ public class HomePage extends javax.swing.JDialog {
     public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
+        System.out.println("size of songs"+user.getSongs().size());
         addWindowListener(new WindowAdapter()
         {
             @Override
@@ -267,8 +268,8 @@ public class HomePage extends javax.swing.JDialog {
 
         user.setSongNum(user.getSongs().size());
         playList = new DefaultListModel();
-        playList.addElement("favorite list");
-        playList.addElement("shared playlist");
+        //playList.addElement("favorite list");
+        //playList.addElement("shared playlist");
         System.out.println("sizePlayList"+user.getPlayLists().size());
         for(int i=0;i<user.getPlayLists().size();i++){
             System.out.println(user.getPlayLists().get(i).getTitle());
@@ -279,7 +280,13 @@ public class HomePage extends javax.swing.JDialog {
         playListList.setModel(playList);
         //updateUser(user);
     }
+    
+    public void updatePlayListList(String namePlayList){
+        playList.addElement(namePlayList);
+        playListList.setModel(playList);
+    }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -300,6 +307,7 @@ public class HomePage extends javax.swing.JDialog {
         editPlayList = new javax.swing.JButton();
         playListLabel = new javax.swing.JLabel();
         editsPlayList = new java.awt.Button();
+        updateButon = new javax.swing.JButton();
         soundBar = new javax.swing.JPanel();
         musicSlider = new javax.swing.JSlider();
         musicLabel = new javax.swing.JLabel();
@@ -393,15 +401,7 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    albumButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
+                albumButtonActionPerformed(evt);
             }
         });
 
@@ -409,15 +409,7 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    songsButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
+                songsButtonActionPerformed(evt);
             }
         });
 
@@ -454,6 +446,13 @@ public class HomePage extends javax.swing.JDialog {
             }
         });
 
+        updateButon.setText("update");
+        updateButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout libraryPanelLayout = new javax.swing.GroupLayout(libraryPanel);
         libraryPanel.setLayout(libraryPanelLayout);
         libraryPanelLayout.setHorizontalGroup(
@@ -461,7 +460,7 @@ public class HomePage extends javax.swing.JDialog {
             .addGroup(libraryPanelLayout.createSequentialGroup()
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(libraryPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(0, 0, 0)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(songsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -472,10 +471,12 @@ public class HomePage extends javax.swing.JDialog {
                                 .addComponent(songsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(libraryPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
+                                .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(updateButon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(248, 248, 248)
+                                .addGap(198, 198, 198)
                                 .addComponent(editPlayList)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -496,17 +497,20 @@ public class HomePage extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(editPlayList)
-                    .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateButon))))
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(libraryPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(songsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(songsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(libraryPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         libraryScroll.setViewportView(libraryPanel);
@@ -517,11 +521,7 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                try {
-                    musicSliderAncestorMoved(evt);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                musicSliderAncestorMoved(evt);
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -548,11 +548,7 @@ public class HomePage extends javax.swing.JDialog {
         playButton.setText("jButton1");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    playButtonActionPerformed(evt);
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                playButtonActionPerformed(evt);
             }
         });
 
@@ -771,11 +767,7 @@ public class HomePage extends javax.swing.JDialog {
 
         i1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    i1ActionPerformed(evt);
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                i1ActionPerformed(evt);
             }
         });
 
@@ -991,15 +983,7 @@ public class HomePage extends javax.swing.JDialog {
         addToLibraryButton.setText("add to library");
         addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addToLibraryButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
+                addToLibraryButtonActionPerformed(evt);
             }
         });
 
@@ -1083,7 +1067,8 @@ public class HomePage extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+       
+    
     private void artistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistButtonActionPerformed
 
 
@@ -1443,11 +1428,18 @@ public class HomePage extends javax.swing.JDialog {
 
 
 //?????????????????????????????????????????????????????????????????????????
+        String musicName = playListList.getSelectedValue();
         int value = playListList.getSelectedIndex();
         if (playList.getSize() != 0 && value != 0 && value != 1) {
             playList.remove(value);
         }
         playListList.setModel(playList);
+        for(int i=0;i<user.getPlayLists().size();i++){
+            if(user.getPlayLists().get(i).getTitle().equals(musicName)){
+                user.getPlayLists().remove(i);
+                break;
+            }
+        }
         // updateUser(user);
     }//GEN-LAST:event_editsPlayListActionPerformed
 
@@ -1621,6 +1613,14 @@ public class HomePage extends javax.swing.JDialog {
         NPlayLists n = new NPlayLists(user);
         n.setVisible(true);
     }//GEN-LAST:event_newPlayListActionPerformed
+
+    private void updateButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButonActionPerformed
+        playList.removeAllElements();
+        for (int i = 0; i < user.getPlayLists().size(); i++) {
+            playList.addElement(user.getPlayLists().get(i).getTitle());
+        }
+        playListList.setModel(playList);
+    }//GEN-LAST:event_updateButonActionPerformed
         
    
 
@@ -1859,6 +1859,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JLabel t7;
     private javax.swing.JLabel t8;
     private javax.swing.JLabel t9;
+    private javax.swing.JButton updateButon;
     private javax.swing.JTextField userNameLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables

@@ -23,17 +23,28 @@ public class NPlayLists extends javax.swing.JFrame {
     DefaultListModel songModel = new DefaultListModel();
     DefaultListModel playListModel = new DefaultListModel();
      PlayList newPlayList ;
+     
+     
+     
     /**
      * Creates new form NPlayLists
      */
     public NPlayLists(User user) {
         initComponents();
-        newPlayList = new PlayList(namePlayListText.getText());
         
+        newPlayList = new PlayList(namePlayListText.getText());
+        System.out.println("sizx"+songModel.getSize());
+        songModel.removeAllElements();
+        System.out.println("sizexxxx"+user.getSongs().size());
         for(int i=0;i<user.getSongs().size();i++){
             songModel.addElement(user.getSongs().get(i).getTitle());
         }
         songList.setModel(songModel);
+        
+       
+        
+        
+        
     }
 
     /**
@@ -247,8 +258,9 @@ public class NPlayLists extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
          HomePage.user.getPlayLists().add(newPlayList);
         updateUser(HomePage.user);
-         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
+       //  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void deleteButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButonActionPerformed
@@ -259,7 +271,6 @@ public class NPlayLists extends javax.swing.JFrame {
         
         for(int i=0;i<HomePage.user.getSongs().size();i++){
             if(HomePage.user.getSongs().get(i).getTitle().equals(nameMusic)){
-              
                 try {
                     newPlayList.removeSong(HomePage.user.getSongs().get(i));
                 } catch (IOException ex) {
@@ -298,9 +309,11 @@ public class NPlayLists extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new NPlayLists(HomePage.user).setVisible(true);
             }
         });

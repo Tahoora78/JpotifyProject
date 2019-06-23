@@ -71,12 +71,9 @@ public class PlayList implements Serializable {
      * @throws IOException if it face any problem while working with Music m
      */
     public void removeSong(Music m) throws IOException {
-        Iterator<Music> iterator = songs.iterator();
-        while (iterator.hasNext()) {
-            Music music = iterator.next();
-            if (music.equals(m)) {
-                songs.remove(music);
-            }
+        for(int i=0;i<songs.size();i++){
+            if(songs.get(i).equals(m))
+                songs.remove(m);
         }
 
     }
