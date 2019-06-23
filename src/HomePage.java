@@ -245,6 +245,8 @@ public class HomePage extends javax.swing.JDialog {
         setImage(backwardButton, "backward.png");
         setImage(shuffleButton, "shuffle.png");
         setImage(favoriteButton, "love.jpg");
+        setImage(addCurrentToButton,"add.jpg");
+       
 //        setImageLabel(musicLabel,"sound.jfif");
 //        user.getPlayLists().add(FSongs);
 //        user.getPlayLists().add(Shared);
@@ -254,6 +256,7 @@ public class HomePage extends javax.swing.JDialog {
             ArrayList<Music> songss = a.getSongs();
             for (int j = 0; j < songss.size(); j++) {
                 ArrayList<Music> abc = user.getSongs();
+                if(!abc.contains(songss.get(j)))
                 abc.add(songss.get(j));
                 user.setSongs(abc);
             }
@@ -1735,8 +1738,7 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_updateButonActionPerformed
 
     private void addCurrentToButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCurrentToButtonActionPerformed
-        setImage(addCurrentToButton,"add.jpg");
-        String playName = JOptionPane.showInputDialog("write the name of playList you want to add this song to");
+         String playName = JOptionPane.showInputDialog("write the name of playList you want to add this song to");
         for(int i=0;i<user.getPlayLists().size();i++){
             if(user.getPlayLists().get(i).getTitle().equals(playName)){
                 user.getPlayLists().get(i).addSong(music);
