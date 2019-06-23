@@ -260,8 +260,8 @@ public class newPlayListList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                newPlayList newList = new newPlayList(HomePage.user);
-                newList.setVisible(true);
+//                newPlayList newList = new newPlayList(HomePage.user);
+//                newList.setVisible(true);
             }
         });
     }
