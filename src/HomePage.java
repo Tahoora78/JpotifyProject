@@ -67,9 +67,10 @@ public class HomePage extends javax.swing.JDialog {
      * Creates new form homePage
      */
 
-    private boolean itsSong=false;
-    private boolean itsSongInAlbum=false;
-    public void actButton(JButton jb,Album album,Music music1,Music music2){
+    private boolean itsSong = false;
+    private boolean itsSongInAlbum = false;
+
+    public void actButton(JButton jb, Album album, Music music1, Music music2) {
 
         if (itsSong)
             jb.addActionListener(new ActionListener() {
@@ -82,7 +83,7 @@ public class HomePage extends javax.swing.JDialog {
                     }
                 }
             });
-        if (itsSongInAlbum){
+        if (itsSongInAlbum) {
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -94,23 +95,24 @@ public class HomePage extends javax.swing.JDialog {
                 }
             });
         }
-        if (itsAlbum){jb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    setMusic(music1);
-                } catch (JavaLayerException e1) {
-                    e1.printStackTrace();
+        if (itsAlbum) {
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        setMusic(music1);
+                    } catch (JavaLayerException e1) {
+                        e1.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
 
 
         }
 
 
-
     }
+
     public void setImage(JButton button, String path) {
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
         Image img1 = image.getImage();
@@ -167,56 +169,52 @@ public class HomePage extends javax.swing.JDialog {
     //**
     //this method serialize the user and save it
     //**
-      public static void updateUser(User user){
-          System.out.println("update start");
-          new File(user.getName().concat(".bin")).delete();
-          try {
-              String g = user.getName().concat(".bin");
-              System.out.println("g"+g);
-              ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(g));
-              os.writeObject(user);
-              os.close();
-          }catch(FileNotFoundException e){
-              e.printStackTrace();
-          }catch(IOException e){
-              e.printStackTrace();
-          }
-          System.out.println("update finished");
-      }
-      
-      public static User deserializeUser(String name) throws FileNotFoundException{
-        User userd = null;
-        System.out.println("name"+name);
-        try{
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(name.concat(".bin")));
-            userd = (User)is.readObject();
-        }
-        catch(FileNotFoundException e ){
+    public static void updateUser(User user) {
+        System.out.println("update start");
+        new File(user.getName().concat(".bin")).delete();
+        try {
+            String g = user.getName().concat(".bin");
+            System.out.println("g" + g);
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(g));
+            os.writeObject(user);
+            os.close();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch(IOException e){
-        e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch(ClassNotFoundException e){
+        System.out.println("update finished");
+    }
+
+    public static User deserializeUser(String name) throws FileNotFoundException {
+        User userd = null;
+        System.out.println("name" + name);
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(name.concat(".bin")));
+            userd = (User) is.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println("finish deserializing");
-        System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"+userd.getAlbums().size());
-     return userd;   
+        System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" + userd.getAlbums().size());
+        return userd;
     }
-      
+
     public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
-        System.out.println("size of songs"+user.getSongs().size());
-        addWindowListener(new WindowAdapter()
-        {
+        System.out.println("size of songs" + user.getSongs().size());
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e)
-            {
+            public void windowClosing(WindowEvent e) {
                 System.out.println("Closed");
                 serializeUser(user);
-                System.out.println("2222size"+user.getPlayLists().size());
-                for(int i=0;i<user.getPlayLists().size();i++){
+                System.out.println("2222size" + user.getPlayLists().size());
+                for (int i = 0; i < user.getPlayLists().size(); i++) {
                     System.out.println(user.getSongs().get(i).getTitle());
                 }
                 e.getWindow().dispose();
@@ -224,7 +222,7 @@ public class HomePage extends javax.swing.JDialog {
         });
         user.setMusic(new Music(new File("k.mp3")));
         System.out.println("*********************&&&*****");
-        for(int i=0;i<user.getSongs().size();i++){
+        for (int i = 0; i < user.getSongs().size(); i++) {
             System.out.println(user.getSongs().get(i).getTitle());
         }
         System.out.println("**********************************&&&&&****");
@@ -269,24 +267,113 @@ public class HomePage extends javax.swing.JDialog {
         user.setSongNum(user.getSongs().size());
         playList = new DefaultListModel();
         //playList.addElement("favorite list");
-        //playList.addElement("shared playlist");
-        System.out.println("sizePlayList"+user.getPlayLists().size());
-        for(int i=0;i<user.getPlayLists().size();i++){
+        //playList.addElement("shared playlist"000);
+        playList.removeAllElements();
+        System.out.println("sizePlayList" + user.getPlayLists().size());
+        for (int i = 0; i < user.getPlayLists().size(); i++) {
             System.out.println(user.getPlayLists().get(i).getTitle());
         }
         for (int i = 0; i < user.getPlayLists().size(); i++) {
             playList.addElement(user.getPlayLists().get(i).getTitle());
         }
+        buttonAndLabel();
         playListList.setModel(playList);
         playListList.getSelectionModel().addListSelectionListener(e -> {
-        //write action listener here;
-        
-        });
-        
+                    //write action listener here;
+                    String pname = playListList.getSelectedValue();
+            System.out.println(pname+"(((((((((((((((((((((((((((((((");
+                    PlayList pl = null;
+                    for (int i = 0; i < user.getPlayLists().size(); i++) {
+                        if (user.getPlayLists().get(i).getTitle().equals(pname)) {
+                            pl = user.getPlayLists().get(i);
+                            System.out.println("((((((((((((((((((((((((((((((("+user.getPlayLists().get(i).getTitle());
+                            break;
+                        }
+                    }
+
+                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&"+pl.getTitle());
+
+                    for (int i = 0; i < buttons.size(); i++) {
+                        buttons.get(i).removeNotify();
+                        buttons.get(i).setVisible(false);
+                        labels.get(i).setVisible(false);
+                    }
+                    Image image;
+                    for (int i = 0; i < pl.getSongs().size(); i++) {
+                        buttons.get(i).addNotify();
+                        Music mm = null;
+                        try {
+                            mm = new Music(pl.getSongs().get(i).getMusic());
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        } catch (InvalidDataException e1) {
+                            e1.printStackTrace();
+                        } catch (UnsupportedTagException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        Mp3File mp3 = null;
+                        try {
+                            mp3 = new Mp3File(mm.getMusic().getAbsoluteFile());
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        } catch (UnsupportedTagException e1) {
+                            e1.printStackTrace();
+                        } catch (InvalidDataException e1) {
+                            e1.printStackTrace();
+                        }
+                        byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+                        try {
+
+                            bb = mp3.
+                                    getId3v2Tag().
+                                    getAlbumImage();
+                            ImageIcon image1 = new ImageIcon(bb);
+                            image = Music.getScaledImage(image1.getImage(), 100, 100);
+
+                        } catch (NullPointerException e1) {
+                            ImageIcon imageIcon = new ImageIcon("baseMusicArtwork.jpeg");
+                            image = Music.getScaledImage(imageIcon.getImage(), 100, 100);
+                        }
+
+
+                        setImage2(buttons.get(i), image);
+                        labels.get(i).setText(pl.getSongs().get(i).getTitle());
+                        buttons.get(i).setVisible(true);
+                        labels.get(i).setVisible(true);
+                        Music s = pl.getSongs().get(i);
+                        buttons.get(i).addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (!itsAlbum) {
+                                    try {
+                                        if (music.isIsplaying())
+                                            music.pause();
+                                    } catch (JavaLayerException e1) {
+                                        e1.printStackTrace();
+                                    }
+                                    try {
+                                        setMusic(s);
+                                    } catch (JavaLayerException e1) {
+                                        e1.printStackTrace();
+                                    }
+
+
+                                }
+                            }
+                        });
+
+
+                    }
+                }
+        );
+    }
+
         
         
         //updateUser(user);
-    }
+
     
     public void updatePlayListList(String namePlayList){
         playList.addElement(namePlayList);
