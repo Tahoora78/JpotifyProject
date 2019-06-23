@@ -125,7 +125,6 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="303" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="songsPanel" max="32767" attributes="0"/>
@@ -179,13 +178,13 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="songsPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="493" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
                           </Group>
@@ -324,7 +323,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jl2" pref="256" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="315" max="-2" attributes="0"/>
                           <Component id="buttonsPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
                           <Component id="musicLabel" min="-2" pref="64" max="-2" attributes="0"/>
@@ -394,7 +393,7 @@
         </Component>
         <Component class="javax.swing.JSlider" name="volumeSlider">
           <Properties>
-            <Property name="value" type="int" value="0"/>
+            <Property name="value" type="int" value="100"/>
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="volumeSliderStateChanged"/>
@@ -411,9 +410,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="addCurrentToButton" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Component id="shuffleButton" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="backwardButton" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="pauseButton" min="-2" pref="37" max="-2" attributes="0"/>
@@ -438,6 +439,7 @@
                           <Component id="pauseButton" alignment="3" max="32767" attributes="0"/>
                           <Component id="backwardButton" alignment="3" max="32767" attributes="0"/>
                           <Component id="shuffleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addCurrentToButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -483,6 +485,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="addCurrentToButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCurrentToButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1051,12 +1061,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1069" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
