@@ -140,6 +140,7 @@ public class HomePage extends javax.swing.JDialog {
     //@param : User user
     //this method deserialize the user
     //**
+    /*
     public User deserialiseUser(User Myuser) {
         User users = null;
         System.out.println("%%%%%%%%%%%%%%%%%%%%"+user.getName());
@@ -158,7 +159,7 @@ public class HomePage extends javax.swing.JDialog {
         System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;"+users.getAlbums().size());
         return users;
     }
-
+*/
     //**
     //this method serialize the user and save it
     //**
@@ -247,9 +248,6 @@ public class HomePage extends javax.swing.JDialog {
         setImage2(i1, (music.getArtWork()));
 
         user.setSongNum(user.getSongs().size());
-
-//        ????????????????????????????????????????????????????????????????????
-
         playList = new DefaultListModel();
         playList.addElement("favorite list");
         playList.addElement("shared playlist");
@@ -259,7 +257,6 @@ public class HomePage extends javax.swing.JDialog {
         playListList.setModel(playList);
         //updateUser(user);
     }
-//?????????????????????????????????????????????????????????????????
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1264,102 +1261,38 @@ public class HomePage extends javax.swing.JDialog {
         // }catch (IOException e2) {
         // }
 
-
-        ArrayList<Album> albums = user.getAlbums();
-        boolean isAlone = true;
-        for (Album a : albums) {
-            if (a.getTitle().equals(new Music(f).getAlbum())) {
-                a.addSong(new Music(f));
-                isAlone = false;
+        ArrayList<Music> son=user.getSongs();
+        if(!son.contains(new Music(f)))
+            son.add(new Music(f));
+        
+        
+        ArrayList<Album> als=new ArrayList<>();
+        for(int i=0;i<son.size();i++){
+            for(int j=0;j<als.size();j++){
+            if(son.get(i).getAlbum().equals(als.get(j))){
+                als.get(j).addSong(son.get(i));
+                break;
+            }
+            else{
+            
+                Album alb=new Album();
+                alb.addSong(son.get(i));
+                if(!als.contains(alb)){
+                    als.add(alb);
+                }
+            
+            
+            }
+            
+            
+            
             }
         }
-        System.out.println("isAlone" + "::::::::::" + isAlone);
-        if (isAlone) {
-            Album newA = new Album();
-            newA.addSong(new Music(f));
-            albums.add(newA);
-        }
-        user.setAlbums(albums);
-        System.out.println("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
-        for (Album album1 : user.getAlbums()) {
-            System.out.println("*************************************************");
-            System.out.println(album1.getTitle());
-        }
-        System.out.println(filename);
-        try {
-            ArrayList<Music> abc = user.getSongs();
-            abc.add(new Music(f));
-            user.setSongs(abc);
-            user.setSongNum(user.getSongs().size());
-
-
-//       this.songNum++;
-//       boolean flag =false;
-//
-//       for(Album album:user.getAlbums()) {
-//             try {
-//                 if (new Music(f).getAlbum().equals(album.getTitle())) {
-//                     try {
-//                         album.addSong(new Music(f));
-//                     } catch (IOException ex) {
-//                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//                     } catch (InvalidDataException ex) {
-//                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//                     } catch (UnsupportedTagException ex) {
-//                         Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//                     }
-//                     flag = true;
-//                 } } catch (IOException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             } catch (InvalidDataException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             } catch (UnsupportedTagException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             }
-//
-//
-//
-//             System .out.print(album.getTitle());
-//       }
-//       if (!flag){
-//           Album a=new Album();
-//             try {
-//                 a.addSong(new Music(f));
-//             } catch (IOException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             } catch (InvalidDataException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             } catch (UnsupportedTagException ex) {
-//                 Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-//             }
-//             ArrayList<Album> cde=user.getAlbums();
-//             cde.add(a);
-//             user.setAlbums(cde);
-//             System .out.print(album.getTitle());
-
-
-//           albums.add(a);
-        } catch (UnsupportedTagException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
-        }
-       
-        System.out.println("********************************");
-        for(int i=0;i<user.getSongs().size();i++){
-            System.out.println("$$"+user.getSongs().get(i).getTitle());
-        }
-        //serializeUser(user);
-    System.out.println("*******************");
+        
         updateUser(user);
-    user = deserializeUser(user.getName());
-    for(int i=0;i<user.getSongs().size();i++){
-            System.out.println("$$"+user.getSongs().get(i));
-        }
-    System.out.println("*******************************");
-    
+        
+        
+        
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
 

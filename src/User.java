@@ -58,7 +58,7 @@ public class User implements Serializable{
         return albums;
     }
 
-    public void setAlbums(ArrayList<Album> albums) {
+  public void setAlbums(ArrayList<Album> albums) {
         this.albums = albums;
     }
 
