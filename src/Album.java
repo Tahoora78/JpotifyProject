@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,10 +10,10 @@ import java.util.ArrayList;
  *
  *
  */
-public class Album {
+public class Album implements Serializable{
     private String Title;
     private int counter;
-    private Image image;
+    private transient Image image;
     private String artist;
     private long ltime;
 

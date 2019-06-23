@@ -232,6 +232,13 @@ public class LoginPage extends javax.swing.JFrame {
         password = passwordText.getText();
         String name;
         String pass;
+        
+        
+        
+        
+        
+        
+        
             try {
                 user = deserializeUser(username);
             } catch (FileNotFoundException ex) {
@@ -242,7 +249,7 @@ public class LoginPage extends javax.swing.JFrame {
              name = brs.readLine();
              pass = brs.readLine();
              if(name.equals(username) && pass.equals(password)){
-                 HomePage homepage1 = new HomePage(username,user); 
+                 HomePage homepage1 = new HomePage(username); 
                  homepage1.setVisible(true);
                  System.out.println(username);
                  homepage1.username = username;
@@ -253,7 +260,7 @@ public class LoginPage extends javax.swing.JFrame {
                 
                 if(name.equals(username) && pass.equals(password)){
                     System.out.println("vorood");
-                    HomePage homepage2 = new HomePage(username,user); 
+                    HomePage homepage2 = new HomePage(username); 
                     homepage2.setVisible(true);
                     name = null;
                 }

@@ -28,8 +28,8 @@ import java.util.List;
  */
 
 
-public class Music {
-    private Mp3File mp3File;
+public class Music implements Serializable{
+    private transient Mp3File mp3File;
     private String Title;
     private String album;
     private String Artist;
@@ -47,7 +47,7 @@ public class Music {
         this.player = player;
     }
 
-    private FileInputStream input=null;
+    private transient FileInputStream input=null;
     private Player player=null;
     private Thread t;
     private int count;

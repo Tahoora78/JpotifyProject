@@ -171,9 +171,7 @@ public class newUser extends javax.swing.JFrame {
         username = usernameText.getText();
         User user = new User(username);
         serializeUser(user);
-        HomePage homepage4 = new HomePage(username,user);
-        System.out.println(username);
-        homepage4.setVisible(true);
+        
         
         System.out.println(password+username);
         File f1 = new File("UsersFolder");
@@ -207,6 +205,13 @@ public class newUser extends javax.swing.JFrame {
                     Files.write(Paths.get("UsersFolder/user.txt"), "\r\n".getBytes(), StandardOpenOption.APPEND);
                 }catch (IOException e2) {
                 }
+                
+                
+                HomePage homepage4 = new HomePage(username);
+        System.out.println(username);
+        homepage4.setVisible(true);
+                
+                
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**

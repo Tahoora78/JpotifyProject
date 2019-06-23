@@ -161,7 +161,7 @@ public class HomePage extends javax.swing.JDialog {
     //**
     //this method serialize the user and save it
     //**
-      public void updateUser(User user){
+      public static void updateUser(User user){
           System.out.println("update start");
           new File(user.getName().concat(".bin")).delete();
           try {
@@ -178,11 +178,30 @@ public class HomePage extends javax.swing.JDialog {
           System.out.println("update finished");
       }
       
-    public HomePage(String name, User MyUser) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
-        System.out.println("myuser name in home" + MyUser.getName());
-        user = MyUser;
-
+      public static User deserializeUser(String name) throws FileNotFoundException{
+        User userd = null;
+        System.out.println("name"+name);
+        try{
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(name.concat(".bin")));
+            userd = (User)is.readObject();
+        }
+        catch(FileNotFoundException e ){
+            e.printStackTrace();
+        }catch(IOException e){
+        e.printStackTrace();
+        }
+        catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        System.out.println("finish deserializing");
+     return userd;   
+    }
+      
+    public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
+        System.out.println("myuser name in home" + name);
+        user = deserializeUser(name);
         user.setMusic(new Music(new File("k.mp3")));
+        System.out.println("finish deserializing");
         music = new Music(new File("k.mp3"));
 //        music.play();
         initComponents();
@@ -1320,11 +1339,29 @@ public class HomePage extends javax.swing.JDialog {
         } catch (InvalidDataException e) {
             e.printStackTrace();
         }
+        //serializeUser(user);
     updateUser(user);
     
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
 
+     public void serializeUser(User user){
+       System.out.println("name"+user.getName());
+       try{
+           ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getName().concat(".bin")));
+           os.writeObject(user);
+           os.close();
+       }catch(FileNotFoundException e){
+           System.out.println("nnnnnnnnnnnnnnnnnn");
+           e.printStackTrace();
+       }
+       catch(IOException e){
+           e.printStackTrace();
+       }
+       System.out.println("finish serializin");
+   }
+    
+    
 
     public Music getMusic() {
         return music;
