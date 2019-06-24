@@ -55,6 +55,7 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         playListNameLabel = new javax.swing.JLabel();
         changeButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,8 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
             }
         });
 
+        deleteButton.setText("delete");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,11 +87,13 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(changeButton)
                         .addGap(48, 48, 48)
-                        .addComponent(saveButton))
+                        .addComponent(saveButton)
+                        .addGap(40, 40, 40)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1)
                         .addComponent(playListNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +105,8 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeButton)
-                    .addComponent(saveButton))
+                    .addComponent(saveButton)
+                    .addComponent(deleteButton))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -193,6 +199,7 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changeButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel playListNameLabel;
