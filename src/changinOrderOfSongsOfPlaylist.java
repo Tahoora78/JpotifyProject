@@ -76,6 +76,11 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         });
 
         deleteButton.setText("delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,6 +157,12 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int value = playListSongs.getSelectedIndex();
+        playListModel.remove(value);
+        playListSongs.setModel(playListModel);
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
