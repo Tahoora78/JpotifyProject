@@ -53,6 +53,7 @@ public class HomePage extends javax.swing.JDialog {
     private ArrayList<Music> songs = new ArrayList<>();
     private int songNum = 0;
     String username;
+    public static String playerSelected;
     private int nextSong;
     JButton jb = new JButton("LOLOOLOLOO");
     DefaultListModel playList;
@@ -286,6 +287,7 @@ public class HomePage extends javax.swing.JDialog {
         playListList.getSelectionModel().addListSelectionListener(e -> {
                     //write action listener here;
                     String pname = playListList.getSelectedValue();
+                    playerSelected = pname;
                     PlayList pl = null;
                     for (int i = 0; i < user.getPlayLists().size(); i++) {
                         if (user.getPlayLists().get(i).getTitle().equals(pname)) {
@@ -378,6 +380,7 @@ public class HomePage extends javax.swing.JDialog {
 
     
     public void updatePlayListList(String namePlayList){
+        playerSelected = namePlayList;
         playList.addElement(namePlayList);
         playListList.setModel(playList);
          playListList.getSelectionModel().addListSelectionListener(e -> {
@@ -1568,6 +1571,7 @@ public class HomePage extends javax.swing.JDialog {
 
 //?????????????????????????????????????????????????????????????????????????
         String musicName = playListList.getSelectedValue();
+        playerSelected = musicName;
         int value = playListList.getSelectedIndex();
         if (playList.getSize() != 0 && value != 0 && value != 1) {
             playList.remove(value);
@@ -2055,13 +2059,14 @@ public class HomePage extends javax.swing.JDialog {
 
         String wanted=searchText.getText();
         ArrayList<Music> searched=new ArrayList<>();
-        for (int i = 0; i < ; i++) {
-
-        }
+       
+       
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void editPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPlayListButtonActionPerformed
-        changinOrderOfSongsOfPlaylist edit = new changinOrderOfSongsOfPlaylist();
+        playerSelected = playListList.getSelectedValue();
+        changinOrderOfSongsOfPlaylist edit = new changinOrderOfSongsOfPlaylist(user,playerSelected);
+        
         edit.setVisible(true);
     }//GEN-LAST:event_editPlayListButtonActionPerformed
         

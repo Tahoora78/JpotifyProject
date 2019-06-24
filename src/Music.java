@@ -64,7 +64,7 @@ public class Music implements Serializable{
     }
 
     /**
-     * costruct a single music by getting a file
+     * construct a single music by getting a file
      * @param music file which has been made and pass to make song
      * @throws IOException if it can't make an stream
      * @throws InvalidDataException if file format doesn't be .mp3
@@ -73,7 +73,7 @@ public class Music implements Serializable{
 
 
 
-
+    
     public Music(File music) throws IOException, InvalidDataException, UnsupportedTagException, JavaLayerException {
         this.music = music;
         this.metaData();
@@ -294,5 +294,9 @@ public class Music implements Serializable{
 
     public String getPath(){
         return this.music.getAbsolutePath();
+    }
+
+    void pause() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
