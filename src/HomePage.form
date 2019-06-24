@@ -685,9 +685,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="namePlayer">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
@@ -695,19 +692,13 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="playingText">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
+                        <Property name="text" type="java.lang.String" value="time"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -768,9 +759,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="namePlayer1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
@@ -778,19 +766,13 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="playingText1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
+                        <Property name="text" type="java.lang.String" value="time"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -851,9 +833,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="namePlayer2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
@@ -861,19 +840,13 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="playingText2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel10">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
+                        <Property name="text" type="java.lang.String" value="time"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -934,9 +907,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="namePlayer3">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
@@ -944,19 +914,13 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="playingText3">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
+                        <Property name="text" type="java.lang.String" value="time"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText3">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1017,9 +981,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="namePlayer4">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
@@ -1027,19 +988,13 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="playingText4">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel14">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel4"/>
+                        <Property name="text" type="java.lang.String" value="time"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText4">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField1"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

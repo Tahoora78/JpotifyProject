@@ -39,7 +39,7 @@ public class HomePage extends javax.swing.JDialog {
     private boolean liked = false;
     long pause;
     Thread resumeThread;
-
+    
     //Thread playThread=new Thread(new PlayRunnable());
     private Music music;
     public static PlayList playlist = new PlayList("AAA");
@@ -60,6 +60,10 @@ public class HomePage extends javax.swing.JDialog {
     ArrayList<JButton> buttons = new ArrayList<>();
     ArrayList<JButton> Abuttons = new ArrayList<>();
     ArrayList<JButton> Asbuttons = new ArrayList<>();
+    ArrayList<JLabel> playerLabels = new ArrayList<>();
+    ArrayList<JTextField> playingTexts = new ArrayList<>();
+    ArrayList<JTextField> timeTexts = new ArrayList<>();
+    
 
     ArrayList<JLabel> labels = new ArrayList<>();
     String fileNameSerialize;
@@ -378,6 +382,23 @@ public class HomePage extends javax.swing.JDialog {
         
         //updateUser(user);
 
+    public void labelAndText(){
+        playerLabels.add(namePlayer);
+        playerLabels.add(namePlayer1);
+        playerLabels.add(namePlayer2);
+        playerLabels.add(namePlayer3);
+        playerLabels.add(namePlayer4);
+        playingTexts.add(playingText);
+        playingTexts.add(playingText1);
+        playingTexts.add(playingText2);
+        playingTexts.add(playingText3);
+        playingTexts.add(playingText4);
+        timeTexts.add(timeText);
+        timeTexts.add(timeText1);
+        timeTexts.add(timeText2);
+        timeTexts.add(timeText3);
+        timeTexts.add(timeText4);
+    }
     
     public void updatePlayListList(String namePlayList){
         playerSelected = namePlayList;
@@ -836,15 +857,9 @@ public class HomePage extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        namePlayer.setText("jLabel4");
-
         jLabel6.setText("playing:");
 
-        playingText.setText("jTextField1");
-
-        jLabel4.setText("jLabel4");
-
-        timeText.setText("jTextField1");
+        jLabel4.setText("time");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -884,15 +899,9 @@ public class HomePage extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        namePlayer1.setText("jLabel4");
-
         jLabel7.setText("playing:");
 
-        playingText1.setText("jTextField1");
-
-        jLabel8.setText("jLabel4");
-
-        timeText1.setText("jTextField1");
+        jLabel8.setText("time");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -932,15 +941,9 @@ public class HomePage extends javax.swing.JDialog {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        namePlayer2.setText("jLabel4");
-
         jLabel9.setText("playing:");
 
-        playingText2.setText("jTextField1");
-
-        jLabel10.setText("jLabel4");
-
-        timeText2.setText("jTextField1");
+        jLabel10.setText("time");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -980,15 +983,9 @@ public class HomePage extends javax.swing.JDialog {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        namePlayer3.setText("jLabel4");
-
         jLabel11.setText("playing:");
 
-        playingText3.setText("jTextField1");
-
-        jLabel12.setText("jLabel4");
-
-        timeText3.setText("jTextField1");
+        jLabel12.setText("time");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1028,15 +1025,9 @@ public class HomePage extends javax.swing.JDialog {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        namePlayer4.setText("jLabel4");
-
         jLabel13.setText("playing:");
 
-        playingText4.setText("jTextField1");
-
-        jLabel14.setText("jLabel4");
-
-        timeText4.setText("jTextField1");
+        jLabel14.setText("time");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1482,7 +1473,19 @@ public class HomePage extends javax.swing.JDialog {
 
     }//GEN-LAST:event_artistButtonActionPerformed
 
+    /**
+     *
+     * @param songNamePlaying
+     * @param time
+     * @param time
+     */
+    public void updateFriendActivity(String songNamePlaying,String time,String friendName){
+        namePlayer.setText(friendName);
+        playingText.setText(songNamePlaying);
+        timeText.setText(time);
+    }
 
+    
     private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode == 0)
             return;
