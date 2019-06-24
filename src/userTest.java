@@ -1,4 +1,7 @@
 
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -98,11 +101,11 @@ public class userTest implements Serializable{
         return System.currentTimeMillis();
     }
 
-    public String Difference(User user){
+    public String Difference(User user) throws InvalidDataException, IOException, UnsupportedTagException {
         long userTime=user.getTime();
         long dif=System.currentTimeMillis()-userTime;
         int diff= (int) (dif/10000);
-        if(dif <=user.getMusic().getTime()*1000){
+        if(dif <=user.getLastMusic().getTime()*1000){
             playing=true;
             return "Playing...";
         }

@@ -39,7 +39,7 @@ public class Music implements Serializable{
     private boolean isplaying=false;
     private transient AdvancedPlayer advancedPlayer;
     private transient FileInputStream input=null;
-    private transient Player player=null;
+    public transient Player player=null;
     private Thread t;
     private int count;
     private int passedTime;
@@ -86,6 +86,7 @@ public class Music implements Serializable{
         metaData();
         bytepersec=input.available()/getTime();
         framepersec=mp3File.getFrameCount()/getTime();
+        this.player=new Player(input);
 
     }
 
@@ -192,8 +193,8 @@ public class Music implements Serializable{
      *
      * @return whole time of a music
      */
-    public int getTime() {
-        return ((int)mp3File.getLengthInMilliseconds())/1000;
+    public int getTime() throws InvalidDataException, IOException, UnsupportedTagException {
+        return (int) ((new Mp3File(music.getPath())).getLengthInMilliseconds()/1000);
     }
 
 
@@ -287,10 +288,10 @@ public class Music implements Serializable{
      *
      * @return a number which showes how many frame is in each second of this music
      */
-    public int getFramePerCount(){
-        return  mp3File.getFrameCount()/getTime();
-
-    }
+//    public int getFramePerCount(){
+//        return  mp3File.getFrameCount()/getTime();
+//
+//    }
 
     public String getPath(){
         return this.music.getAbsolutePath();

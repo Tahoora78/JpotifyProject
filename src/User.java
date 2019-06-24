@@ -1,3 +1,7 @@
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -8,8 +12,8 @@ public class User implements Serializable{
     private int Password;
     private ArrayList<User> friends;
     private PlayList sharedPlayList=new PlayList("Shared PlayList");
-    private Long time;
-    private Music music;
+    private Long Ltime;
+    private Music lastMusic;
     private PlayList currenPlayList;
     private Album currentAlbum;
     boolean playing=false;
@@ -87,11 +91,11 @@ public class User implements Serializable{
         return System.currentTimeMillis();
     }
 
-    public String Difference(User user){
+    public String Difference(User user) throws InvalidDataException, IOException, UnsupportedTagException {
         long userTime=user.getTime();
         long dif=System.currentTimeMillis()-userTime;
         int diff= (int) (dif/10000);
-        if(dif <=user.getMusic().getTime()*1000){
+        if(dif <=user.getLastMusic().getTime()*1000){
             playing=true;
             return "Playing...";
         }
@@ -118,21 +122,31 @@ public class User implements Serializable{
 
     }
 
-    public Music getMusic() {
-        return music;
+    public Music getLastMusic() {
+        return lastMusic;
     }
 
-    public void setMusic(Music music) {
-        this.music = music;
+    public void setLastMusic(Music lastMusic) {
+        this.lastMusic = lastMusic;
+    }
+
+    public void setSharedPlayList(PlayList sharedPlayList) {
+        this.sharedPlayList = sharedPlayList;
+    }
+
+    public Long getLtime() {
+        return Ltime;
+    }
+
+    public void setLtime(Long ltime) {
+        Ltime = ltime;
     }
 
     public void setSongs(ArrayList<Music> songs) {
         this.songs = songs;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
-    }
+
 
     public User(String name) {
         this.playLists.add(favoritePlayList);

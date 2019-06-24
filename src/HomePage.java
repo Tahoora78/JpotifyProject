@@ -38,7 +38,7 @@ public class HomePage extends javax.swing.JDialog {
     private Thread thread;
     private boolean liked = false;
     long pause;
-    Thread resumeThread;
+    PlayingThread pt;
     
     //Thread playThread=new Thread(new PlayRunnable());
     private Music music;
@@ -76,48 +76,6 @@ public class HomePage extends javax.swing.JDialog {
     private boolean itsSong = false;
     private boolean itsSongInAlbum = false;
 
-    public void actButton(JButton jb, Album album, Music music1, Music music2) {
-
-        if (itsSong)
-            jb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        setMusic(music2);
-                    } catch (JavaLayerException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-        if (itsSongInAlbum) {
-            jb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        setMusic(music1);
-                    } catch (JavaLayerException | FileNotFoundException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-        }
-        if (itsAlbum) {
-            jb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        setMusic(music1);
-                    } catch (JavaLayerException | FileNotFoundException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-
-
-        }
-
-
-    }
 
     public void setImage(JButton button, String path) {
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(path)));
@@ -214,25 +172,18 @@ public class HomePage extends javax.swing.JDialog {
     public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
         initComponents();
          Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    this.setSize(screenSize.width, screenSize.height);
-        System.out.println("myuser name in home" + name);
+        this.setSize(screenSize.width, screenSize.height);
         user = deserializeUser(name);
         
-        System.out.println("size of songs" + user.getSongs().size());
-//        setMusic(new Music(new File("k.mp3")));
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                System.out.println("Closed");
+
                 serializeUser(user);
-                System.out.println("2222size" + user.getPlayLists().size());
-                for (int i = 0; i < user.getPlayLists().size(); i++) {
-                    System.out.println(user.getSongs().get(i).getTitle());
-                }
                 e.getWindow().dispose();
             }
         });
-        user.setMusic(new Music(new File("k.mp3")));
+        user.setLastMusic(new Music(new File("k.mp3")));
         System.out.println("*********************&&&*****");
         for (int i = 0; i < user.getSongs().size(); i++) {
             System.out.println(user.getSongs().get(i).getTitle());
@@ -330,6 +281,7 @@ public class HomePage extends javax.swing.JDialog {
                         }
 
                         Mp3File mp3 = null;
+
                         try {
                             mp3 = new Mp3File(mm.getMusic().getAbsoluteFile());
                         } catch (IOException e1) {
@@ -339,6 +291,7 @@ public class HomePage extends javax.swing.JDialog {
                         } catch (InvalidDataException e1) {
                             e1.printStackTrace();
                         }
+
                         byte[] bb;
                         try {
 
@@ -362,17 +315,19 @@ public class HomePage extends javax.swing.JDialog {
                         buttons.get(i).addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                    try {
-                                        if (thread.isAlive())
-                                            thread.join(1);
-                                            thread=new Thread(new PlayingThread(s));
-                                    } catch (JavaLayerException e1) {
-                                        e1.printStackTrace();
-                                    } catch (InterruptedException e1) {
-                                        e1.printStackTrace();
-                                    } catch (FileNotFoundException e1) {
-                                        e1.printStackTrace();
-
+                                mode=1;
+                                try {
+                                    setMusic(s);
+                                } catch (JavaLayerException e1) {
+                                    e1.printStackTrace();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                } catch (InvalidDataException e1) {
+                                    e1.printStackTrace();
+                                } catch (UnsupportedTagException e1) {
+                                    e1.printStackTrace();
+                                } catch (InterruptedException e1) {
+                                    e1.printStackTrace();
                                 }
                             }
                         });
@@ -410,7 +365,7 @@ public class HomePage extends javax.swing.JDialog {
         AddSongButton.add(addFriendSong4);
     }
     
-    public void 
+//    public void
     public void updatePlayListList(String namePlayList){
         playerSelected = namePlayList;
         playList.addElement(namePlayList);
@@ -575,7 +530,17 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                albumButtonActionPerformed(evt);
+                try {
+                    albumButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -583,7 +548,17 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                songsButtonActionPerformed(evt);
+                try {
+                    songsButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -702,7 +677,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -729,7 +708,11 @@ public class HomePage extends javax.swing.JDialog {
         playButton.setText("jButton1");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
+                try {
+                    playButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -745,7 +728,11 @@ public class HomePage extends javax.swing.JDialog {
         pauseButton.setText("jButton1");
         pauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseButtonActionPerformed(evt);
+                try {
+                    pauseButtonActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1189,7 +1176,21 @@ public class HomePage extends javax.swing.JDialog {
 
         i1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                i1ActionPerformed(evt);
+                try {
+                    i1ActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1405,7 +1406,17 @@ public class HomePage extends javax.swing.JDialog {
         addToLibraryButton.setText("add to library");
         addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryButtonActionPerformed(evt);
+                try {
+                    addToLibraryButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1427,7 +1438,17 @@ public class HomePage extends javax.swing.JDialog {
         sortButton.setText("sort");
         sortButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortButtonActionPerformed(evt);
+                try {
+                    sortButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1534,21 +1555,21 @@ public class HomePage extends javax.swing.JDialog {
     }
 
     
-    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException {//GEN-FIRST:event_forwardButtonActionPerformed
+    private void forwardButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException, InvalidDataException, UnsupportedTagException {//GEN-FIRST:event_forwardButtonActionPerformed
         if (this.mode == 0)
             return;
         else if (mode == 1) {
             ArrayList<Music> songs = user.getCurrenPlayList().getSongs();
-            int a = songs.indexOf(user.getMusic());
-            user.setMusic(songs.get((a + 1)%songs.size()));
+            int a = songs.indexOf(user.getLastMusic());
+            user.setLastMusic(songs.get((a + 1)%songs.size()));
             setMusic(songs.get((a + 1)%songs.size()));
 
 
         }
         else {
             ArrayList<Music> songs1 = user.getCurrentAlbum().getSongs();
-            int a = songs1.indexOf(user.getMusic());
-            user.setMusic(songs1.get((a + 1)%songs1.size()));
+            int a = songs1.indexOf(user.getLastMusic());
+            user.setLastMusic(songs1.get((a + 1)%songs1.size()));
             setMusic(songs1.get((a + 1)%songs1.size()));
         }
 
@@ -1598,10 +1619,6 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_musicSliderStateChanged
 
     private void musicSliderAncestorMoved(javax.swing.event.AncestorEvent evt) throws InterruptedException {//GEN-FIRST:event_musicSliderAncestorMoved
-
-
-        Thread.sleep(100);
-        musicSlider.setValue(musicSlider.getValue() + 1);
 
 
     }//GEN-LAST:event_musicSliderAncestorMoved
@@ -1720,19 +1737,24 @@ public class HomePage extends javax.swing.JDialog {
                 System.out.println(s.getTitle() + "+++++++++++++++++++++++++++++++++++++++++++++++++");
             buttons.get(i).addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {if (!itsAlbum){
-                    if (music.isIsplaying())
-                        music.pause();
+                public void actionPerformed(ActionEvent e) {
+                    mode=0;
                     try {
                         setMusic(s);
                     } catch (JavaLayerException e1) {
                         e1.printStackTrace();
-                    } catch (FileNotFoundException e1) {
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    } catch (InvalidDataException e1) {
+                        e1.printStackTrace();
+                    } catch (UnsupportedTagException e1) {
+                        e1.printStackTrace();
+                    } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
 
 
-                }}
+                }
             });
             //   updateUser(user);
         }
@@ -1815,17 +1837,22 @@ public class HomePage extends javax.swing.JDialog {
         return music;
     }
 
-    public void setMusic(Music music) throws JavaLayerException, FileNotFoundException {
+    public void setMusic(Music music) throws JavaLayerException, IOException, InvalidDataException, UnsupportedTagException, InterruptedException {
 
-       this.thread=new Thread(new PlayingThread(music));
-       this.jl1.setText("Title :"+music.getTitle());
-       this.jl2.setText("Artist :"+music.getArtist());
-       this.jl3.setText("Album :"+music.getAlbum());
-       this.jLabel3.setText(music.timetoString(music.getTime()));
-       this.jLabel5.setIcon(new ImageIcon(music.getArtWork()));
-       setImage(favoriteButton,"empty.png");
-
-       thread.start();
+        if (pt!=null)
+            if (pt.getState().equals(Thread.State.RUNNABLE)){
+                pt.join(1);
+            }
+        this.pt=new PlayingThread(music);
+        this.jl1.setText("Title :"+music.getTitle());
+        this.jl2.setText("Artist :"+music.getArtist());
+        this.jl3.setText("Album :"+music.getAlbum());
+        this.jLabel3.setText(music.timetoString(music.getTime()));
+        this.jLabel5.setIcon(new ImageIcon(music.getArtWork()));
+        setImage(favoriteButton,"empty.png");
+        user.setLastMusic(music);
+        user.setLtime(System.currentTimeMillis());
+        pt.start();
     }
 
     public void whichAlbum() {
@@ -1870,7 +1897,7 @@ public class HomePage extends javax.swing.JDialog {
         // updateUser(user);
     }//GEN-LAST:event_editsPlayListActionPerformed
 
-    private void i1ActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, FileNotFoundException {//GEN-FIRST:event_i1ActionPerformed
+    private void i1ActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, IOException, InterruptedException, UnsupportedTagException, InvalidDataException {//GEN-FIRST:event_i1ActionPerformed
         for (int i = 0; i < user.getSongs().size(); i++) {
             if (user.getSongs().get(i).getTitle().equals(i1.getText())) {
                 setMusic(user.getSongs().get(i));
@@ -1882,31 +1909,15 @@ public class HomePage extends javax.swing.JDialog {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {
 
 
-        if(isPlaying) {
-
-            resumeThread.start();
-
-
-
-        }
-        playThread.start();
+        if (pt.getState().equals(Thread.State.NEW))
+        pt.start();
+        else pt.resume();
 
     }                                          
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_pauseButtonActionPerformed
 
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
-
-
-        if(player!=null){
-            try {
-                pause=fileInputStream.available();
-                player.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-  
+        pt.suspend();
 
 
     }//GEN-LAST:event_pauseButtonActionPerformed
@@ -1954,6 +1965,8 @@ public class HomePage extends javax.swing.JDialog {
             buttons.get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    mode=2;
+                    user.setCurrentAlbum(al);
                     for (int i = 0; i < buttons.size(); i++) {
 
                         buttons.get(i).setVisible(false);
@@ -1971,9 +1984,20 @@ public class HomePage extends javax.swing.JDialog {
                             try {
 
 
+
                                 setMusic(s);
-                                music.play();
+//                                music.play();
                             } catch (JavaLayerException e2) {
+                                e2.printStackTrace();
+                            } catch (FileNotFoundException e2) {
+                                e2.printStackTrace();
+                            } catch (InterruptedException e2) {
+                                e2.printStackTrace();
+                            } catch (InvalidDataException e2) {
+                                e2.printStackTrace();
+                            } catch (IOException e2) {
+                                e2.printStackTrace();
+                            } catch (UnsupportedTagException e2) {
                                 e2.printStackTrace();
                             }
                         });
@@ -1984,52 +2008,8 @@ public class HomePage extends javax.swing.JDialog {
 
                 }
             });
-//        buttons.get(i).addActionListener(new ActionListener() {
-
-//                    @Override
-////                    public void actionPerformed(ActionEvent e) {
-////                        album = al;
-////                        for (int i = 0; i < al.getSongs().size(); i++) {
-////                            setImage2(buttons.get(i), user.getAlbums().get(i).getImage());
-////                            labels.get(i).setText(user.getAlbums().get(i).getSongs().get(i).getTitle());
-////                            buttons.get(i).setVisible(true);
-////                            Music m = user.getAlbums().get(i).getSongs().get(i);
-//////                            buttons.get(i).addActionListener(new ActionListener() {
-//////                                @Override
-//////                                public void actionPerformed(ActionEvent e) {
-//////                                    try {
-//////                                        if (music.isIsplaying())
-//////                                            music.pause();
-//////                                    } catch (JavaLayerException e1) {
-//////                                        e1.printStackTrace();
-//////                                    }
-//////                                    music = m;
-//////                                    try {
-//////                                        music.play();
-//////                                    } catch (JavaLayerException e1) {
-//////                                        e1.printStackTrace();
-//////                                    }
-//////                                }
-//////                            });
-////                        }
-////
-////                    }
-////                });
-////            }
-////        }
-////
-////
-////
-////
-////
-////
-////
-//            }
-//        }
-//
-//    }//GEN-LAST:event_albumButtonActionPerformed
-        }
-    }
+    }//GEN-LAST:event_albumButtonActionPerformed
+         }
     private void newPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlayListActionPerformed
         NPlayLists n = new NPlayLists(user);
         n.setVisible(true);
@@ -2056,7 +2036,7 @@ public class HomePage extends javax.swing.JDialog {
 
     private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
 
-        String wanted=searchText.getText();
+//        String wanted=searchText.getText();
 
 
 
@@ -2145,6 +2125,14 @@ public class HomePage extends javax.swing.JDialog {
                             } catch (JavaLayerException e1) {
                                 e1.printStackTrace();
                             } catch (FileNotFoundException e1) {
+                                e1.printStackTrace();
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            } catch (InvalidDataException e1) {
+                                e1.printStackTrace();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            } catch (UnsupportedTagException e1) {
                                 e1.printStackTrace();
                             }
                         }
@@ -2242,6 +2230,14 @@ public class HomePage extends javax.swing.JDialog {
                                 e1.printStackTrace();
                             } catch (FileNotFoundException e1) {
                                 e1.printStackTrace();
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            } catch (InvalidDataException e1) {
+                                e1.printStackTrace();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            } catch (UnsupportedTagException e1) {
+                                e1.printStackTrace();
                             }
                         }
                     });
@@ -2321,6 +2317,14 @@ public class HomePage extends javax.swing.JDialog {
                             } catch (JavaLayerException e1) {
                                 e1.printStackTrace();
                             } catch (FileNotFoundException e1) {
+                                e1.printStackTrace();
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            } catch (InvalidDataException e1) {
+                                e1.printStackTrace();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            } catch (UnsupportedTagException e1) {
                                 e1.printStackTrace();
                             }
 
@@ -2573,7 +2577,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JPanel libraryPanel;
     private javax.swing.JScrollPane libraryScroll;
     private javax.swing.JLabel musicLabel;
-    private javax.swing.JSlider musicSlider;
+    public static javax.swing.JSlider musicSlider;
     private javax.swing.JLabel namePlayer;
     private javax.swing.JLabel namePlayer1;
     private javax.swing.JLabel namePlayer2;

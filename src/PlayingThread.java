@@ -1,61 +1,64 @@
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.advanced.AdvancedPlayer;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
 
-public class PlayingThread implements Runnable{
-    private Music music;
-    private AdvancedPlayer advancedPlayer;
-    boolean isPaused=false;
-    public PlayingThread(Music music) throws FileNotFoundException, JavaLayerException {
-        this.music=music;
-        this.advancedPlayer=new AdvancedPlayer(new FileInputStream(music.getMusic()));
-    }
-    public void resume() {
-        this.isPaused = false;
-        synchronized (advancedPlayer) {
-            advancedPlayer.notifyAll();
-        }
-    }
-    public void seekTo(int frame) throws JavaLayerException {
-        synchronized (advancedPlayer) {
-            advancedPlayer.close();
-            advancedPlayer = new AdvancedPlayer(music.getInput());
-            advancedPlayer.play(frame, frame + 1);
-        }
+public class PlayingThread extends Thread {
+
+    Music m ;
+
+    public PlayingThread(Music m) throws JavaLayerException, UnsupportedTagException, InvalidDataException, IOException {
+
+        this.m=m;
+
     }
 
     @Override
     public void run() {
+        long t = System.currentTimeMillis();
+        System.out.println("*******************"+m.player);
 
-        while (true){
+        int a = m.
+                player
+                .getPosition();
+        int b = m.
+                player
+                .getPosition();
+
+        while (true) {
+
+            if (b-a>=1000) {
+                System.out.println(m.timetoString(a / 1000));
+                try {
+                    HomePage.musicSlider.setValue(a/m.getTime()*100);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
+                a = b;
+            }
+            b = m.player.getPosition();
+
             try {
-                if (!advancedPlayer.play(1)) break;
+                if (!m.player.play(1)) break;
             } catch (JavaLayerException e) {
                 e.printStackTrace();
+
             }
-            if (this.isPaused==true){
+            ;
 
-                synchronized (advancedPlayer) {
-                    try {
-                        advancedPlayer.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-
-
-
-
+//
+//        try {
+////            sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         }
-
     }
 
-
-    public void pause(){
-        this.isPaused=true;
-    }
 }
