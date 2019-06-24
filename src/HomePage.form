@@ -565,14 +565,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="friendActivityLabel" pref="331" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="friendActivityPanel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="friendActivityLabel" pref="331" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="friendActivityPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -583,7 +581,7 @@
                       <Component id="friendActivityLabel" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="friendActivityPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -649,12 +647,19 @@
                                           <Component id="jLabel6" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                                           <Component id="jLabel4" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="playingText" alignment="0" pref="143" max="32767" attributes="0"/>
-                                          <Component id="timeText" alignment="0" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
+                                              <Component id="timeText" min="-2" pref="143" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                              <Component id="addFriendSong" min="-2" pref="35" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="playingText" min="-2" pref="143" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -674,7 +679,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timeText" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="timeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFriendSong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -699,6 +707,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="addFriendSong">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jButton1"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -728,7 +741,9 @@
                                           <Component id="playingText1" alignment="0" pref="143" max="32767" attributes="0"/>
                                           <Component id="timeText1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFriendSong1" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -748,7 +763,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timeText1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="timeText1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFriendSong1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -773,6 +791,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText1">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="addFriendSong1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jButton1"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -802,7 +825,9 @@
                                           <Component id="playingText2" alignment="0" pref="143" max="32767" attributes="0"/>
                                           <Component id="timeText2" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="addFriendSong2" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -822,7 +847,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timeText2" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="timeText2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFriendSong2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -847,6 +875,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText2">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="addFriendSong2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jButton1"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -876,7 +909,9 @@
                                           <Component id="playingText3" alignment="0" pref="143" max="32767" attributes="0"/>
                                           <Component id="timeText3" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFriendSong3" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -896,8 +931,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timeText3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="timeText3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFriendSong3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -921,6 +959,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText3">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="addFriendSong3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jButton1"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -950,7 +993,9 @@
                                           <Component id="playingText4" alignment="0" pref="143" max="32767" attributes="0"/>
                                           <Component id="timeText4" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addFriendSong4" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -970,7 +1015,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timeText4" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="timeText4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addFriendSong4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -995,6 +1043,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="timeText4">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="addFriendSong4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jButton1"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
