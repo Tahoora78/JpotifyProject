@@ -11,6 +11,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
+import sun.misc.IOUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -27,6 +29,7 @@ import java.util.List;
 
 
 public class Music implements Serializable{
+    //Thread t;
     private transient Mp3File mp3File;
     private String Title;
     private String album;
@@ -37,23 +40,26 @@ public class Music implements Serializable{
     private int bytepersec;
     private int framepersec;
     private boolean isplaying=false;
-    private transient AdvancedPlayer advancedPlayer;
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getStreamLength(){
+        return streamLength;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     private transient FileInputStream input=null;
-    public transient Player player=null;
+    Player player=null;
     private Thread t;
     private int count;
     private int passedTime;
     private int remainTime;
+    //    private int time;
+    private AdvancedPlayer advancedPlayer=null;
     private final String songLyricsURL = "http://www.songlyrics.com";
-    private boolean liked=false;
-
-    public boolean isLiked() {
-        return liked;
-    }
-
-    public void setLiked(boolean liked) {
-        this.liked = liked;
-    }
 
     public long getStime() {
         return stime;
@@ -64,7 +70,7 @@ public class Music implements Serializable{
     }
 
     /**
-     * construct a single music by getting a file
+     * costruct a single music by getting a file
      * @param music file which has been made and pass to make song
      * @throws IOException if it can't make an stream
      * @throws InvalidDataException if file format doesn't be .mp3
@@ -73,7 +79,7 @@ public class Music implements Serializable{
 
 
 
-    
+
     public Music(File music) throws IOException, InvalidDataException, UnsupportedTagException, JavaLayerException {
         this.music = music;
         this.metaData();
@@ -82,11 +88,10 @@ public class Music implements Serializable{
         streamLength=input.available();
         this.mp3File=new Mp3File(music.getAbsolutePath());
         this.count=mp3File.getFrameCount();
-        this.advancedPlayer=new AdvancedPlayer(input);
         metaData();
+        this.player=new Player(input);
         bytepersec=input.available()/getTime();
         framepersec=mp3File.getFrameCount()/getTime();
-        this.player=new Player(input);
 
     }
 
@@ -164,20 +169,164 @@ public class Music implements Serializable{
     }
 
 
-    public AdvancedPlayer getAdvancedPlayer() {
-        return advancedPlayer;
+    /**
+     * it play a song by starting a thread
+     * @param a it's a number which show starting frame which we want song to start from
+     * @throws JavaLayerException if it face any problem while playing a file by advanceplayer or creating a mp3 file
+     */
+
+    public void play(int a) throws JavaLayerException, IOException, InterruptedException {
+        getPlayer().close();
+//        this.t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                if (a * framepersec > player.getPosition()) {
+//                    try {
+//                        input.skip(a * streamLength / getTime() - player.getPosition() * streamLength / mp3File.getFrameCount());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player = new Player(input);
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player.play();
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    try {
+//                        input = new FileInputStream(getPath());
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        input.skip(a * streamLength / getTime());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player = new Player(input);
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        player.play();
+//                    } catch (JavaLayerException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//
+//        });
+//
+//        t.start();
+
+//        tt.start();
+//        t=tt;
+
+
+        input=new FileInputStream(music.getAbsolutePath());
+        input.skip(a*streamLength/getTime());
+        player=new Player(input);
+        t=new Thread(new Runnable() {
+            @Override
+            public void run() {
+               int a =   player
+                .getPosition();
+        int b = 
+                player
+                .getPosition();
+
+        while (true) {
+
+            if (b-a>=1000) {
+                System.out.println(timetoString(a / 1000));
+                HomePage.jLabel2.setText(timetoString(a/1000));
+                a = b;
+            }
+            b = player.getPosition();
+
+            try {
+                if (!player.play(1)) break;
+            } catch (JavaLayerException e) {
+                e.printStackTrace();
+
+            }
+            ;
+
+        t.start();
+
+//        Thread t2=new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                HomePage.musicSlider.setValue((int) ((float)getPassedTime()/getTime()*100));
+//            }
+//        });
+//        t2.start();
+//        while (isIsplaying()){
+//
+//            System.out.println("true");
+//            t2.sleep(1000);
+//
+//        }
+
+
+
+//        isplaying=true;
+
+    }
+            }
+        });
     }
 
-    public FileInputStream getInput() {
-        return input;
+    public void sos(){
+    System.out.println("OOOOOOOOOOOO");}
+
+
+    /**
+     * it play a song by starting a thread
+     * @throws JavaLayerException if it face any problem while playing a file by player or creating a mp3 file
+     */
+    public void play() throws JavaLayerException {
+        player=new Player(input);
+       t.stop();
+       System.out.println("00000000000");
+        this.stime=System.currentTimeMillis();
+        t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    player.play();
+                    isplaying=true;
+                    System.out.println(mp3File.getFrameCount());
+//                    HomePage.musicSlider.setValue((int) ((float)getPassedTime()/getTime()*100));
+                    
+                    
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        isplaying=true;
+
     }
 
-    public void setInput(FileInputStream input) {
-        this.input = input;
-    }
 
-    public void setAdvancedPlayer(AdvancedPlayer advancedPlayer) {
-        this.advancedPlayer = advancedPlayer;
+    /**
+     * it pause a song  by make the thread which started playing music sleep
+     * @throws JavaLayerException
+     */
+    public void pause() throws JavaLayerException {
+
+        t.stop();
+        isplaying=false;
+
     }
 
     public boolean isIsplaying() {
@@ -188,13 +337,29 @@ public class Music implements Serializable{
         this.isplaying = isplaying;
     }
 
+    /**
+     *
+     * @return it return the time of played music which had been played
+     */
+
+    public int getPassedTime() {
+        return player.getPosition()/1000;
+    }
+
+    /**
+     *
+     * @return it return the time that have remained till end of music
+     */
+    public int getRemainTime() {
+        return (getTime()-this.getPassedTime())/1000;
+    }
 
     /**
      *
      * @return whole time of a music
      */
-    public int getTime() throws InvalidDataException, IOException, UnsupportedTagException {
-        return (int) ((new Mp3File(music.getPath())).getLengthInMilliseconds()/1000);
+    public int getTime() {
+        return ((int)mp3File.getLengthInMilliseconds())/1000;
     }
 
 
@@ -235,14 +400,6 @@ public class Music implements Serializable{
 
     }
 
-    public File getMusic() {
-        return music;
-    }
-
-    public void setMusic(File music) {
-        this.music = music;
-    }
-
     /**
      * it resize an Image
      * @param srcImg source image which we want to resize it
@@ -250,7 +407,7 @@ public class Music implements Serializable{
      * @param h height which we want new image to be
      * @return image which is in needed size
      */
-    public static Image getScaledImage(Image srcImg, int w, int h){
+    private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
 
@@ -288,16 +445,13 @@ public class Music implements Serializable{
      *
      * @return a number which showes how many frame is in each second of this music
      */
-//    public int getFramePerCount(){
-//        return  mp3File.getFrameCount()/getTime();
-//
-//    }
+    public int getFramePerCount(){
+        return  mp3File.getFrameCount()/getTime();
+
+    }
+
 
     public String getPath(){
         return this.music.getAbsolutePath();
-    }
-
-    void pause() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
