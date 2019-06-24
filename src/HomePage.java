@@ -562,6 +562,11 @@ public class HomePage extends javax.swing.JDialog {
         });
 
         editPlayListButton.setText("edit");
+        editPlayListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPlayListButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout libraryPanelLayout = new javax.swing.GroupLayout(libraryPanel);
         libraryPanel.setLayout(libraryPanelLayout);
@@ -1418,12 +1423,8 @@ public class HomePage extends javax.swing.JDialog {
             buttons.get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {if (!itsAlbum){
-                    try {
-                        if (music.isIsplaying())
-                            music.pause();
-                    } catch (JavaLayerException e1) {
-                        e1.printStackTrace();
-                    }
+                    if (music.isIsplaying())
+                        music.pause();
                     try {
                         setMusic(s);
                     } catch (JavaLayerException e1) {
@@ -1617,7 +1618,7 @@ public class HomePage extends javax.swing.JDialog {
                 e1.printStackTrace();
             }
         }
-    }
+  
 
 
     }//GEN-LAST:event_pauseButtonActionPerformed
@@ -1767,7 +1768,7 @@ public class HomePage extends javax.swing.JDialog {
 
     private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
 
-        String wanted=searchText.getText()
+        String wanted=searchText.getText();
 
 
 
@@ -2025,12 +2026,8 @@ public class HomePage extends javax.swing.JDialog {
                     buttons.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {if (!itsAlbum){
-                            try {
-                                if (music.isIsplaying())
-                                    music.pause();
-                            } catch (JavaLayerException e1) {
-                                e1.printStackTrace();
-                            }
+                            if (music.isIsplaying())
+                                music.pause();
                             try {
                                 setMusic(s);
                             } catch (JavaLayerException e1) {
@@ -2062,6 +2059,11 @@ public class HomePage extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void editPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPlayListButtonActionPerformed
+        changinOrderOfSongsOfPlaylist edit = new changinOrderOfSongsOfPlaylist();
+        edit.setVisible(true);
+    }//GEN-LAST:event_editPlayListButtonActionPerformed
         
    
 
