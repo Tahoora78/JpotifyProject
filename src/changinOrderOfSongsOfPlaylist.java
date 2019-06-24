@@ -1,3 +1,6 @@
+
+import javax.swing.DefaultListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +13,31 @@
  */
 public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
 
-    /**
-     * Creates new form changinOrderOfSongsOfPlaylist
-     */
-    public changinOrderOfSongsOfPlaylist() {
+   
+    
+    
+    DefaultListModel playListModel;
+    String playerName;
+    PlayList pList;
+    int num;
+    public changinOrderOfSongsOfPlaylist(User user,String playerName) {
         initComponents();
+        num=0;
+        this.playerName = playerName;
+        playListModel = new DefaultListModel();
+        for(int i=0;i<HomePage.user.getPlayLists().size();i++){
+            if(HomePage.user.getPlayLists().get(i).getTitle().equals(playerName)){
+                num = i;
+                for(int j=0;j<HomePage.user.getPlayLists().get(i).getSongs().size();j++){
+                    playListModel.addElement(HomePage.user.getPlayLists().get(i).getSongs().get(j).getTitle());         
+                }
+                break;
+            }
+        playListSongs.setModel(playListModel);
+        
+        }
+        pList = HomePage.user.getPlayLists().get(num);
+        
     }
 
     /**
@@ -38,6 +61,11 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         jScrollPane1.setViewportView(playListSongs);
 
         changeButton.setText("change");
+        changeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeButtonActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("save");
 
@@ -87,6 +115,23 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
+        int value1 = playListSongs.getSelectedIndex();
+        String pName1 = playListSongs.getSelectedValue();
+        int value2 = playListSongs.getSelectedIndex();
+        String pName2 = playListSongs.getSelectedValue();
+        for(int i=0;i<pList.getSongs().size();i++){
+            if(HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName1)|| HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName2)){
+               if( HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName1)){
+                   
+               }
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_changeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,7 +162,7 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new changinOrderOfSongsOfPlaylist().setVisible(true);
+                new changinOrderOfSongsOfPlaylist(HomePage.user,HomePage.playerSelected).setVisible(true);
             }
         });
     }
