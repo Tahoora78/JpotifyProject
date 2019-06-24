@@ -1649,11 +1649,14 @@ public static String fileName;
         soundcontroller.setValue(volumeSlider.getValue());
     }//GEN-LAST:event_volumeSliderStateChanged
 
-    private void musicSliderStateChanged(ChangeEvent evt) {
+    private void musicSliderStateChanged(ChangeEvent evt) throws IOException {
 
 //GEN-FIRST:event_musicSliderStateChanged
-
-
+        JSlider source = (JSlider) evt.getSource();
+        pt.stop();
+        FileInputStream newInput=new FileInputStream(music.getPath());
+        newInput.skip(source.getValue());
+//        pt=new
         
     }//GEN-LAST:event_musicSliderStateChanged
 
@@ -2467,6 +2470,7 @@ public static String fileName;
 
     }
         public void sortSongs() {
+
 
 
             ArrayList<Long> times = new ArrayList<>();

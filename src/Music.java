@@ -354,6 +354,14 @@ public class Music implements Serializable{
         return (getTime()-this.getPassedTime())/1000;
     }
 
+    public FileInputStream getInput() {
+        return input;
+    }
+
+    public void setInput(FileInputStream input) {
+        this.input = input;
+    }
+
     /**
      *
      * @return whole time of a music
