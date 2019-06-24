@@ -10,19 +10,14 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -32,6 +27,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -41,6 +37,10 @@ public class HomePage extends javax.swing.JDialog {
 
     private Thread thread;
     private boolean liked = false;
+    long pause;
+    Thread resumeThread;
+
+    Thread playThread=new Thread(new PlayRunnable());
     private Music music;
     public static PlayList playlist = new PlayList("AAA");
     private Album album = new Album();
@@ -90,7 +90,7 @@ public class HomePage extends javax.swing.JDialog {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         setMusic(music1);
-                    } catch (JavaLayerException e1) {
+                    } catch (JavaLayerException | FileNotFoundException e1) {
                         e1.printStackTrace();
                     }
                 }
@@ -102,7 +102,7 @@ public class HomePage extends javax.swing.JDialog {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         setMusic(music1);
-                    } catch (JavaLayerException e1) {
+                    } catch (JavaLayerException | FileNotFoundException e1) {
                         e1.printStackTrace();
                     }
                 }
@@ -209,6 +209,7 @@ public class HomePage extends javax.swing.JDialog {
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
         System.out.println("size of songs" + user.getSongs().size());
+//        setMusic(new Music(new File("k.mp3")));
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -285,7 +286,6 @@ public class HomePage extends javax.swing.JDialog {
         playListList.getSelectionModel().addListSelectionListener(e -> {
                     //write action listener here;
                     String pname = playListList.getSelectedValue();
-            System.out.println(pname+"(((((((((((((((((((((((((((((((");
                     PlayList pl = null;
                     for (int i = 0; i < user.getPlayLists().size(); i++) {
                         if (user.getPlayLists().get(i).getTitle().equals(pname)) {
@@ -295,7 +295,7 @@ public class HomePage extends javax.swing.JDialog {
                         }
                     }
 
-                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&"+pl.getTitle());
+//                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&"+pl.getTitle());
 
                     for (int i = 0; i < buttons.size(); i++) {
                         buttons.get(i).removeNotify();
@@ -313,6 +313,8 @@ public class HomePage extends javax.swing.JDialog {
                         } catch (InvalidDataException e1) {
                             e1.printStackTrace();
                         } catch (UnsupportedTagException e1) {
+                            e1.printStackTrace();
+                        } catch (JavaLayerException e1) {
                             e1.printStackTrace();
                         }
 
@@ -349,19 +351,16 @@ public class HomePage extends javax.swing.JDialog {
                         buttons.get(i).addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                if (!itsAlbum) {
                                     try {
-                                        if (music.isIsplaying())
-                                            music.pause();
+                                        if (thread.isAlive())
+                                            thread.join(1);
+                                            thread=new Thread(new PlayingThread(s));
                                     } catch (JavaLayerException e1) {
                                         e1.printStackTrace();
-                                    }
-                                    try {
-                                        setMusic(s);
-                                    } catch (JavaLayerException e1) {
+                                    } catch (InterruptedException e1) {
                                         e1.printStackTrace();
-                                    }
-
+                                    } catch (FileNotFoundException e1) {
+                                        e1.printStackTrace();
 
                                 }
                             }
@@ -509,17 +508,7 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    albumButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                albumButtonActionPerformed(evt);
             }
         });
 
@@ -527,17 +516,7 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    songsButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                songsButtonActionPerformed(evt);
             }
         });
 
@@ -648,11 +627,7 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                try {
-                    musicSliderAncestorMoved(evt);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                musicSliderAncestorMoved(evt);
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -679,11 +654,7 @@ public class HomePage extends javax.swing.JDialog {
         playButton.setText("jButton1");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    playButtonActionPerformed(evt);
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
+                playButtonActionPerformed(evt);
             }
         });
 
@@ -897,6 +868,11 @@ public class HomePage extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jPanel1);
 
         searchButton.setText("search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchText.setText("search for...");
         searchText.addActionListener(new java.awt.event.ActionListener() {
@@ -1133,15 +1109,7 @@ public class HomePage extends javax.swing.JDialog {
         addToLibraryButton.setText("add to library");
         addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addToLibraryButtonActionPerformed(evt);
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedTagException e) {
-                    e.printStackTrace();
-                }
+                addToLibraryButtonActionPerformed(evt);
             }
         });
 
@@ -1265,15 +1233,16 @@ public class HomePage extends javax.swing.JDialog {
         else if (mode == 1) {
             ArrayList<Music> songs = user.getCurrenPlayList().getSongs();
             int a = songs.indexOf(user.getMusic());
-            user.getMusic().pause();
-            user.setMusic(songs.get(a + 1));
-            user.getMusic().play();
-        } else {
-            ArrayList<Music> songs = user.getCurrentAlbum().getSongs();
-            int a = songs.indexOf(user.getMusic());
-            user.getMusic().pause();
-            user.setMusic(songs.get(a + 1));
-            user.getMusic().play();
+            user.setMusic(songs.get((a + 1)%songs.size()));
+            setMusic(songs.get((a + 1)%songs.size()));
+
+
+        }
+        else {
+            ArrayList<Music> songs1 = user.getCurrentAlbum().getSongs();
+            int a = songs1.indexOf(user.getMusic());
+            user.setMusic(songs1.get((a + 1)%songs1.size()));
+            setMusic(songs1.get((a + 1)%songs1.size()));
         }
 
     }//GEN-LAST:event_forwardButtonActionPerformed
@@ -1313,23 +1282,10 @@ public class HomePage extends javax.swing.JDialog {
         soundcontroller.setValue(volumeSlider.getValue());
     }//GEN-LAST:event_volumeSliderStateChanged
 
-    private void musicSliderStateChanged(javax.swing.event.ChangeEvent evt) {
+    private void musicSliderStateChanged(ChangeEvent evt) {
 
 //GEN-FIRST:event_musicSliderStateChanged
 
-        if (musicSlider.getValueIsAdjusting())
-            try {
-                music.play(musicSlider.getValue());
-            } catch (JavaLayerException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-        
-            }
-
-//        jLLLLLLLLL
 
         
     }//GEN-LAST:event_musicSliderStateChanged
@@ -1468,6 +1424,8 @@ public class HomePage extends javax.swing.JDialog {
                         setMusic(s);
                     } catch (JavaLayerException e1) {
                         e1.printStackTrace();
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
                     }
 
 
@@ -1558,7 +1516,12 @@ public class HomePage extends javax.swing.JDialog {
        this.thread=new Thread(new PlayingThread(music));
        this.jl1.setText("Title :"+music.getTitle());
        this.jl2.setText("Artist :"+music.getArtist());
-       this.jl3.setText("Album :");
+       this.jl3.setText("Album :"+music.getAlbum());
+       this.jLabel3.setText(music.timetoString(music.getTime()));
+       this.jLabel5.setIcon(new ImageIcon(music.getArtWork()));
+       setImage(favoriteButton,"empty.png");
+
+       thread.start();
     }
 
     public void whichAlbum() {
@@ -1614,7 +1577,7 @@ public class HomePage extends javax.swing.JDialog {
         // updateUser(user);
     }//GEN-LAST:event_editsPlayListActionPerformed
 
-    private void i1ActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {//GEN-FIRST:event_i1ActionPerformed
+    private void i1ActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, FileNotFoundException {//GEN-FIRST:event_i1ActionPerformed
         for (int i = 0; i < user.getSongs().size(); i++) {
             if (user.getSongs().get(i).getTitle().equals(i1.getText())) {
                 setMusic(user.getSongs().get(i));
@@ -1626,37 +1589,31 @@ public class HomePage extends javax.swing.JDialog {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException {
 
 
-        if (!music.isIsplaying())//GEN-FIRST:event_playButtonActionPerformed
+        if(isPlaying) {
 
-            try {
-                music.play((int) ((float)musicSlider.getValue() * music.getTime() / 100));
-            } catch (JavaLayerException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            resumeThread.start();
 
 
-        if (music.getStime()==0)
-            music.play();
 
-    }//GEN-LAST:event_playButtonActionPerformed
+        }
+        playThread.start();
 
-    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
+    }                                          
+
+    private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_pauseButtonActionPerformed
 
         System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
 
 
-        if (music.isIsplaying())
-
+        if(player!=null){
             try {
-                music.pause();
-            } catch (JavaLayerException ex) {
-                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+                pause=fileInputStream.available();
+                player.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEE");
+        }
+    }
 
 
     }//GEN-LAST:event_pauseButtonActionPerformed
@@ -1805,20 +1762,285 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_addCurrentToButtonActionPerformed
 
     private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
-        // TODO add your handling code here:
+
+        String wanted=searchText.getText()
+
+
+
+
+
+
+
+
+
     }//GEN-LAST:event_searchTextActionPerformed
 
-    private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortButtonActionPerformed
+    private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) throws JavaLayerException, UnsupportedTagException, InvalidDataException, IOException {//GEN-FIRST:event_sortButtonActionPerformed
         String sort = (String) sortComboBox.getSelectedItem();
         switch(sort){
             case("alphabet"):
-                
-                //write sort part
+
+                ArrayList<String> names=new ArrayList<>();
+                ArrayList<Music> songlist=user.getSongs();
+                for (int i = 0; i < songlist.size(); i++) {
+
+                    names.add(songlist.get(i).getTitle());
+                }
+
+                Collections.sort(names);
+                ArrayList<Music> sortedMusic=new ArrayList<>();
+                for (int i = 0; i < names.size(); i++) {
+                    for (int j = 0; j < songlist.size(); j++) {
+                        if(names.get(i).equals(songlist.get(j).getTitle())) {
+
+                            sortedMusic.add(songlist.get(j));
+                            break;
+
+                        }
+                    }
+
+                }
+
+
+                buttonAndLabel();
+                for (int i = 0; i < buttons.size(); i++) {
+
+                    buttons.get(i).removeNotify();
+                    buttons.get(i).setVisible(false);
+                    buttons.get(i).setVisible(false);
+
+                }
+
+                for (int i = 0; i < sortedMusic.size(); i++) {
+
+                    buttons.get(i).addNotify();
+                    labels.get(i).setText(sortedMusic.get(i).getTitle());
+
+                    Image image;
+                    Music mm=new Music(sortedMusic.get(i).getMusic());
+                    Mp3File mp3=new Mp3File(mm.getMusic().getAbsoluteFile());
+                    byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+                    try {
+
+                        bb = mp3.
+                                getId3v2Tag().
+                                getAlbumImage();
+                        ImageIcon image1=new ImageIcon(bb);
+                        image= Music.getScaledImage(image1.getImage(),100,100);
+
+                    }
+                    catch (NullPointerException e){
+                        ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
+                        image=Music.getScaledImage(imageIcon.getImage(),100,100);
+                    }
+
+
+                    setImage2(buttons.get(i), image);
+                    buttons.get(i).setVisible(true);
+                    labels.get(i).setVisible(true);
+
+
+
+                    Music s=sortedMusic.get(i);
+
+                    buttons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                setMusic(s);
+                            } catch (JavaLayerException e1) {
+                                e1.printStackTrace();
+                            } catch (FileNotFoundException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                    });
+
+
+
+                }
+
+
                 break;
             case("artist"):
-                //v
+
+                ArrayList<String> artists=new ArrayList<>();
+
+                ArrayList<Music> songs=user.getSongs();
+
+                for (int i = 0; i <songs.size() ; i++) {
+
+                    if (!artists.contains(songs.get(i).getArtist()))
+                        artists.add(songs.get(i).getArtist());
+
+
+                }
+
+                Collections.sort(artists);
+
+                ArrayList<Music> sorted=new ArrayList<>();
+
+                for (int i = 0; i < artists.size(); i++) {
+
+                    for (int j = 0; j <songs.size(); j++) {
+
+                        if (songs.get(j).getArtist().equals(artists.get(i))&&(!sorted.contains(songs.get(j)))) {
+
+
+                            sorted.add(songs.get(j));
+
+
+
+
+                        }
+
+                    }
+                }
+
+                buttonAndLabel();
+                for (int i = 0; i < buttons.size(); i++) {
+
+                    buttons.get(i).removeNotify();
+                    buttons.get(i).setVisible(false);
+                    buttons.get(i).setVisible(false);
+
+                }
+
+                for (int i = 0; i < sorted.size(); i++) {
+
+                    buttons.get(i).addNotify();
+                    labels.get(i).setText(sorted.get(i).getTitle());
+
+                    Image image;
+                    Music mm=new Music(sorted.get(i).getMusic());
+                    Mp3File mp3=new Mp3File(mm.getMusic().getAbsoluteFile());
+                    byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+                    try {
+
+                        bb = mp3.
+                                getId3v2Tag().
+                                getAlbumImage();
+                        ImageIcon image1=new ImageIcon(bb);
+                        image= Music.getScaledImage(image1.getImage(),100,100);
+
+                    }
+                    catch (NullPointerException e){
+                        ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
+                        image=Music.getScaledImage(imageIcon.getImage(),100,100);
+                    }
+
+
+                    setImage2(buttons.get(i), image);
+                    buttons.get(i).setVisible(true);
+                    labels.get(i).setVisible(true);
+
+
+
+                    Music s=sorted.get(i);
+
+                    buttons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                setMusic(s);
+                            } catch (JavaLayerException e1) {
+                                e1.printStackTrace();
+                            } catch (FileNotFoundException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                    });
+
+
+
+                }
+
+
                 break;
+
+
+
+
+
+
+
             case("time"):
+                sortSongs();
+
+                for (int i = 0; i < buttons.size(); i++) {
+                    buttons.get(i).setVisible(false);
+
+                    buttons.get(i).removeNotify();
+                    labels.get(i).setVisible(false);
+
+
+                }
+
+
+                Image image;
+                for (int i = 0; i < user.getSongs().size(); i++) {
+                    buttons.get(i).addNotify();
+
+                    Music mm=new Music(user.getSongs().get(i).getMusic());
+                    Mp3File mp3=new Mp3File(mm.getMusic().getAbsoluteFile());
+                    byte[] bb;
+//            ImageIcon image1=new ImageIcon(bb);
+                    try {
+
+                        bb = mp3.
+                                getId3v2Tag().
+                                getAlbumImage();
+                        ImageIcon image1=new ImageIcon(bb);
+                        image= Music.getScaledImage(image1.getImage(),100,100);
+
+                    }
+                    catch (NullPointerException e){
+                        ImageIcon imageIcon=new ImageIcon("baseMusicArtwork.jpeg");
+                        image=Music.getScaledImage(imageIcon.getImage(),100,100);
+                    }
+
+
+
+
+
+
+
+
+                    setImage2(buttons.get(i), image);
+                    labels.get(i).setText(user.getSongs().get(i).getTitle());
+                    System.out.println(labels.get(1).getText());
+                    System.out.println(labels.get(i).getText());
+
+                    buttons.get(i).setVisible(true);
+                    labels.get(i).setVisible(true);
+                    Music s = user.getSongs().get(i);
+                    if (i == 1)
+                        System.out.println(s.getTitle() + "+++++++++++++++++++++++++++++++++++++++++++++++++");
+                    buttons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {if (!itsAlbum){
+                            try {
+                                if (music.isIsplaying())
+                                    music.pause();
+                            } catch (JavaLayerException e1) {
+                                e1.printStackTrace();
+                            }
+                            try {
+                                setMusic(s);
+                            } catch (JavaLayerException e1) {
+                                e1.printStackTrace();
+                            } catch (FileNotFoundException e1) {
+                                e1.printStackTrace();
+                            }
+
+
+                        }}
+                    });
+                    //   updateUser(user);
+                }
+
                 break;
         
         }
@@ -1826,6 +2048,16 @@ public class HomePage extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_sortButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+
+        String wanted=searchText.getText();
+        ArrayList<Music> searched=new ArrayList<>();
+        for (int i = 0; i < ; i++) {
+
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
         
    
 
@@ -2071,4 +2303,53 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JTextField userNameLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
+    FileInputStream fileInputStream;
+    BufferedInputStream bufferedInputStream;
+    Player player;
+    long totalLength;
+    Runnable runnableResume=new Runnable() {
+        @Override
+        public void run() {
+            try {
+                //code for resume button
+                fileInputStream=new FileInputStream(music.getPath());
+                bufferedInputStream=new BufferedInputStream(fileInputStream);
+                player=new Player(bufferedInputStream);
+                fileInputStream.skip(totalLength-pause);
+                player.play();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (JavaLayerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+    Runnable runnablePlay=new Runnable() {
+        @Override
+        public void run() {
+            try {
+                //code for play button
+                fileInputStream=new FileInputStream(music.getPath());
+                bufferedInputStream=new BufferedInputStream(fileInputStream);
+                player=new Player(bufferedInputStream);
+                totalLength=fileInputStream.available();
+                player.play();//starting music
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (JavaLayerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+
+
+
         }
