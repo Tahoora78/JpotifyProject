@@ -52,7 +52,7 @@ public class Music implements Serializable{
     }
 
     private transient FileInputStream input=null;
-    Player player=null;
+    transient Player player=null;
     private Thread t;
     private int count;
     private int passedTime;
@@ -175,7 +175,7 @@ public class Music implements Serializable{
      * @throws JavaLayerException if it face any problem while playing a file by advanceplayer or creating a mp3 file
      */
 
-    public void play(int a) throws JavaLayerException, IOException, InterruptedException {
+    public void play(int a) throws JavaLayerException, IOException, InterruptedException, InvalidDataException, UnsupportedTagException {
         getPlayer().close();
 //        this.t = new Thread(new Runnable() {
 //            @Override
@@ -350,7 +350,7 @@ public class Music implements Serializable{
      *
      * @return it return the time that have remained till end of music
      */
-    public int getRemainTime() {
+    public int getRemainTime() throws InvalidDataException, IOException, UnsupportedTagException {
         return (getTime()-this.getPassedTime())/1000;
     }
 
@@ -358,8 +358,9 @@ public class Music implements Serializable{
      *
      * @return whole time of a music
      */
-    public int getTime() {
-        return ((int)mp3File.getLengthInMilliseconds())/1000;
+    public int getTime() throws InvalidDataException, IOException, UnsupportedTagException {
+        mp3File=new Mp3File(getMusic().getAbsoluteFile());
+        return (int) ((mp3File.getLengthInMilliseconds())/1000);
     }
 
 
@@ -407,7 +408,7 @@ public class Music implements Serializable{
      * @param h height which we want new image to be
      * @return image which is in needed size
      */
-    private Image getScaledImage(Image srcImg, int w, int h){
+    public static Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
 
@@ -445,11 +446,19 @@ public class Music implements Serializable{
      *
      * @return a number which showes how many frame is in each second of this music
      */
-    public int getFramePerCount(){
+    public int getFramePerCount() throws InvalidDataException, IOException, UnsupportedTagException {
         return  mp3File.getFrameCount()/getTime();
 
     }
 
+
+    public File getMusic() {
+        return music;
+    }
+
+    public void setMusic(File music) {
+        this.music = music;
+    }
 
     public String getPath(){
         return this.music.getAbsolutePath();

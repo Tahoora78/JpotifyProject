@@ -714,6 +714,7 @@ public static String fileName;
         soundBar.setBackground(new java.awt.Color(0, 0, 255));
 
         musicSlider.setBackground(new java.awt.Color(0, 0, 102));
+        musicSlider.setMaximum(1000);
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -1220,15 +1221,13 @@ public static String fileName;
                     i1ActionPerformed(evt);
                 } catch (JavaLayerException e) {
                     e.printStackTrace();
-                } catch (FileNotFoundException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } catch (InvalidDataException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
                     e.printStackTrace();
                 }
             }
@@ -1880,9 +1879,7 @@ public static String fileName;
     public void setMusic(Music music) throws JavaLayerException, IOException, InvalidDataException, UnsupportedTagException, InterruptedException {
 
         if (pt!=null)
-            if (pt.getState().equals(Thread.State.RUNNABLE)){
-                pt.join(1);
-            }
+        pt.stop();
         this.pt=new PlayingThread(music);
         this.jl1.setText("Title :"+music.getTitle());
         this.jl2.setText("Artist :"+music.getArtist());
@@ -2350,8 +2347,13 @@ public static String fileName;
                     buttons.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {if (!itsAlbum){
-                            if (music.isIsplaying())
-                                music.pause();
+                            if (music.isIsplaying()) {
+                                try {
+                                    music.pause();
+                                } catch (JavaLayerException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
                             try {
                                 setMusic(s);
                             } catch (JavaLayerException e1) {
