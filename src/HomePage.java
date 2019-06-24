@@ -193,6 +193,7 @@ public class HomePage extends javax.swing.JDialog {
     }
 
     public static User deserializeUser(String name) throws FileNotFoundException {
+        
         User userd = null;
         System.out.println("name" + name);
         try {
@@ -211,8 +212,12 @@ public class HomePage extends javax.swing.JDialog {
     }
 
     public HomePage(String name) throws IOException, InvalidDataException, InvalidDataException, UnsupportedTagException, UnsupportedTagException, UnsupportedTagException, JavaLayerException, InterruptedException {
+        initComponents();
+         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    this.setSize(screenSize.width, screenSize.height);
         System.out.println("myuser name in home" + name);
         user = deserializeUser(name);
+        
         System.out.println("size of songs" + user.getSongs().size());
 //        setMusic(new Music(new File("k.mp3")));
         addWindowListener(new WindowAdapter() {
@@ -236,7 +241,7 @@ public class HomePage extends javax.swing.JDialog {
         System.out.println("finish deserializing");
         music = new Music(new File("k.mp3"));
 //        music.play();
-        initComponents();
+        
         username = name;
         fileNameSerialize = username.concat(".bin");
         // User user = new User(username);
@@ -1734,6 +1739,7 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_songsButtonActionPerformed
 
     private void addToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) throws InvalidDataException, IOException, UnsupportedTagException, JavaLayerException {//GEN-FIRST:event_addToLibraryButtonActionPerformed
+       
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(this);
         File f = chooser.getSelectedFile();
