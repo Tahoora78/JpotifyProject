@@ -1,7 +1,8 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.UnsupportedTagException;
+import javazoom.jl.decoder.JavaLayerException;
+
+import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,6 +10,48 @@ import java.util.ArrayList;
 
 public class Server {
 
+
+    public static void transfertoserver() throws IOException {
+        ServerSocket servsock = new ServerSocket(15065);
+
+
+
+
+
+
+
+    }
+    public static void transferfromserver(File file) throws IOException {
+
+        ServerSocket servsock = new ServerSocket(15064);
+        Socket sock = servsock.accept();
+        long time = System.currentTimeMillis();
+
+        DataOutputStream out = (DataOutputStream) sock.getOutputStream();
+        FileInputStream fileInputStream = new FileInputStream(file);
+        out.writeUTF(file.getName());
+        out.flush();
+
+        byte [] buffer = new byte[64*1024];
+        int bytesRead = 0;
+        long totalSent = 0;
+
+        while ( (bytesRead = fileInputStream.read(buffer)) != -1)
+        {
+            if (bytesRead > 0)
+            {
+                out.write(buffer, 0, bytesRead);
+                totalSent += bytesRead;
+                System.out.println("sent " + totalSent);
+            }
+        }
+
+        sock.close();
+
+        System.out.println("Sent " + totalSent + " bytes in "
+                + (System.currentTimeMillis() - time) + "ms.");
+
+    }
     static ServerSocket sSocketUserName;
 
     static {
@@ -29,11 +72,11 @@ public class Server {
         }
     }
 
-    static ServerSocket sSocketUser;
+    static ServerSocket sSocketFile;
 
     static {
         try {
-            sSocketUser = new ServerSocket(12347);
+            sSocketFile = new ServerSocket(12347);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,26 +84,60 @@ public class Server {
 
     static Socket acceptName;
     static Socket acceptIP;
-    static Socket acceptUser;
-    ArrayList<File> DataBase;
+    static Socket acceptFile;
+   static ArrayList<File> DataBase;
     ArrayList<User> users;
-    static ArrayList<InetAddress> IPs=new ArrayList<>();
-    ArrayList<String> usernames=new ArrayList<>();
+    static ArrayList<String> IPs=new ArrayList<>();
+    static ArrayList<String> usernames=new ArrayList<>();
 
-    private ServerSocket serverSocket;
 
-    public static void main(String[] args) throws IOException {
-        LoginPage login=new LoginPage();
+    public static void main(String[] args) throws IOException, InvalidDataException, JavaLayerException, UnsupportedTagException {
+        LoginPage login = new LoginPage();
         login.setVisible(true);
-        while (true){
-            acceptIP=sSocketIP.accept();
-            acceptName=sSocketUserName.accept();
-            acceptIP=sSocketIP.accept();
-            BufferedReader clientName = new BufferedReader(new
-                    InputStreamReader(acceptName.getInputStream()));
+        IPs.add(InetAddress.getLocalHost().getHostAddress().toString());
+        usernames.add(HomePage.user.getName());
+        while (true) {
+            acceptIP = sSocketIP.accept();
+            acceptName = sSocketUserName.accept();
+            BufferedReader clientName = new BufferedReader(new InputStreamReader(acceptName.getInputStream()));
 
+            DataOutputStream outToClientname = new DataOutputStream(acceptName.getOutputStream());
+
+            String name = clientName.readLine();
+            usernames.add(name);
+            outToClientname.writeBytes("ok");
+
+
+            BufferedReader clientIP = new BufferedReader(new InputStreamReader(acceptIP.getInputStream()));
+
+            DataOutputStream outToClientIP = new DataOutputStream(acceptIP.getOutputStream());
+
+            String IP = clientIP.readLine();
+            IPs.add(name);
+            outToClientIP.writeBytes("ok");
+
+
+            acceptFile = sSocketFile.accept();
+            BufferedReader clientFile = new BufferedReader(new InputStreamReader(acceptFile.getInputStream()));
+
+            DataOutputStream outToClientFile = new DataOutputStream(acceptFile.getOutputStream());
+
+            String FileName = clientName.readLine();
+            File file = new File(FileName);
+
+            for (File file1 : DataBase) {
+                if ((new Music(file1)).getTitle().equals(FileName)) {
+                    file = file1;
+                    break;
+                }
+            }
+
+            transferfromserver(file);
+
+            outToClientname.writeBytes("ok");
         }
 
+    }
 
     }
 

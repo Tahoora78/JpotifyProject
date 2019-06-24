@@ -39,7 +39,47 @@ public class HomePage extends javax.swing.JDialog {
     private boolean liked = false;
     long pause;
     PlayingThread pt;
-    
+    public static boolean flag=false;
+public static boolean flag2=false;
+public static String needed;
+public static String fileName;
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public static void addingNewFile(File file){
+
+
+//        adding needed to songs
+//        File file1=new File()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    public File fileToTransfer;
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
     //Thread playThread=new Thread(new PlayRunnable());
     private Music music;
     public static PlayList playlist = new PlayList("AAA");
