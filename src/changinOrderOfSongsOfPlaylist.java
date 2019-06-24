@@ -68,6 +68,11 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         });
 
         saveButton.setText("save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,21 +125,40 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         String pName1 = playListSongs.getSelectedValue();
         int value2 = playListSongs.getSelectedIndex();
         String pName2 = playListSongs.getSelectedValue();
+        playListModel.setElementAt(pName2, value1);
+        playListModel.setElementAt(pName1, value2);
+        playListSongs.setModel(playListModel);
+      
+
+    }//GEN-LAST:event_changeButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+         PlayList s = new PlayList(playerName);
         for(int i=0;i<pList.getSongs().size();i++){
-            if(HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName1)|| HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName2)){
-               if( HomePage.user.getPlayLists().get(num).getSongs().get(i).getTitle().equals(pName1)){
-                   
-               }
+            s.addSong(getMusic((String) playListModel.get(i)));
+        }
+        HomePage.user.getPlayLists().remove(num);
+        HomePage.user.getPlayLists().add(s);
+        for(int i=0;i<HomePage.user.getPlayLists().size();i++){
+            if(HomePage.user.getPlayLists().get(i).getTitle().equals(playerName)){
+                num = i;
+                break;
             }
         }
-        
-        
-        
-    }//GEN-LAST:event_changeButtonActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    public Music getMusic(String name){
+        Music music = null;
+        for(int i=0;i<pList.getSongs().size();i++){
+            if(pList.getSongs().get(i).getTitle().equals(name)){
+                music =  pList.getSongs().get(i);
+            }
+        }
+        return music;
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
