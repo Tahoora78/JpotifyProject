@@ -412,6 +412,7 @@ public class HomePage extends javax.swing.JDialog {
         playListLabel = new javax.swing.JLabel();
         editsPlayList = new java.awt.Button();
         updateButon = new javax.swing.JButton();
+        editPlayListButton = new javax.swing.JButton();
         soundBar = new javax.swing.JPanel();
         musicSlider = new javax.swing.JSlider();
         musicLabel = new javax.swing.JLabel();
@@ -546,7 +547,7 @@ public class HomePage extends javax.swing.JDialog {
         playListLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         playListLabel.setText("playlist");
 
-        editsPlayList.setLabel("edit");
+        editsPlayList.setLabel("delete");
         editsPlayList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editsPlayListActionPerformed(evt);
@@ -560,6 +561,8 @@ public class HomePage extends javax.swing.JDialog {
             }
         });
 
+        editPlayListButton.setText("edit");
+
         javax.swing.GroupLayout libraryPanelLayout = new javax.swing.GroupLayout(libraryPanel);
         libraryPanel.setLayout(libraryPanelLayout);
         libraryPanelLayout.setHorizontalGroup(
@@ -567,8 +570,8 @@ public class HomePage extends javax.swing.JDialog {
             .addGroup(libraryPanelLayout.createSequentialGroup()
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(libraryPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
                         .addComponent(songsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(libraryPanelLayout.createSequentialGroup()
                         .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,14 +579,15 @@ public class HomePage extends javax.swing.JDialog {
                                 .addComponent(albumButton, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                                 .addComponent(songsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(libraryPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
+                                .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editPlayListButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(updateButon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(198, 198, 198)
-                                .addComponent(editPlayList)))
+                                .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(204, 204, 204)
+                        .addComponent(editPlayList)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(libraryPanelLayout.createSequentialGroup()
@@ -603,11 +607,11 @@ public class HomePage extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(editPlayList)
-                    .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateButon))))
+                    .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(playListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateButon)
+                        .addComponent(editPlayListButton))
+                    .addComponent(editsPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(libraryPanelLayout.createSequentialGroup()
@@ -2211,6 +2215,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JPanel displayMusicPanel;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton editPlayList;
+    private javax.swing.JButton editPlayListButton;
     private java.awt.Button editsPlayList;
     private javax.swing.JButton favoriteButton;
     private javax.swing.JButton forwardButton;

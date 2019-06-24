@@ -144,9 +144,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="303" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="389" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                               <Component id="songsPanel" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -155,17 +155,18 @@
                                       <Component id="albumButton" pref="309" max="32767" attributes="0"/>
                                       <Component id="songsButton" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="playListLabel" min="-2" pref="88" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="playListLabel" min="-2" pref="122" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="editPlayListButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="updateButon" min="-2" pref="79" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="editsPlayList" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                                      <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                              <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -190,13 +191,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="editPlayList" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="editsPlayList" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="playListLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="updateButon" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="playListLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="updateButon" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editPlayListButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="editsPlayList" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -295,7 +295,7 @@
             </Component>
             <Component class="java.awt.Button" name="editsPlayList">
               <Properties>
-                <Property name="label" type="java.lang.String" value="edit"/>
+                <Property name="label" type="java.lang.String" value="delete"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editsPlayListActionPerformed"/>
@@ -308,6 +308,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="editPlayListButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="edit"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
