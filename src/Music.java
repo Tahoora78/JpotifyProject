@@ -236,30 +236,30 @@ public class Music implements Serializable{
         t=new Thread(new Runnable() {
             @Override
             public void run() {
-               int a =   player
-                .getPosition();
-        int b = 
-                player
-                .getPosition();
+                int a =   player
+                        .getPosition();
+                int b =
+                        player
+                                .getPosition();
 
-        while (true) {
+                while (true) {
 
-            if (b-a>=1000) {
-                System.out.println(timetoString(a / 1000));
-                HomePage.jLabel2.setText(timetoString(a/1000));
-                a = b;
-            }
-            b = player.getPosition();
+                    if (b-a>=1000) {
+                        System.out.println(timetoString(a / 1000));
+                        HomePage.jLabel2.setText(timetoString(a/1000));
+                        a = b;
+                    }
+                    b = player.getPosition();
 
-            try {
-                if (!player.play(1)) break;
-            } catch (JavaLayerException e) {
-                e.printStackTrace();
+                    try {
+                        if (!player.play(1)) break;
+                    } catch (JavaLayerException e) {
+                        e.printStackTrace();
 
-            }
-            ;
+                    }
+                    ;
 
-        t.start();
+                    t.start();
 
 //        Thread t2=new Thread(new Runnable() {
 //            @Override
@@ -279,13 +279,13 @@ public class Music implements Serializable{
 
 //        isplaying=true;
 
-    }
+                }
             }
         });
     }
 
     public void sos(){
-    System.out.println("OOOOOOOOOOOO");}
+        System.out.println("OOOOOOOOOOOO");}
 
 
     /**
@@ -294,8 +294,8 @@ public class Music implements Serializable{
      */
     public void play() throws JavaLayerException {
         player=new Player(input);
-       t.stop();
-       System.out.println("00000000000");
+        t.stop();
+        System.out.println("00000000000");
         this.stime=System.currentTimeMillis();
         t = new Thread(new Runnable() {
             @Override
@@ -305,8 +305,8 @@ public class Music implements Serializable{
                     isplaying=true;
                     System.out.println(mp3File.getFrameCount());
 //                    HomePage.musicSlider.setValue((int) ((float)getPassedTime()/getTime()*100));
-                    
-                    
+
+
                 } catch (JavaLayerException e) {
                     e.printStackTrace();
                 }
@@ -354,8 +354,8 @@ public class Music implements Serializable{
         return (getTime()-this.getPassedTime())/1000;
     }
 
-    public FileInputStream getInput() {
-        return input;
+    public FileInputStream getInput() throws FileNotFoundException {
+        return new FileInputStream(music);
     }
 
     public void setInput(FileInputStream input) {
