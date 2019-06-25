@@ -9,8 +9,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-
-
+     static Socket acceptName;
+    static Socket acceptIP;
+    static Socket acceptFile;
+   static ArrayList<File> DataBase;
+    public static ArrayList<User> users;
+   
     public static void transfertoserver() throws IOException {
         ServerSocket servsock = new ServerSocket(15065);
 
@@ -22,24 +26,19 @@ public class Server {
 
     }
     public static void transferfromserver(File file) throws IOException {
-
         ServerSocket servsock = new ServerSocket(15064);
         Socket sock = servsock.accept();
         long time = System.currentTimeMillis();
 
-        DataOutputStream out = (DataOutputStream) sock.getOutputStream();
-        FileInputStream fileInputStream = new FileInputStream(file);
-        out.writeUTF(file.getName());
-        out.flush();
+        OutputStream out = sock.getOutputStream();
+        FileInputStream fileInputStream = new FileInputStream("1234.mp4");
 
-        byte [] buffer = new byte[64*1024];
+        byte[] buffer = new byte[64 * 1024];
         int bytesRead = 0;
         long totalSent = 0;
 
-        while ( (bytesRead = fileInputStream.read(buffer)) != -1)
-        {
-            if (bytesRead > 0)
-            {
+        while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+            if (bytesRead > 0) {
                 out.write(buffer, 0, bytesRead);
                 totalSent += bytesRead;
                 System.out.println("sent " + totalSent);
@@ -50,52 +49,23 @@ public class Server {
 
         System.out.println("Sent " + totalSent + " bytes in "
                 + (System.currentTimeMillis() - time) + "ms.");
-
-    }
-    static ServerSocket sSocketUserName;
-
-    static {
-        try {
-            sSocketUserName = new ServerSocket(12345);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    static ServerSocket sSocketIP;
-
-    static {
-        try {
-            sSocketIP = new ServerSocket(12346);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ServerSocket sSocketFile;
-
-    static {
-        try {
-            sSocketFile = new ServerSocket(12347);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static Socket acceptName;
-    static Socket acceptIP;
-    static Socket acceptFile;
-   static ArrayList<File> DataBase;
-    ArrayList<User> users;
+   
     static ArrayList<String> IPs=new ArrayList<>();
-    static ArrayList<String> usernames=new ArrayList<>();
-
+    public static ArrayList<String> usernames=new ArrayList<>();
+ 
+    public ArrayList<String> getAllUserNames(){
+        return usernames;
+    }
 
     public static void main(String[] args) throws IOException, InvalidDataException, JavaLayerException, UnsupportedTagException {
         LoginPage login = new LoginPage();
         login.setVisible(true);
         IPs.add(InetAddress.getLocalHost().getHostAddress().toString());
         usernames.add(HomePage.user.getName());
+        ServerSocket sSocketIP = new ServerSocket();
+        
         while (true) {
             acceptIP = sSocketIP.accept();
             acceptName = sSocketUserName.accept();
