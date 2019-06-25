@@ -846,7 +846,21 @@ public class HomePage extends javax.swing.JDialog {
         });
         musicSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
+<<<<<<< HEAD
                 musicSliderStateChanged(evt);
+=======
+                try {
+                    musicSliderStateChanged(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
+>>>>>>> 1fb8e616a416701622eb9811b98ec8bdb33e80dc
             }
         });
 
@@ -1238,6 +1252,8 @@ public class HomePage extends javax.swing.JDialog {
                 i72ActionPerformed(evt);
             }
         });
+
+        displayPanel3.setFocusable(false);
 
         jLabel7.setText("jLabel1");
 
@@ -2120,7 +2136,7 @@ public class HomePage extends javax.swing.JDialog {
         displayMusicPanel.setLayout(displayMusicPanelLayout);
         displayMusicPanelLayout.setHorizontalGroup(
             displayMusicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1069, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         displayMusicPanelLayout.setVerticalGroup(
             displayMusicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2161,9 +2177,6 @@ public class HomePage extends javax.swing.JDialog {
                                 .addComponent(newPlayList, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(displayMusicPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(sortComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2173,8 +2186,10 @@ public class HomePage extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchButton))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(displayMusicPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2185,7 +2200,7 @@ public class HomePage extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(soundBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2396,7 +2411,10 @@ public class HomePage extends javax.swing.JDialog {
         }
 
         for (int i=0;i<buttons.size();i++){
-            buttons.get(i).setVisible(false);}
+            buttons.get(i).setVisible(false);
+
+
+        }
 
     }
 
@@ -2696,6 +2714,7 @@ public class HomePage extends javax.swing.JDialog {
             if (!alnames.contains(son.get(i).getAlbum()))
                 alnames.add(son.get(i).getAlbum());
         }
+        this.songs=son;
 
 
         ArrayList<Album> als=user.getAlbums();
@@ -2720,6 +2739,50 @@ public class HomePage extends javax.swing.JDialog {
 
     }
 //GEN-LAST:event_addToLibraryButtonActionPerformed
+
+    public void checkActionListener(JButton button,Music music,Album album){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void serializeUser(User user){
         System.out.println("name"+user.getName());
@@ -2752,17 +2815,19 @@ public class HomePage extends javax.swing.JDialog {
                 music.
                         getMusic().getAbsolutePath()
         ));
+        this.music.setStime(System.currentTimeMillis());
         this.pt=new PlayingThread(music,music.getInput());
-//        this.jl1.setText("Title :"+music.getTitle());
-//        this.jl2.setText("Artist :"+music.getArtist());
-//        this.jl3.setText("Album :"+music.getAlbum());
-//        this.jLabel3.setText(music.timetoString(music.getTime()));
-//        this.jLabel5.setIcon(new ImageIcon(music.getArtWork()));
-//        setImage(favoriteButton,"empty.png");
-//        user.setLastMusic(music);
-//        user.setLtime(System.currentTimeMillis());
+        this.jl1.setText("Title :"+music.getTitle());
+        this.jl2.setText("Artist :"+music.getArtist());
+        this.jl3.setText("Album :"+music.getAlbum());
+        this.jLabel3.setText(music.timetoString(music.getTime()));
+        this.jLabel5.setIcon(new ImageIcon(music.getArtWork()));
+        setImage(favoriteButton,"empty.png");
+        user.setLastMusic(music);
+        user.setLtime(System.currentTimeMillis());
         System.out.println("Start");
         pt.start();
+        System.out.println(this.music.getStime()/1000+"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
     }
 
     public void whichAlbum() {
@@ -2841,7 +2906,6 @@ public class HomePage extends javax.swing.JDialog {
 
 
 
-        displayPanel1.show();
         ArrayList<Music> son=user.getSongs();
         ArrayList<String> albs=new ArrayList<>();
         ArrayList<Album> ualbs=new ArrayList<>();
@@ -2892,7 +2956,7 @@ public class HomePage extends javax.swing.JDialog {
         buttonAndLabelp4();
 
         displayPanel1.setVisible(true);
-        displayPanel1.setBackground(Color.orange);
+//        displayPanel1.setBackground(Color.orange);
         displayPanel.setVisible(true);
         displayPanel2.setVisible(false);
         displayPanel3.setVisible(false);
@@ -3018,6 +3082,7 @@ public class HomePage extends javax.swing.JDialog {
             ;
         }
     }
+
 //GEN-LAST:event_albumButtonActionPerformed
 
     private void newPlayListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlayListActionPerformed
@@ -3495,11 +3560,9 @@ public class HomePage extends javax.swing.JDialog {
     }
     public void sortSongs() {
 
-
-
         ArrayList<Long> times = new ArrayList<>();
         int i = 0;
-        for (Music music : user.getSongs()) {
+        for (Music music : songs) {
 
             times.add(music.getStime());
         }
@@ -3509,7 +3572,7 @@ public class HomePage extends javax.swing.JDialog {
         ArrayList<Music> sortedSongs = new ArrayList<>();
 
         for (int j = 0; j < times.size(); j++) {
-            for (Music m : user.getSongs()) {
+            for (Music m : songs) {
                 if (m.getStime() == times.get(j)) {
 
                     if(!sortedSongs.contains(m))
@@ -3522,6 +3585,11 @@ public class HomePage extends javax.swing.JDialog {
         user.setSongs(sortedSongs);
 
 //            this.songs = sortedSongs;
+
+
+
+
+
 
         //updateUser(user);
 
@@ -3560,6 +3628,7 @@ public class HomePage extends javax.swing.JDialog {
         //updateUser(user);
 
     }
+
 
 
 
