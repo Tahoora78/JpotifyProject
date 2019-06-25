@@ -696,7 +696,7 @@ public class HomePage extends javax.swing.JDialog {
         t95 = new javax.swing.JLabel();
         t96 = new javax.swing.JLabel();
         addToLibraryButton = new javax.swing.JButton();
-        displayMusicPanel = new javax.swing.JPanel();
+        displayMusicPanel = new Equalizer();
         sortComboBox = new javax.swing.JComboBox<>();
         sortButton = new javax.swing.JButton();
 
@@ -3667,7 +3667,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton albumButton;
     private javax.swing.JButton backwardButton;
     private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JPanel displayMusicPanel;
+    private Equalizer displayMusicPanel;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JPanel displayPanel1;
     private javax.swing.JPanel displayPanel2;
