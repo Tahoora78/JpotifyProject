@@ -2080,6 +2080,9 @@
                     <Component class="javax.swing.JLabel" name="t72">
                     </Component>
                     <Container class="javax.swing.JPanel" name="displayPanel3">
+                      <Properties>
+                        <Property name="focusable" type="boolean" value="false"/>
+                      </Properties>
 
                       <Layout>
                         <DimensionLayout dim="0">
