@@ -11,23 +11,29 @@ import java.io.IOException;
 public class PlayingThread extends Thread {
 
     Music m ;
+    FileInputStream fis;
 
-    public PlayingThread(Music m) throws JavaLayerException, UnsupportedTagException, InvalidDataException, IOException {
+    public PlayingThread(Music m,FileInputStream fileInputStream) throws JavaLayerException, UnsupportedTagException, InvalidDataException, IOException {
 
         this.m=m;
+        this.m.setInput(fileInputStream);
+        fis=fileInputStream;
+        System.out.println("999999999999999999999"+fileInputStream.available());
 
     }
 
     @Override
     public void run() {
         long t = System.currentTimeMillis();
-        System.out.println("*******************"+m.player);
+        try {
+            System.out.println("*******************"+m.getInput().available());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
-            m.setPlayer(new Player(new FileInputStream(m.getMusic())));
+            m.setPlayer(new Player(fis));
         } catch (JavaLayerException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         int a = m.
@@ -75,5 +81,6 @@ public class PlayingThread extends Thread {
 //        }
         }
     }
+    public void ccc(){}
 
 }
