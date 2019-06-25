@@ -126,7 +126,7 @@ public class Friends extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        HomePage.user.
+      //  HomePage.user.
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
