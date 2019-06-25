@@ -81,5 +81,6 @@ public class PlayingThread extends Thread {
 //        }
         }
     }
+    public void ccc(){}
 
 }

@@ -471,4 +471,5 @@ public class Music implements Serializable{
     public String getPath(){
         return this.music.getAbsolutePath();
     }
+    public void aa(){};
 }
