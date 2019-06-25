@@ -27,7 +27,6 @@ import javax.swing.WindowConstants;
  * @author Home pc
  */
 public class newUser extends javax.swing.JFrame {
-
     String username;
     String password;
     String favoriteName;

@@ -21,11 +21,22 @@ public class User implements Serializable{
     private ArrayList<PlayList> playLists  = new ArrayList<>();
     private ArrayList<Music> songs = new ArrayList<>();
     private ArrayList<Album> albums =new ArrayList<>();
-
+    public static ArrayList<String> friandsName;
+    
 
     private int songNum;
 
+    
 
+    public void addFriend(User friendName){
+        friends.add(friendName);
+    
+    }
+    
+    public ArrayList<User> getFriends(){
+        return friends;
+    }
+    
     public PlayList getCurrenPlayList() {
         return currenPlayList;
     }
@@ -186,17 +197,12 @@ public class User implements Serializable{
         Password = password;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
+    
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
 
-    public void addFriend(User user){
-        friends.add(user);
-    }
+ 
     public void addMusicToFavoritePlaylist(Music music){
         this.favoritePlayList.addSong(music);
     }
@@ -215,9 +221,9 @@ public class User implements Serializable{
     }
     
     
- /*   public String giveActivity(User user){
+    public String giveActivity(User user){
         if (this.friends.contains(user)){
-            if (user.getPlayList().getSongs().contains(user.getMusic())){
+            if (user.getp.getPlayList().getSongs().contains(user.getMusic())){
                 if (user.isPlaying())
                 return user.getName()+"\n"+"Playing..."+"\n"+user.getMusic().getTitle();
 
@@ -228,7 +234,7 @@ public class User implements Serializable{
 
         return null;
     }
-*/
+
     public boolean isPlaying() {
         return playing;
     }
