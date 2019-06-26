@@ -222,6 +222,7 @@ public class User implements Serializable{
     
     
     public String giveActivity(User user){
+ /*
         if (this.friends.contains(user)){
             if (user.getp.getPlayList().getSongs().contains(user.getMusic())){
                 if (user.isPlaying())
@@ -234,7 +235,14 @@ public class User implements Serializable{
 
         return null;
     }
-
+*/
+ 
+    String activity = user.getName()+"/n"+"Playing..."+"\n"+user.lastMusic.getTitle()+"time";
+    
+ return activity;
+ 
+ 
+    }
     public boolean isPlaying() {
         return playing;
     }

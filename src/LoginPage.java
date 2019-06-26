@@ -249,7 +249,7 @@ public class LoginPage extends javax.swing.JFrame {
              name = brs.readLine();
              pass = brs.readLine();
              if(name.equals(username) && pass.equals(password)){
-                 HomePage homepage1 = new HomePage(username); 
+                 HomeFrame homepage1 = new HomeFrame(username); 
                  homepage1.setVisible(true);
                  System.out.println(username);
                  homepage1.username = username;
@@ -260,7 +260,7 @@ public class LoginPage extends javax.swing.JFrame {
                 
                 if(name.equals(username) && pass.equals(password)){
                     System.out.println("vorood");
-                    HomePage homepage2 = new HomePage(username); 
+                    HomeFrame homepage2 = new HomeFrame(username); 
                     homepage2.setVisible(true);
                     name = null;
                 }

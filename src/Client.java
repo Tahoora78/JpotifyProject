@@ -5,9 +5,36 @@ import java.net.Socket;
 public class Client {
 
 
+    public static void transferFromClientToServer1(String addressFile) throws IOException{
+        int port = 15064;
+        Socket sr = new Socket("localhost",port);
+        FileInputStream fr = new FileInputStream(addressFile);
+        OutputStream out = sr.getOutputStream();
 
-    public static void transferfromserver(String fileName) throws IOException {
-        Socket sock = new Socket("172.24.100.85", 15064);
+        byte[] buffer = new byte[64 * 1024];
+        int bytesRead = 0;
+        long totalSent = 0;
+
+        while ((bytesRead = fr.read(buffer)) != -1) {
+            if (bytesRead > 0) {
+                out.write(buffer, 0, bytesRead);
+                totalSent += bytesRead;
+                System.out.println("sent " + totalSent);
+            }
+        }
+
+        sr.close();
+
+        /*
+        byte[] b = new byte[9999999];
+        fr.read(b,0,b.length);
+        OutputStream os = sr.getOutputStream();
+        os.write(b,0,b.length);
+*/}
+
+
+    public static void transferfromserverToClient1(String fileName) throws IOException {
+        Socket sock = new Socket("localhost", 15064);
         InputStream in = sock.getInputStream();
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
@@ -23,19 +50,12 @@ public class Client {
 
 
 
-    public void transfertoserver(File file){}
-
-
-
-
-
-
 
 
 
     public static void main(String[] args) throws IOException {
         LoginPage login = new LoginPage();
-        PlayList list = HomePage.user.getSharedPlayList();
+        PlayList list = HomeFrame.user.getSharedPlayList();
 
 
 
@@ -45,7 +65,7 @@ public class Client {
         OutputStream osname = sendName.getOutputStream();
         OutputStreamWriter oswname = new OutputStreamWriter(osname);
         BufferedWriter bwname = new BufferedWriter(oswname);
-        bwname.write(HomePage.user.getName());
+        bwname.write(HomeFrame.user.getName());
         bwname.flush();
 
 
@@ -72,16 +92,16 @@ public class Client {
             sendIP.close();
         }
     while(true){
-        if (HomePage.flag) {
+        if (HomeFrame.flag) {
 
-            transfertoserver();
-            HomePage.flag = false;
+            // transfertoserver();
+            HomeFrame.flag = false;
 
         }
-        if (HomePage.flag2){
+        if (HomeFrame.flag2){
 
-            transferfromserver(HomePage.needed);
-            HomePage.flag2=false;
+        //    transferfromserver(HomeFrame.needed);
+            HomeFrame.flag2=false;
 
         }
 
@@ -94,4 +114,4 @@ public class Client {
     }
 
 
-}
+
