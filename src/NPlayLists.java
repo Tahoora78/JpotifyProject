@@ -225,9 +225,9 @@ public class NPlayLists extends javax.swing.JFrame {
         playListSongs.setModel(playListModel);
         
         
-          for(int i=0;i<HomePage.user.getSongs().size();i++){
-            if(HomePage.user.getSongs().get(i).getTitle().equals(nameMusic)){
-                newPlayList.addSong(HomePage.user.getSongs().get(i));
+          for(int i=0;i<HomeFrame.user.getSongs().size();i++){
+            if(HomeFrame.user.getSongs().get(i).getTitle().equals(nameMusic)){
+                newPlayList.addSong(HomeFrame.user.getSongs().get(i));
             }
           }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -256,8 +256,8 @@ public class NPlayLists extends javax.swing.JFrame {
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-         HomePage.user.getPlayLists().add(newPlayList);
-        updateUser(HomePage.user);
+         HomeFrame.user.getPlayLists().add(newPlayList);
+        updateUser(HomeFrame.user);
        //  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
          setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -269,10 +269,10 @@ public class NPlayLists extends javax.swing.JFrame {
         playListModel.remove(value);
         playListSongs.setModel(playListModel);
         
-        for(int i=0;i<HomePage.user.getSongs().size();i++){
-            if(HomePage.user.getSongs().get(i).getTitle().equals(nameMusic)){
+        for(int i=0;i<HomeFrame.user.getSongs().size();i++){
+            if(HomeFrame.user.getSongs().get(i).getTitle().equals(nameMusic)){
                 try {
-                    newPlayList.removeSong(HomePage.user.getSongs().get(i));
+                    newPlayList.removeSong(HomeFrame.user.getSongs().get(i));
                 } catch (IOException ex) {
                     Logger.getLogger(NPlayLists.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -314,7 +314,7 @@ public class NPlayLists extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                new NPlayLists(HomePage.user).setVisible(true);
+                new NPlayLists(HomeFrame.user).setVisible(true);
             }
         });
     }
