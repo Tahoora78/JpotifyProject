@@ -22,12 +22,17 @@ public class User implements Serializable{
     private ArrayList<Music> songs = new ArrayList<>();
     private ArrayList<Album> albums =new ArrayList<>();
     public static ArrayList<String> friandsName;
-    
+    ArrayList<String> friendsIp = new ArrayList<>();
 
     private int songNum;
 
     
-
+    public void addFrindIp(String ip){
+        friendsIp.add(ip);
+    }
+    public ArrayList<String> getIp(){
+    return friendsIp;
+    }
     public void addFriend(User friendName){
         friends.add(friendName);
     
