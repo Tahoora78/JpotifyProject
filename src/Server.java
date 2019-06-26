@@ -68,7 +68,7 @@ public class Server {
         
         while (true) {
             acceptIP = sSocketIP.accept();
-            acceptName = sSocketUserName.accept();
+//            acceptName = sSocketUserName.accept();
             BufferedReader clientName = new BufferedReader(new InputStreamReader(acceptName.getInputStream()));
 
             DataOutputStream outToClientname = new DataOutputStream(acceptName.getOutputStream());
@@ -87,7 +87,7 @@ public class Server {
             outToClientIP.writeBytes("ok");
 
 
-            acceptFile = sSocketFile.accept();
+//            acceptFile = sSocketFile.accept();
             BufferedReader clientFile = new BufferedReader(new InputStreamReader(acceptFile.getInputStream()));
 
             DataOutputStream outToClientFile = new DataOutputStream(acceptFile.getOutputStream());
@@ -111,4 +111,3 @@ public class Server {
 
     }
 
-}

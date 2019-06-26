@@ -45,7 +45,8 @@ public class PlayingThread extends Thread {
         int au=0;
         while (true) {
             b = m.player.getPosition();
-            if (HomePage.changed){au=HomePage.ctime;
+            if (HomePage.changed){
+                au=HomePage.ctime;
             HomePage.changed=false;
                 System.out.println("popopopopoppopoppopoppopo"+au);
             }
@@ -60,7 +61,10 @@ public class PlayingThread extends Thread {
             if (b-a>=1000) {
                 System.out.println(m.timetoString(a / 1000+au));
                 try {
-                    HomePage.musicSlider.setValue((int) ((double)b/m.getTime())+au);
+                    HomePage.musicSlider.setValue((int) ((double)(b)/m.getTime())+au*1000/m.getTime());
+
+
+                    System.out.println(((double)(b)/m.getTime())+au*1000/m.getTime());
                 } catch (InvalidDataException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

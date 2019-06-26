@@ -74,7 +74,7 @@ public class Client {
     while(true){
         if (HomePage.flag) {
 
-            transfertoserver();
+//            transfertoserver();
             HomePage.flag = false;
 
         }
@@ -94,4 +94,3 @@ public class Client {
     }
 
 
-}

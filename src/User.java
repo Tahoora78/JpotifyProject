@@ -221,19 +221,19 @@ public class User implements Serializable{
     }
     
     
-    public String giveActivity(User user){
-        if (this.friends.contains(user)){
-            if (user.getp.getPlayList().getSongs().contains(user.getMusic())){
-                if (user.isPlaying())
-                return user.getName()+"\n"+"Playing..."+"\n"+user.getMusic().getTitle();
-
-                else return user.getName()+"\n"+Difference(user)+" ago" +"\n"+user.getMusic().getTitle();
-            }
-        }
-
-
-        return null;
-    }
+//    public String giveActivity(User user){
+//        if (this.friends.contains(user)){
+//            if (user.getp.getPlayList().getSongs().contains(user.getMusic())){
+//                if (user.isPlaying())
+//                return user.getName()+"\n"+"Playing..."+"\n"+user.getMusic().getTitle();
+//
+//                else return user.getName()+"\n"+Difference(user)+" ago" +"\n"+user.getMusic().getTitle();
+//            }
+//        }
+//
+//
+//        return null;
+//    }
 
     public boolean isPlaying() {
         return playing;
