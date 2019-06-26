@@ -246,7 +246,7 @@ public class Music implements Serializable{
 
                     if (b-a>=1000) {
                         System.out.println(timetoString(a / 1000));
-                        HomePage.jLabel2.setText(timetoString(a/1000));
+                        HomePage.passTimeLabel.setText(timetoString(a/1000));
                         a = b;
                     }
                     b = player.getPosition();
