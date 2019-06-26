@@ -437,8 +437,23 @@ public class Music implements Serializable{
      */
     public List<String> getSongLyrics(String band, String songTitle) throws IOException {
         List<String> lyrics= new ArrayList<String>();
+        Document doc;
+        try {
 
-        Document doc = Jsoup.connect(this.songLyricsURL+ "/"+band.replace(" ", "-").toLowerCase()+"/"+songTitle.replace(" ", "-").toLowerCase()+"-lyrics/").get();
+             doc = Jsoup.connect(this.songLyricsURL + "/" + band.replace(" ", "-").toLowerCase() + "/" + songTitle.replace(" ", "-").toLowerCase() + "-lyrics/").get();
+
+        }
+        catch (IOException e ){
+             lyrics.add("unable to save because of filter or inappropriate file");
+
+            return lyrics;
+        }
+        catch (IllegalArgumentException e){
+            lyrics.add("unable to save because of filter or inappropriate file");
+
+            return lyrics;
+        }
+
         String title = doc.title();
         System.out.println(title);
         Element p = doc.select("p.songLyricsV14").get(0);
