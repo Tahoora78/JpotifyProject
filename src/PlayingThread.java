@@ -60,14 +60,7 @@ public class PlayingThread extends Thread {
             if (b-a>=1000) {
                 System.out.println(m.timetoString(a / 1000+au));
                 try {
-                    HomePage.musicSlider.setValue((int) ((double)(b)/m.getTime())+au*1000/m.getTime());
-
-//                    System.out.println("1-"+);
-
-
-
-
-                    System.out.println();
+                    HomePage.musicSlider.setValue((int) ((double)b/m.getTime())+au);
                 } catch (InvalidDataException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -75,7 +68,7 @@ public class PlayingThread extends Thread {
                 } catch (UnsupportedTagException e) {
                     e.printStackTrace();
                 }
-                HomePage.passTimeLabel.setText(m.timetoString(a / 1000+au));
+                HomePage.jLabel2.setText(m.timetoString(a / 1000+au));
                 a = b;
             }
 
