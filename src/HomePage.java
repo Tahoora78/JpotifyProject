@@ -35,6 +35,7 @@ import javax.swing.event.ChangeEvent;
  */
 public class HomePage extends javax.swing.JDialog {
 
+    private PlayList currentPlayList;
     ArrayList<JButton> addFriendSongs=new ArrayList<>();
     private Thread thread;
     private boolean liked = false;
@@ -93,17 +94,17 @@ public class HomePage extends javax.swing.JDialog {
     }
 
 
-    public void setActionListenerOfAddFriendSongs(){
-        String nameFriend =
-        Friends friend = new Friends();
-
-
-        }
-
-
-
-
-    }
+//    public void setActionListenerOfAddFriendSongs(){
+//        String nameFriend =
+//        Friends friend = new Friends();
+//
+//
+//        }
+//
+//
+//
+//
+//    }
 
     //Thread playThread=new Thread(new PlayRunnable());
     private Music music;
@@ -116,6 +117,7 @@ public class HomePage extends javax.swing.JDialog {
     private ArrayList<Album> albums = new ArrayList<>();
     private ArrayList<PlayList> playlists = new ArrayList<>();
     private ArrayList<Music> songs = new ArrayList<>();
+    private Album currentAlbum;
     private int songNum = 0;
     String username;
     public static String playerSelected;
@@ -320,6 +322,8 @@ public class HomePage extends javax.swing.JDialog {
                         }
                     }
 
+                    currentPlayList=pl;
+                    user.setCurrenPlayList(pl);
 //                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&"+pl.getTitle());
 
                     for (int i = 0; i < buttons.size(); i++) {
@@ -333,6 +337,7 @@ public class HomePage extends javax.swing.JDialog {
                         labels.get(i).setVisible(false);
                     }
                     Image image;
+                    if (pl.getSongs().size()!=0)
                     for (int i = 0; i < pl.getSongs().size(); i++) {
 //                        buttons.get(i).addNotify();
                         Music mm = null;
@@ -639,7 +644,7 @@ public class HomePage extends javax.swing.JDialog {
         editsPlayList.setLabel("delete");
         editsPlayList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editPlayListButtonActionPerformed(evt);
+                editPlayListActionPerformed(evt);
             }
         });
 
@@ -791,6 +796,23 @@ public class HomePage extends javax.swing.JDialog {
         });
 
         forwardButton.setText("jButton1");
+        forwardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    forwardButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         favoriteButton.setText("jButton2");
         favoriteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1542,7 +1564,7 @@ public class HomePage extends javax.swing.JDialog {
         if (this.mode == 0)
             return;
         else if (mode == 1) {
-            ArrayList<Music> songs = user.getCurrenPlayList().getSongs();
+            ArrayList<Music> songs = currentPlayList.getSongs();
             int a = songs.indexOf(user.getLastMusic());
             user.setLastMusic(songs.get((a + 1)%songs.size()));
             setMusic(songs.get((a + 1)%songs.size()));
@@ -2222,6 +2244,8 @@ public class HomePage extends javax.swing.JDialog {
                 buttons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        currentAlbum=al;
+                        user.setCurrentAlbum(al);
 
                         for (int i = 0; i < buttons.size() && i < labels.size(); i++) {
 
