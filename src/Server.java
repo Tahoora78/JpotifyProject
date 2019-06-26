@@ -15,41 +15,23 @@ public class Server {
    static ArrayList<File> DataBase;
     public static ArrayList<User> users;
    
-    public static void transferFromClientToServer(String fileName) throws IOException {
-        // ServerSocket servsock = new ServerSocket(15065);
+    public static void transfertoserver() throws IOException {
+        ServerSocket servsock = new ServerSocket(15065);
 
-        int port = 15064;
-        byte[] b = new byte[9999999];
-        ServerSocket serverSocket = new ServerSocket(port);
-        System.out.println("Server Started and listening to the port 25000");
-        Socket sock = serverSocket.accept();
-        InputStream is = sock.getInputStream();
-        //address to save
-        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-        byte [] buffer = new byte[64*1024];
-        int bytesRead = 0;
 
-        while ( (bytesRead = is.read(buffer)) != -1)
-            fileOutputStream.write(buffer, 0, bytesRead);
-        sock.close();
-        fileOutputStream.close();
 
-            /*
 
-             FileOutputStream fr = new FileOutputStream(fileName);
-             is.read(b,0,b.length);
-             fr.write(b,0,b.length);
-             */
+
 
 
     }
-    public static void transferfromserverToClient(String name) throws IOException {
+    public static void transferfromserver(File file) throws IOException {
         ServerSocket servsock = new ServerSocket(15064);
         Socket sock = servsock.accept();
         long time = System.currentTimeMillis();
 
         OutputStream out = sock.getOutputStream();
-        FileInputStream fileInputStream = new FileInputStream(name);
+        FileInputStream fileInputStream = new FileInputStream("1234.mp4");
 
         byte[] buffer = new byte[64 * 1024];
         int bytesRead = 0;
@@ -68,22 +50,31 @@ public class Server {
         System.out.println("Sent " + totalSent + " bytes in "
                 + (System.currentTimeMillis() - time) + "ms.");
     }
+
+   
+    static ArrayList<String> IPs=new ArrayList<>();
+    public static ArrayList<String> usernames=new ArrayList<>();
+ 
+    public ArrayList<String> getAllUserNames(){
+        return usernames;
+    }
+
     public static void main(String[] args) throws IOException, InvalidDataException, JavaLayerException, UnsupportedTagException {
         LoginPage login = new LoginPage();
         login.setVisible(true);
-       // IPs.add(InetAddress.getLocalHost().getHostAddress().toString());
-       // usernames.add(HomeFrame.user.getName());
+        IPs.add(InetAddress.getLocalHost().getHostAddress().toString());
+        usernames.add(HomePage.user.getName());
         ServerSocket sSocketIP = new ServerSocket();
         
         while (true) {
             acceptIP = sSocketIP.accept();
-         //   acceptName = sSocketUserName.accept();
+            acceptName = sSocketUserName.accept();
             BufferedReader clientName = new BufferedReader(new InputStreamReader(acceptName.getInputStream()));
 
             DataOutputStream outToClientname = new DataOutputStream(acceptName.getOutputStream());
 
             String name = clientName.readLine();
-           // usernames.add(name);
+            usernames.add(name);
             outToClientname.writeBytes("ok");
 
 
@@ -92,11 +83,11 @@ public class Server {
             DataOutputStream outToClientIP = new DataOutputStream(acceptIP.getOutputStream());
 
             String IP = clientIP.readLine();
-           // IPs.add(name);
+            IPs.add(name);
             outToClientIP.writeBytes("ok");
 
 
-            //acceptFile = sSocketFile.accept();
+            acceptFile = sSocketFile.accept();
             BufferedReader clientFile = new BufferedReader(new InputStreamReader(acceptFile.getInputStream()));
 
             DataOutputStream outToClientFile = new DataOutputStream(acceptFile.getOutputStream());
@@ -111,7 +102,7 @@ public class Server {
                 }
             }
 
-            //transferfromserver(file);
+            transferfromserver(file);
 
             outToClientname.writeBytes("ok");
         }
@@ -120,4 +111,4 @@ public class Server {
 
     }
 
-
+}

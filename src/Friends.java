@@ -118,7 +118,7 @@ public class Friends extends javax.swing.JFrame {
         String friendName = friendList.getSelectedValue();
         for(int i=0;i<Server.usernames.size();i++){
             if(Server.users.get(i).getName().equals(friendName)){
-                HomeFrame.user.addFriend(Server.users.get(i));
+                HomePage.user.addFriend(Server.users.get(i));
             }
         }
         
@@ -159,7 +159,7 @@ public class Friends extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Friends(HomeFrame.user).setVisible(true);
+                new Friends(HomePage.user).setVisible(true);
             }
         });
     }

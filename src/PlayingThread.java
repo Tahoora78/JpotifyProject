@@ -45,8 +45,8 @@ public class PlayingThread extends Thread {
         int au=0;
         while (true) {
             b = m.player.getPosition();
-            if (HomeFrame.changed){au=HomeFrame.ctime;
-            HomeFrame.changed=false;
+            if (HomePage.changed){au=HomePage.ctime;
+            HomePage.changed=false;
                 System.out.println("popopopopoppopoppopoppopo"+au);
             }
 
@@ -60,7 +60,6 @@ public class PlayingThread extends Thread {
             if (b-a>=1000) {
                 System.out.println(m.timetoString(a / 1000+au));
                 try {
-<<<<<<< HEAD
                     HomePage.musicSlider.setValue((int) ((double)(b)/m.getTime())+au*1000/m.getTime());
 
 //                    System.out.println("1-"+);
@@ -69,9 +68,6 @@ public class PlayingThread extends Thread {
 
 
                     System.out.println();
-=======
-                    HomeFrame.musicSlider.setValue((int) ((double)b/m.getTime())+au);
->>>>>>> 0ce23d17551ee2cae0df892c588eb1b09fe75f03
                 } catch (InvalidDataException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -79,11 +75,7 @@ public class PlayingThread extends Thread {
                 } catch (UnsupportedTagException e) {
                     e.printStackTrace();
                 }
-<<<<<<< HEAD
                 HomePage.passTimeLabel.setText(m.timetoString(a / 1000+au));
-=======
-                HomeFrame.passTimeLabel.setText(m.timetoString(a / 1000+au));
->>>>>>> 0ce23d17551ee2cae0df892c588eb1b09fe75f03
                 a = b;
             }
 

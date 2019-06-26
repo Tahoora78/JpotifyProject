@@ -206,7 +206,7 @@ public class newUser extends javax.swing.JFrame {
                 }
                 
                 
-                HomeFrame homepage4 = new HomeFrame(username);
+                HomePage homepage4 = new HomePage(username);
         System.out.println(username);
         homepage4.setVisible(true);
                 
