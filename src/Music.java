@@ -2,7 +2,7 @@
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+//import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -11,7 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
-import sun.misc.IOUtils;
+//import sun.misc.IOUtils;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,5 +1,7 @@
 
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,13 +17,16 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
 
    
     
-    
+   DefaultListModel songLists ; 
     DefaultListModel playListModel;
     String playerName;
     PlayList pList;
     int num;
     public changinOrderOfSongsOfPlaylist(User user,String playerName) {
         initComponents();
+        playListSongs.setSelectionMode(
+                    ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         num=0;
         playListNameLabel.setText(playerName);
         this.playerName = playerName;
@@ -38,7 +43,11 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         
         }
         pList = HomePage.user.getPlayLists().get(num);
-        
+        songLists = new DefaultListModel(); 
+        for(int i=0;i<user.getSongs().size();i++){
+            songLists.addElement(user.getSongs().get(i).getTitle());
+        }
+        songsList.setModel(songLists);
     }
 
     /**
@@ -60,6 +69,14 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         playListSongs = new javax.swing.JList<>();
         playListNameLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        songs = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        songsList = new javax.swing.JList<>();
+        addButton = new javax.swing.JButton();
+        rename = new javax.swing.JButton();
+        nameText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +103,8 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(playListSongs);
 
+        playListNameLabel.setText("playlist");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -110,46 +129,107 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("editing play list song");
 
+        songs.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        songs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        songs.setText("your songs");
+
+        jScrollPane3.setViewportView(songsList);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(songs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(songs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3))
+        );
+
+        jScrollPane4.setViewportView(jPanel3);
+
+        addButton.setText("add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        rename.setText("rename");
+        rename.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(changeButton)
-                        .addGap(48, 48, 48)
-                        .addComponent(saveButton)
-                        .addGap(40, 40, 40)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                        .addGap(148, 148, 148)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(changeButton)
+                                .addGap(48, 48, 48)
+                                .addComponent(saveButton)
+                                .addGap(40, 40, 40)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
+                                .addComponent(addButton)
+                                .addGap(47, 47, 47)
+                                .addComponent(rename)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameText, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(changeButton)
-                    .addComponent(saveButton)
-                    .addComponent(deleteButton))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane2))
+                        .addGap(145, 145, 145)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(changeButton)
+                            .addComponent(saveButton)
+                            .addComponent(deleteButton)
+                            .addComponent(addButton)
+                            .addComponent(rename))
+                        .addContainerGap(61, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +240,7 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
-        int value1 = playListSongs.getSelectedIndex();
+        int[] value1 = playListSongs.getSelectedIndexes();
         String pName1 = playListSongs.getSelectedValue();
         int value2 = playListSongs.getSelectedIndex();
         String pName2 = playListSongs.getSelectedValue();
@@ -192,6 +272,44 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
         playListSongs.setModel(playListModel);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        int value = songsList.getSelectedIndex();
+        String name = songsList.getSelectedValue();
+        System.out.println("name"+name);
+        playListModel.addElement(name);
+        playListSongs.setModel(playListModel);
+        Music m = null;
+        System.out.println("bhhh"+HomePage.user.getPlayLists().get(num).getSongs().size());
+        for(int i=0;i<HomePage.user.getSongs().size();i++){
+            if(HomePage.user.getSongs().get(i).getTitle().equals(name)){
+               
+                m = HomePage.user.getSongs().get(i); 
+                System.out.println("iiiiiiiiiiiiiii");
+                break;
+            }
+        }
+        HomePage.user.getPlayLists().get(num).addSong(m);
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void renameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renameActionPerformed
+        String n = nameText.getText();
+        HomePage.user.getPlayLists().get(num).setTitle(n);
+        playListNameLabel.setText(n);
+        playerName = n;
+        
+         playListModel = new DefaultListModel();
+        for(int i=0;i<HomePage.user.getPlayLists().size();i++){
+            if(HomePage.user.getPlayLists().get(i).getTitle().equals(playerName)){
+                num = i;
+                for(int j=0;j<HomePage.user.getPlayLists().get(i).getSongs().size();j++){
+                    playListModel.addElement(HomePage.user.getPlayLists().get(i).getSongs().get(j).getTitle());         
+                }
+                break;
+            }
+        playListSongs.setModel(playListModel);
+        
+    }//GEN-LAST:event_renameActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -237,15 +355,23 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JButton changeButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField nameText;
     private javax.swing.JLabel playListNameLabel;
     private javax.swing.JList<String> playListSongs;
+    private javax.swing.JButton rename;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel songs;
+    private javax.swing.JList<String> songsList;
     // End of variables declaration//GEN-END:variables
 }
