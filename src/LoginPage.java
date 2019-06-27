@@ -38,7 +38,7 @@ public class LoginPage extends javax.swing.JFrame {
         public static  Socket socket;
         public static ObjectOutputStream objectOutputStream;
         public static ObjectInputStream objectInputStream;
-     LoginPage(Socket accept) {
+    /*LoginPage(Socket accept) {
             try {
                 initComponents();
                 objectOutputStream = new ObjectOutputStream(new DataOutputStream(accept.getOutputStream()));
@@ -46,7 +46,10 @@ public class LoginPage extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
             }
+      */
         
+    public LoginPage(){
+    initComponents();
     }
     
     public static void refresh(SaveFriend saveFriend){
