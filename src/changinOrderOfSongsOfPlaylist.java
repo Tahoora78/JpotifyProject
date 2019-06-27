@@ -289,14 +289,15 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
             else pls.add(pList);
         }
 
-        HomePage.user.getPlayLists().add(num,pList);
+        HomePage.user.getPlayLists().remove(num);
+        HomePage.user.getPlayLists().add(pList);
         for (int i = 0; i < pList.getSongs().size(); i++) {
 
             System.out.println(pList.getSongs().get(i).getTitle());
 
         }
 
-        pList.setSongs(musics);
+//        HomePage.user.setPlaylists(pls);
 
 //        playListSongs.setSelectionMode(
 //                ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
