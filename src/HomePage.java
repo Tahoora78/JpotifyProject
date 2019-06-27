@@ -581,7 +581,7 @@ public class HomePage extends javax.swing.JDialog {
         t22 = new javax.swing.JLabel();
         t24 = new javax.swing.JLabel();
         addToLibraryButton = new javax.swing.JButton();
-        displayMusicPanel = new javax.swing.JPanel();
+        displayMusicPanel = new Equalizer();
         sortComboBox = new javax.swing.JComboBox<>();
         sortButton = new javax.swing.JButton();
         addFriendButton = new javax.swing.JButton();
@@ -620,7 +620,17 @@ public class HomePage extends javax.swing.JDialog {
         albumButton.setText("album");
         albumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                albumButtonActionPerformed(evt);
+                try {
+                    albumButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -628,7 +638,17 @@ public class HomePage extends javax.swing.JDialog {
         songsButton.setText("Songs");
         songsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                songsButtonActionPerformed(evt);
+                try {
+                    songsButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -748,7 +768,11 @@ public class HomePage extends javax.swing.JDialog {
         musicSlider.setValue(0);
         musicSlider.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                musicSliderAncestorMoved(evt);
+                try {
+                    musicSliderAncestorMoved(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
@@ -757,12 +781,32 @@ public class HomePage extends javax.swing.JDialog {
         });
         musicSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                musicSliderStateChanged(evt);
+                try {
+                    musicSliderStateChanged(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
         musicSlider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                musicSliderMouseReleased(evt);
+                try {
+                    musicSliderMouseReleased(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -781,14 +825,30 @@ public class HomePage extends javax.swing.JDialog {
         playButton.setText("jButton1");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
+                try {
+                    playButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         forwardButton.setText("jButton1");
         forwardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                forwardButtonActionPerformed(evt);
+                try {
+                    forwardButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -802,7 +862,11 @@ public class HomePage extends javax.swing.JDialog {
         pauseButton.setText("jButton1");
         pauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseButtonActionPerformed(evt);
+                try {
+                    pauseButtonActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1130,7 +1194,17 @@ public class HomePage extends javax.swing.JDialog {
         searchButton.setText("search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+                try {
+                    searchButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1167,7 +1241,19 @@ public class HomePage extends javax.swing.JDialog {
 
         i1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                i1ActionPerformed(evt);
+                try {
+                    i1ActionPerformed(evt);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1396,7 +1482,17 @@ public class HomePage extends javax.swing.JDialog {
         addToLibraryButton.setText("add to library");
         addToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToLibraryButtonActionPerformed(evt);
+                try {
+                    addToLibraryButtonActionPerformed(evt);
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1419,7 +1515,17 @@ public class HomePage extends javax.swing.JDialog {
         sortButton.setText("sort");
         sortButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortButtonActionPerformed(evt);
+                try {
+                    sortButtonActionPerformed(evt);
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -1433,7 +1539,11 @@ public class HomePage extends javax.swing.JDialog {
         refreshButton.setText("refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
+                try {
+                    refreshButtonActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -3217,7 +3327,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton albumButton;
     private javax.swing.JButton backwardButton;
     private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JPanel displayMusicPanel;
+    private Equalizer displayMusicPanel;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton editPlayList;
     private javax.swing.JButton editPlayListButton;
@@ -3256,7 +3366,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton i9;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3278,7 +3388,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JScrollPane libraryScroll;
     private javax.swing.JFrame lyricsPanel;
     private javax.swing.JLabel musicLabel;
-    private javax.swing.JSlider musicSlider;
+    public static javax.swing.JSlider musicSlider;
     private javax.swing.JButton newPlayList;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
