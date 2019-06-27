@@ -61,24 +61,46 @@ public class Server {
                 + (System.currentTimeMillis() - time) + "ms.");
     }
 
-    public static void main(String[] args) {
-       /*
-        try {
-            System.out.println("9)))))))))))))))))))))))))))))");
-            transferfromserverToClient("123.mp3");
-            System.out.println("10)))))))))))))))))))))))))))))))))");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void main(String[] args) throws IOException {
+       ServerSocket serverSocket = new ServerSocket(15000);
+        Socket sockst = serverSocket.accept();
+        OutputStream out = sockst.getOutputStream();
+        Socket sock = serverSocket.accept();
+        InputStream is = sock.getInputStream();
+        InputStreamReader in = new InputStreamReader(is);
+        OutputStreamWriter on = new OutputStreamWriter(out);
+        BufferedReader br = new BufferedReader(in);
+        BufferedWriter write = new BufferedWriter(on);
+
+        String number;
+        Thread t=new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+
+        boolean send = false;
+        while(true) {
+            if(send==false){
+         //   number = br.readLine();
+             //   if(number.equals("connect")){
+                    transferFromClientToServer("123.mp3");
+               // }
+            }
+
+            if(send==true){
+                write.write("connect");
+                write.flush();
+                transferfromserverToClient("clientFile.mp3");
+            }
+
+
         }
-*/
-        try {
-            transferFromClientToServer("yas.bin");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
 
     }
 
+    }
 
-}

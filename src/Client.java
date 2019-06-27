@@ -46,22 +46,41 @@ public class Client {
         fileOutputStream.close();
     }
 
-    public static void main(String[] args) {
-       /*
-        try {
-            System.out.println("9(((((((((((((((((((((((((((((((((");
-            transferfromserverToClient1("tahoora.mp3");
-            System.out.println("10((((((((((((((((((((((((((((((((((");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+    public static void main(String[] args) throws IOException {
+       Socket sr = new Socket("169.254.156.61",15000);
+        OutputStream out = sr.getOutputStream();
+        // FileInputStream fr = new FileInputStream(addressFile);
+        Socket sock = new Socket("169.254.156.61", 15000);
+        InputStream in = sock.getInputStream();
+        InputStreamReader isr = new InputStreamReader(in);
+        BufferedReader br = new BufferedReader(isr);
+        OutputStreamWriter wr = new OutputStreamWriter(out);
+        BufferedWriter write = new BufferedWriter(wr);
+        while(true) {
 
 
-        try {
-            transferFromClientToServer1("0.bin");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String number;
+        boolean send = true;
+
+
+            if(send==false) {
+                    number = br.readLine();
+                    System.out.println("recieving");
+                transferfromserverToClient1("clientFile.mp3");
+
+            }
+            if(send==true){
+
+                System.out.println("sending");
+               // write.write("connect");
+               // write.flush();
+                transferFromClientToServer1("123.mp3");
+                System.out.println("88888");
+            }
+
+
         }
+        transferFromClientToServer1("123.mp3");
 
     }
 
