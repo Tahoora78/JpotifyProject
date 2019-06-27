@@ -30,6 +30,7 @@ import java.util.List;
 
 public class Music implements Serializable{
     //Thread t;
+    boolean liked=false;
     private transient Mp3File mp3File;
     private String Title;
     private String album;

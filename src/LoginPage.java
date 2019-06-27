@@ -351,7 +351,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPage(Client.socket).setVisible(true);
+                new LoginPage().setVisible(true);
             }
         });
     }

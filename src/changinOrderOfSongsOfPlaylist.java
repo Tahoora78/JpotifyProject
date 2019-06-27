@@ -326,6 +326,7 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
                 break;
             }
         }
+        if (!HomePage.user.getPlayLists().get(num).getSongs().contains(m))
         HomePage.user.getPlayLists().get(num).addSong(m);
     }//GEN-LAST:event_addButtonActionPerformed
 

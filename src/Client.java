@@ -121,7 +121,7 @@ public class Client {
                     try {
                         ServerSocket serverSocket = new ServerSocket(8080);
                         while (true){
-                            LoginPage loginPage = new LoginPage(serverSocket.accept());
+                            LoginPage loginPage = new LoginPage();
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
