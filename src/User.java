@@ -24,9 +24,17 @@ public class User implements Serializable{
     public static ArrayList<String> friandsName;
     ArrayList<String> friendsIp = new ArrayList<>();
 
+    /**
+     *
+     */
+    public  Savefriend friend;
+    public ArrayL
     private int songNum;
 
+    public void setSaveFriend(PlayList sharedPlayList,String nameOfLastMusic,int timePassed,String name,String Ip){
+    friend = new SaveFriend(sharedPlayList,lastMusic.getTitle(),Ltime,name,IP);
     
+    }
     public void addFrindIp(String ip){
         friendsIp.add(ip);
     }

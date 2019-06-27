@@ -3,10 +3,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Client {
-
-    public static void transferFromClientToServer1(String addressFile) throws IOException{
-        int port = 15064;
-        Socket sr = new Socket("localhost",port);
+    
+     public static  Socket socket;
+        public static ObjectOutputStream objectOutputStream;
+        public static ObjectInputStream objectInputStream;
+       OutputStream out ;
+        OutputStreamWriter wr;
+        BufferedWriter write ;
+        public Socket getSocket(){
+        return socket;
+        }
+   public static  void transferFromClientToServer1(String addressFile,String Ip) throws IOException{
+        int port = 15000;
+        Socket sr = new Socket(Ip,port);
+        System.out.println("true");
         FileInputStream fr = new FileInputStream(addressFile);
         OutputStream out = sr.getOutputStream();
 
@@ -24,16 +34,11 @@ public class Client {
 
         sr.close();
 
-        /*
-        byte[] b = new byte[9999999];
-        fr.read(b,0,b.length);
-        OutputStream os = sr.getOutputStream();
-        os.write(b,0,b.length);
-*/}
+     
+}
 
-
-    public static void transferfromserverToClient1(String fileName) throws IOException {
-        Socket sock = new Socket("localhost", 15064);
+    public static void transferfromserverToClient1(String fileName,String ip) throws IOException {
+        Socket sock = new Socket(ip, 15000);
         InputStream in = sock.getInputStream();
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
@@ -45,7 +50,17 @@ public class Client {
         sock.close();
         fileOutputStream.close();
     }
-
+    public static void refreshsend(SaveFriend savFriend) throws IOException{
+         OutputStream out = socket.getOutputStream();
+         SaveFriend sf=savFriend;
+        OutputStreamWriter wr = new OutputStreamWriter(out);
+        BufferedWriter write = new BufferedWriter(wr);
+         write.write("connect");
+                write.flush();
+                transferFromClientToServer1(savFriend.getName().concat(".bin"),savFriend.Ip);
+                dese
+    }
+    
     public static void main(String[] args) throws IOException {
        Socket sr = new Socket("169.254.156.61",15000);
         OutputStream out = sr.getOutputStream();
@@ -56,12 +71,25 @@ public class Client {
         BufferedReader br = new BufferedReader(isr);
         OutputStreamWriter wr = new OutputStreamWriter(out);
         BufferedWriter write = new BufferedWriter(wr);
-        while(true) {
+        //while(true) {
+        new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        ServerSocket serverSocket = new ServerSocket(8080);
+                        while (true){
+                            LoginPage loginPage = new LoginPage(serverSocket.accept());
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
 
 
-        String number;
-        boolean send = true;
-
+        //String number;
+        //boolean send = true;
+/*       
 
             if(send==false) {
                     number = br.readLine();
@@ -81,7 +109,7 @@ public class Client {
 
         }
         transferFromClientToServer1("123.mp3");
-
+*/
     }
 
     }

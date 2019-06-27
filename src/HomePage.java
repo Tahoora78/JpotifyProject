@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -48,6 +49,9 @@ public class HomePage extends javax.swing.JDialog {
     public static String fileName;
     public static boolean changed;
     public static int ctime;
+    public String ip;
+    private String ipss;
+    
     public boolean isFlag() {
         return flag;
     }
@@ -132,7 +136,7 @@ public class HomePage extends javax.swing.JDialog {
     ArrayList<JTextField> playingTexts = new ArrayList<>();
     ArrayList<JTextField> timeTexts = new ArrayList<>();
     ArrayList<JButton> AddSongButton = new ArrayList<>();
-
+    ArrayList<String>Ips;
     ArrayList<JLabel> labels = new ArrayList<>();
     String fileNameSerialize;
     public static User user;
@@ -579,6 +583,7 @@ public class HomePage extends javax.swing.JDialog {
         sortComboBox = new javax.swing.JComboBox<>();
         sortButton = new javax.swing.JButton();
         addFriendButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Lyrics");
@@ -1435,6 +1440,13 @@ public class HomePage extends javax.swing.JDialog {
             }
         });
 
+        refreshButton.setText("refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1467,12 +1479,13 @@ public class HomePage extends javax.swing.JDialog {
                                 .addComponent(searchButton)
                                 .addGap(122, 122, 122)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(addFriendButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addFriendButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(refreshButton))))
                     .addComponent(soundBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1487,7 +1500,8 @@ public class HomePage extends javax.swing.JDialog {
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton)
                     .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addFriendButton))
+                    .addComponent(addFriendButton)
+                    .addComponent(refreshButton))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -2943,10 +2957,51 @@ public class HomePage extends javax.swing.JDialog {
     }//GEN-LAST:event_i11ActionPerformed
 
     private void addFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendButtonActionPerformed
-        String ip = JOptionPane.showInputDialog("type the IP of your friend");
+        ipss = JOptionPane.showInputDialog("type the IP of your friend");
+        Ips.add(ipss);
     }//GEN-LAST:event_addFriendButtonActionPerformed
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        
+        Client.refreshSend(saveFriend);
+        
+    }//GEN-LAST:event_refreshButtonActionPerformed
+ public static void transferFromClientToServer1(String addressFile,String Ip) throws IOException{
+        int port = 15000;
+        Socket sr = new Socket(Ip,port);
+        System.out.println("true");
+        FileInputStream fr = new FileInputStream(addressFile);
+        OutputStream out = sr.getOutputStream();
 
+        byte[] buffer = new byte[64 * 1024];
+        int bytesRead = 0;
+        long totalSent = 0;
+
+        while ((bytesRead = fr.read(buffer)) != -1) {
+            if (bytesRead > 0) {
+                out.write(buffer, 0, bytesRead);
+                totalSent += bytesRead;
+                System.out.println("sent " + totalSent);
+            }
+        }
+
+        sr.close();
+
+     
+}
+     public static void transferfromserverToClient1(String fileName,String ip) throws IOException {
+        Socket sock = new Socket(ip, 15000);
+        InputStream in = sock.getInputStream();
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+
+        byte [] buffer = new byte[64*1024];
+        int bytesRead = 0;
+
+        while ( (bytesRead = in.read(buffer)) != -1)
+            fileOutputStream.write(buffer, 0, bytesRead);
+        sock.close();
+        fileOutputStream.close();
+    }
 
 
 //????????????????????????????????????????????????????????????
@@ -3170,6 +3225,7 @@ public class HomePage extends javax.swing.JDialog {
     private javax.swing.JButton playButton;
     private javax.swing.JLabel playListLabel;
     private javax.swing.JList<String> playListList;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchText;
     private javax.swing.JButton shuffleButton;

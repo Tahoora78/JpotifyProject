@@ -9,16 +9,24 @@
  * @author Home pc
  */
 public class SaveFriend {
-    public  PlayList sharedPlayList;
-    public String nameOfLastMusic;
+    public static PlayList sharedPlayList;
+    public static String nameOfLastMusic;
     public int timePassed;
-    public String name;
-    public SaveFriend(PlayList sharedPlayList,String nameOfLastMusic,int timePassed,String name){
+    public static String name;
+    public static String Ip;
+    public SaveFriend(PlayList sharedPlayList,String nameOfLastMusic,int timePassed,String name,String Ip){
         this.name = name;
         this.nameOfLastMusic = nameOfLastMusic;
         this.timePassed = timePassed;
         this.sharedPlayList = sharedPlayList;
-        
+        this.Ip = Ip;
+    }
+    public static String getIp(){
+    return Ip;
+    }
+    public static String getName(){
+        return name;
+    
     }
     
     

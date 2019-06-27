@@ -4,12 +4,16 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import javazoom.jl.decoder.JavaLayerException;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -31,11 +35,47 @@ public class LoginPage extends javax.swing.JFrame {
         String username;
         String password;
         User user;
-   
-    public LoginPage() {
-        initComponents();
+        public static  Socket socket;
+        public static ObjectOutputStream objectOutputStream;
+        public static ObjectInputStream objectInputStream;
+     LoginPage(Socket accept) {
+            try {
+                initComponents();
+                objectOutputStream = new ObjectOutputStream(new DataOutputStream(accept.getOutputStream()));
+                objectInputStream = new ObjectInputStream(new DataInputStream(accept.getInputStream()));
+            } catch (IOException ex) {
+                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
     }
+    
+    public static void refresh(SaveFriend saveFriend){
+    try{
+        objectOutputStream.flush();
+        objectOutputStream.writeObject(saveFriend);
+    }catch(IOException e){
+        e.printStackTrace();
+    }
+    
+    }
+
+   
+
+    /**
+     *
+     * @param accept
+     */
+   /* public LoginPage(Socket accept) {
+    try {
+                initComponents();
+                objectOutputStream = new ObjectOutputStream(new DataOutputStream(accept.getOutputStream()));
+                objectInputStream = new ObjectInputStream(new DataInputStream(accept.getInputStream()));
+            } catch (IOException ex) {
+                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+    }
+*/
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -308,7 +348,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPage().setVisible(true);
+                new LoginPage(Client.socket).setVisible(true);
             }
         });
     }
