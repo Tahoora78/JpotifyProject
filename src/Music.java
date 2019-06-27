@@ -445,12 +445,12 @@ public class Music implements Serializable{
 
         }
         catch (IOException e ){
-             lyrics.add("unable to save because of filter or inappropriate file");
+             lyrics.add("unable to load because of filter or inappropriate file");
 
             return lyrics;
         }
         catch (IllegalArgumentException e){
-            lyrics.add("unable to save because of filter or inappropriate file");
+            lyrics.add("unable to ;oad because of filter or inappropriate file");
 
             return lyrics;
         }
