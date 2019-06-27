@@ -282,7 +282,10 @@ public class changinOrderOfSongsOfPlaylist extends javax.swing.JFrame {
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
         int value1 = playListSongs.getSelectedIndex();
         String pName = playListSongs.getSelectedValue();
+        System.out.println("name"+pName);
+        newSongLIstModel = new DefaultListModel();
         newSongLIstModel.addElement(pName);
+        
         newList.setModel(newSongLIstModel);
       //  playListSongs.setModel(playListModel);
       
