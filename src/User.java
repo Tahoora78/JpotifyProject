@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class User implements Serializable{
     private String name;
     private int ID;
-    private int IP;
+    private String  IP;
     private int Password;
-    private ArrayList<User> friends;
+    private ArrayList<SaveFriend> friends;
     private PlayList sharedPlayList=new PlayList("Shared PlayList");
     private Long Ltime;
     private Music lastMusic;
@@ -27,12 +27,12 @@ public class User implements Serializable{
     /**
      *
      */
-    public  Savefriend friend;
-    public ArrayL
+    public  SaveFriend friend;
+    public ArrayList<SaveFriend> Friends=new ArrayList<>();
     private int songNum;
 
-    public void setSaveFriend(PlayList sharedPlayList,String nameOfLastMusic,int timePassed,String name,String Ip){
-    friend = new SaveFriend(sharedPlayList,lastMusic.getTitle(),Ltime,name,IP);
+    public void setSaveFriend(PlayList sharedPlayList,String nameOfLastMusic,long timePassed,String name,String Ip){
+    friend = new SaveFriend(sharedPlayList,lastMusic.getTitle(),Ltime,name, IP);
     
     }
     public void addFrindIp(String ip){
@@ -41,12 +41,11 @@ public class User implements Serializable{
     public ArrayList<String> getIp(){
     return friendsIp;
     }
-    public void addFriend(User friendName){
+    public void addFriend(SaveFriend friendName){
         friends.add(friendName);
-    
     }
     
-    public ArrayList<User> getFriends(){
+    public ArrayList<SaveFriend> getFriends(){
         return friends;
     }
     
@@ -194,11 +193,11 @@ public class User implements Serializable{
         this.ID = ID;
     }
 
-    public int getIP() {
+    public String getIP() {
         return IP;
     }
 
-    public void setIP(int IP) {
+    public void setIP(String IP) {
         this.IP = IP;
     }
 
@@ -211,7 +210,7 @@ public class User implements Serializable{
     }
 
     
-    public void setFriends(ArrayList<User> friends) {
+    public void setFriends(ArrayList<SaveFriend> friends) {
         this.friends = friends;
     }
 

@@ -49,17 +49,60 @@ public class Client {
             fileOutputStream.write(buffer, 0, bytesRead);
         sock.close();
         fileOutputStream.close();
+
     }
-    public static void refreshsend(SaveFriend savFriend) throws IOException{
-         OutputStream out = socket.getOutputStream();
+
+    public static SaveFriend deserializeFriend(String file){
+
+
+        SaveFriend fr = null;
+
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(file));
+            fr = (SaveFriend) is.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("finish deserializing");
+        return fr;
+    }
+
+    public static void refreshRecieve(SaveFriend savFriend) throws IOException{
+            InputStream in = socket.getInputStream();
          SaveFriend sf=savFriend;
+         InputStreamReader rd = new InputStreamReader(in);
+        BufferedReader brd = new BufferedReader(rd);
+        String s1 = brd.readLine();
+        if(s1.equals("connect")) {
+            transferfromserverToClient1(savFriend.getName().concat(".bin"), savFriend.Ip);
+
+            SaveFriend nsf = deserializeFriend(savFriend.getName().concat(".bin"));
+
+            HomePage.user.addFriend(nsf);
+        }
+        }
+       // public static void serializedFriend(String HomePage.getU){}
+    public static void refreshSend(SaveFriend savFriend) throws IOException {
+        OutputStream out = socket.getOutputStream();
+        SaveFriend sf=savFriend;
         OutputStreamWriter wr = new OutputStreamWriter(out);
         BufferedWriter write = new BufferedWriter(wr);
-         write.write("connect");
-                write.flush();
-                transferFromClientToServer1(savFriend.getName().concat(".bin"),savFriend.Ip);
-                dese
+        write.write("connect");
+        write.flush();
+
+        transferFromClientToServer1(savFriend.getName().concat(".bin"), savFriend.Ip);
+
+        SaveFriend nsf = deserializeFriend(savFriend.getName().concat(".bin"));
+
+        HomePage.user.addFriend(nsf);
+
     }
+
+
     
     public static void main(String[] args) throws IOException {
        Socket sr = new Socket("169.254.156.61",15000);

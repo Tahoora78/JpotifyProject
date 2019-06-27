@@ -11,10 +11,10 @@
 public class SaveFriend {
     public static PlayList sharedPlayList;
     public static String nameOfLastMusic;
-    public int timePassed;
+    public long  timePassed;
     public static String name;
     public static String Ip;
-    public SaveFriend(PlayList sharedPlayList,String nameOfLastMusic,int timePassed,String name,String Ip){
+    public SaveFriend(PlayList sharedPlayList, String nameOfLastMusic, Long timePassed, String name, String Ip){
         this.name = name;
         this.nameOfLastMusic = nameOfLastMusic;
         this.timePassed = timePassed;
